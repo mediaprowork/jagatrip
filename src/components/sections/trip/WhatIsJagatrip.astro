@@ -5,22 +5,12 @@ interface Props {
 
 const { destination } = Astro.props;
 
-const pillars = [
-  {
-    icon: '📍',
-    title: 'Field Learning',
-    desc: 'Kunjungan langsung ke sekolah-sekolah terbaik dan lembaga pendidikan unggulan di ' + destination + '. Bukan ceramah — pengalaman nyata.',
-  },
-  {
-    icon: '🎤',
-    title: 'Workshop Eksklusif',
-    desc: 'Sesi intensif bersama praktisi dan pemimpin pendidikan. Diskusi, brainstorming, dan penyusunan rencana aksi untuk sekolahmu.',
-  },
-  {
-    icon: '🌐',
-    title: 'Networking Premium',
-    desc: 'Bergabung dengan komunitas praktisi pendidikan terbaik Indonesia. Koneksi yang dibangun di sini bertahan jauh setelah perjalanan usai.',
-  },
+const components = [
+  'Pengalaman belajar langsung di lapangan (field learning)',
+  'Workshop eksklusif bersama praktisi pendidikan di negara-negara kunjungan',
+  'Sesi dialog terbuka dengan manajemen sekolah internasional',
+  'City tour edukatif destinasi wisata',
+  'Networking eksklusif antar sesama praktisi pendidikan Indonesia',
 ];
 ---
 
@@ -37,29 +27,46 @@ const pillars = [
       </h2>
     </div>
 
-    <div class="what-content">
-      <div class="what-text">
+    <div class="what-body">
+      <div class="what-left">
         <p id="jagatrip-trip-definition" class="definition-para">
-          JAGATRIP adalah program edu-tourism premium yang dirancang khusus untuk praktisi pendidikan Indonesia.
-          Melalui perjalanan ke {destination}, kamu tidak sekadar berwisata — kamu mendapatkan akses eksklusif ke
-          sistem pendidikan kelas dunia, berdialog langsung dengan para pemimpin sekolah terbaik, dan membawa pulang
-          praktik nyata yang bisa langsung diterapkan untuk memajukan sekolah dan generasi didikmu.
+          JAGATRIP adalah program Edu-Tourism premium yang dirancang khusus untuk para praktisi
+          pendidikan — kepala sekolah, guru, pengawas, dan pemangku pendidikan — yang ingin melakukan
+          <strong>BENCHMARKING</strong> langsung ke sekolah-sekolah terbaik di seluruh dunia.
         </p>
 
-        <blockquote class="pull-quote">
-          "Bukan sekadar jalan-jalan. Bukan sekadar studi banding biasa. JAGATRIP adalah perjalanan edukasi
-          penuh makna yang mengubah cara pandangmu tentang pendidikan."
-        </blockquote>
+        <p class="tagline-bold">
+          Bukan sekadar jalan-jalan. Bukan sekadar studi banding biasa.
+        </p>
+
+        <p class="components-lead">
+          JAGATRIP adalah perjalanan edukasi penuh makna yang menggabungkan:
+        </p>
+
+        <ul class="components-list" aria-label="Komponen program JAGATRIP">
+          {components.map((item) => (
+            <li class="component-item">
+              <span class="component-arrow" aria-hidden="true">→</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div class="pillars-grid" role="list" aria-label="Tiga pilar program JAGATRIP">
-        {pillars.map((pillar) => (
-          <div class="pillar-card" role="listitem">
-            <div class="pillar-icon" aria-hidden="true">{pillar.icon}</div>
-            <h3 class="pillar-title">{pillar.title}</h3>
-            <p class="pillar-desc">{pillar.desc}</p>
-          </div>
-        ))}
+      <div class="what-right">
+        <div class="highlight-box">
+          <p class="highlight-num" aria-hidden="true">5</p>
+          <p class="highlight-label">Elemen program yang<br>saling melengkapi</p>
+        </div>
+        <div class="destination-badge">
+          <p class="destination-label">Destinasi Program</p>
+          <p class="destination-name">{destination}</p>
+        </div>
+        <div class="value-box">
+          <p style="font-family:var(--font-display); font-size:15px; font-weight:700; font-style:italic; color:var(--color-orange); line-height:1.5; margin:0;">
+            "Bukan sekadar jalan-jalan. Bukan sekadar studi banding biasa."
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -71,84 +78,168 @@ const pillars = [
     margin-bottom: 56px;
   }
 
-  .what-content {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-  }
-
-  .what-text {
-    max-width: 780px;
-    margin: 0 auto;
-    text-align: center;
+  .what-body {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 64px;
+    align-items: start;
   }
 
   .definition-para {
     font-family: var(--font-body);
     font-size: 17px;
-    line-height: 1.75;
+    line-height: 1.8;
     color: var(--color-grey);
+    margin-bottom: 24px;
   }
 
-  .pull-quote {
-    text-align: left;
-    max-width: 640px;
-    margin-inline: auto;
+  .definition-para strong {
+    color: var(--color-orange);
+    font-weight: 700;
   }
 
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .pillar-card {
-    background: var(--color-white);
-    border-radius: var(--radius-card-md);
-    padding: 32px 28px;
-    border: 1px solid var(--color-grey-light);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .pillar-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-solution-hover);
-  }
-
-  .pillar-icon {
-    font-size: 40px;
-    margin-bottom: 16px;
-    line-height: 1;
-  }
-
-  .pillar-title {
+  .tagline-bold {
     font-family: var(--font-display);
     font-size: 20px;
     font-weight: 700;
-    color: var(--color-ink);
-    margin-bottom: 12px;
+    font-style: italic;
+    color: var(--color-orange);
+    margin-bottom: 24px;
+    line-height: 1.4;
   }
 
-  .pillar-desc {
+  .components-lead {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: 16px;
+  }
+
+  .components-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .component-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-grey);
+    line-height: 1.5;
+    padding: 12px 16px;
+    background: var(--color-white);
+    border-radius: 12px;
+    border-left: 3px solid var(--color-orange-light);
+    transition: border-color 0.2s;
+  }
+
+  .component-item:hover {
+    border-left-color: var(--color-orange);
+  }
+
+  .component-arrow {
+    color: var(--color-orange);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Right column */
+  .what-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-dark) 100%);
+    border-radius: 24px;
+    padding: 36px 32px;
+    text-align: center;
+    color: white;
+  }
+
+  .highlight-num {
+    font-family: var(--font-display);
+    font-size: 96px;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1;
+    margin: 0 0 8px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .highlight-label {
     font-family: var(--font-body);
     font-size: 14px;
-    line-height: 1.65;
-    color: var(--color-grey);
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .destination-badge {
+    background: var(--color-white);
+    border: 2px solid var(--color-orange-light);
+    border-radius: 20px;
+    padding: 20px 24px;
+    text-align: center;
+  }
+
+  .destination-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-orange);
+    margin: 0 0 6px;
+  }
+
+  .destination-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--color-ink);
     margin: 0;
   }
 
-  @media (max-width: 768px) {
-    .pillars-grid {
+  .value-box {
+    background: var(--color-orange-light);
+    border-radius: 16px;
+    padding: 20px 24px;
+    text-align: center;
+  }
+
+  @media (max-width: 968px) {
+    .what-body {
       grid-template-columns: 1fr;
     }
 
-    .what-text {
-      text-align: left;
+    .what-right {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
 
-    .pull-quote {
-      margin-inline: 0;
+    .highlight-box {
+      flex: 1;
+      min-width: 160px;
+    }
+
+    .destination-badge,
+    .value-box {
+      flex: 1;
+      min-width: 200px;
     }
   }
 </style>
