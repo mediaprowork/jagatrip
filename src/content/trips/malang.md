@@ -12,6 +12,10 @@ durationDays: 3
 dateStart: 2026-11-17
 dateEnd: 2026-11-19
 focus: "Creative networking & pusat studi teknologi"
+segmenPasar:
+  - "Guru Kreatif"
+  - "Pengelola Pusat Studi"
+  - "Tim Inkubator Sekolah"
 gradient: "--color-grad-malang"
 pricing:
   dpPercentage: 50

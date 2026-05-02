@@ -23,14 +23,21 @@
   50%       { transform: translateY(-8px); }
 }
 
-/* Reveal utility */
+/* Reveal utility — progressive enhancement.
+   Default: visible (so works without JS, in print, in headless screenshots).
+   Only when <html> has .js-loaded class will reveal be hidden until observer triggers. */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal.visible {
+.js-loaded .reveal:not(.visible) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.js-loaded .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }

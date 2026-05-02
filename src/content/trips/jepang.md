@@ -12,6 +12,10 @@ durationDays: 5
 dateStart: 2026-08-25
 dateEnd: 2026-08-29
 focus: "Teknologi masa depan & global scale networking"
+segmenPasar:
+  - "Kepala Sekolah"
+  - "Tim Kurikulum"
+  - "Pemilik Yayasan Premium"
 gradient: "--color-grad-japan"
 pricing:
   dpPercentage: 50

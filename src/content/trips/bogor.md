@@ -12,6 +12,10 @@ durationDays: 3
 dateStart: 2026-09-15
 dateEnd: 2026-09-17
 focus: "Edukasi alam & lingkungan di sekolah alam"
+segmenPasar:
+  - "Guru"
+  - "Pengelola Sekolah Alam"
+  - "Tim Eco-School"
 gradient: "--color-grad-bogor"
 pricing:
   dpPercentage: 50

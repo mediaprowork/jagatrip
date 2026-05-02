@@ -8,33 +8,33 @@ const { destination } = Astro.props;
 const reasons = [
   {
     num: '01',
-    icon: '🏫',
-    title: 'Akses Eksklusif ke Sekolah Kelas Dunia',
-    desc: `Masuk ke sekolah-sekolah terbaik di ${destination} yang tidak bisa diakses sembarang orang. Lihat langsung bagaimana mereka bekerja, bukan hanya dari buku atau YouTube.`,
+    icon: '🎓',
+    title: 'Sistem Pendidikan Kelas Dunia',
+    desc: `Capek lihat sistem sekolah yang itu-itu aja? Di sini kamu akan menyaksikan langsung bagaimana sekolah-sekolah terbaik ${destination} membangun sistem pendidikan yang konsisten, inovatif, dan berdampak — dan kamu akan pulang membawa cetak birunya.`,
   },
   {
     num: '02',
-    icon: '🎙️',
-    title: 'Dialog Langsung dengan Praktisi Terbaik',
-    desc: `Ngobrol terbuka dengan kepala sekolah, guru, dan pemimpin pendidikan di ${destination}. Tanya apa saja — dari manajemen kelas hingga strategi pengembangan kurikulum.`,
+    icon: '💡',
+    title: 'Guru yang Benar-Benar Menginspirasi',
+    desc: 'Bagaimana cara membuat guru semangat mengajar dan murid antusias belajar? Jawabannya ada di sekolah yang akan kamu kunjungi. Saksikan budaya belajar yang hidup dan rasakan sendiri perbedaannya.',
   },
   {
     num: '03',
-    icon: '💡',
-    title: 'Insight yang Langsung Bisa Diterapkan',
-    desc: 'Setiap workshop dan kunjungan dirancang agar kamu pulang dengan rencana aksi konkret. Bukan inspirasi yang menguap — tapi perubahan nyata untuk sekolahmu.',
+    icon: '📱',
+    title: 'Teknologi Pendidikan yang Relevan',
+    desc: 'Pengen tahu gimana caranya bikin murid melek teknologi tanpa kehilangan esensi belajar? Program JAGATRIP akan membukakan matamu terhadap integrasi teknologi yang tepat guna di ruang kelas nyata.',
   },
   {
     num: '04',
     icon: '🤝',
-    title: 'Networking dengan Sesama Praktisi Terbaik',
-    desc: 'Bergabung dengan komunitas kepala sekolah, guru, dan pemimpin pendidikan terbaik Indonesia. Kolaborasi yang lahir di sini bisa berdampak bagi ribuan siswa.',
+    title: 'Jaringan yang Tidak Ternilai',
+    desc: 'Bergabung dengan ratusan praktisi pendidikan terbaik dari Indonesia. Satu koneksi yang tepat bisa membuka puluhan peluang kolaborasi, kemitraan, dan pertumbuhan untuk sekolahmu.',
   },
   {
     num: '05',
-    icon: '📸',
-    title: 'Pengalaman yang Tak Terlupakan + Dokumentasi Profesional',
-    desc: `Setiap momen di ${destination} diabadikan secara profesional. Konten yang bisa menginspirasi orang lain dan membuktikan komitmenmu terhadap pendidikan berkualitas.`,
+    icon: '🏆',
+    title: 'Rekognisi & Sertifikasi',
+    desc: 'Peserta mendapatkan sertifikat resmi dari PT JAGATRIP MITRA EDUKASI sebagai bukti partisipasi dalam program benchmarking pendidikan internasional.',
   },
 ];
 ---
@@ -46,10 +46,13 @@ const reasons = [
 >
   <div class="container">
     <div class="why-header">
-      <p class="eyebrow">MENGAPA JAGATRIP TO {destination.toUpperCase()}</p>
+      <p class="eyebrow">KENAPA HARUS IKUT JAGATRIP?</p>
       <h2 id="why-join-heading" class="section-title">
-        5 Alasan Harus Ikut <span class="italic">JAGATRIP to {destination}</span>
+        Karena Sekolahmu Layak Dapat <span class="italic">yang Terbaik</span>
       </h2>
+      <p class="why-sub">
+        Satu perjalanan bersama JAGATRIP bisa mengubah cara pandangmu terhadap pendidikan — selamanya.
+      </p>
     </div>
 
     <ol class="reasons-list" aria-label={`5 alasan mengikuti JAGATRIP to ${destination}`}>
@@ -71,6 +74,16 @@ const reasons = [
   .why-header {
     text-align: center;
     margin-bottom: 56px;
+  }
+
+  .why-sub {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--color-orange);
+    margin-top: 16px;
+    line-height: 1.5;
   }
 
   .reasons-list {

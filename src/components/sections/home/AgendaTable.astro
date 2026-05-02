@@ -1,0 +1,457 @@
+---
+import { getCollection } from 'astro:content';
+import { formatDateRange } from '../../../lib/format';
+
+const trips = (await getCollection('trips'))
+  .sort((a, b) => a.data.monthNum - b.data.monthNum);
+---
+
+<section class="section agenda-table-section" aria-labelledby="agenda-table-heading">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="att-header">
+      <div class="att-header-left">
+        <span class="eyebrow">JADWAL LENGKAP</span>
+        <h2 id="agenda-table-heading" class="section-title">
+          Agenda Edu-Trip <span class="italic">Tahun 2026</span>
+        </h2>
+        <p class="att-sub">
+          Rincian lengkap 7 program JAGATRIP Insider Series 2026 — destinasi, kategori,
+          durasi, tanggal estimasi, segmen pasar, dan fokus utama setiap program.
+        </p>
+      </div>
+      <div class="att-header-stat" aria-hidden="true">
+        <p class="att-stat-num">7</p>
+        <p class="att-stat-label">PROGRAM<br/>2026</p>
+      </div>
+    </div>
+
+    <!-- Table wrapper -->
+    <div class="att-wrapper" role="region" aria-label="Tabel agenda program JAGATRIP 2026" tabindex="0">
+      <table class="att-table">
+        <caption class="visually-hidden">
+          Daftar 7 program edu-trip JAGATRIP Insider Series 2026 lengkap dengan destinasi, kategori, durasi, tanggal, segmen pasar, dan fokus program.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Bulan</th>
+            <th scope="col">Destinasi</th>
+            <th scope="col">Kategori</th>
+            <th scope="col">Durasi Total</th>
+            <th scope="col">Estimasi Tanggal</th>
+            <th scope="col">Segmen Pasar</th>
+            <th scope="col">Fokus Utama Program</th>
+          </tr>
+        </thead>
+        <tbody>
+          {trips.map((trip) => {
+            const dateRange = formatDateRange(trip.data.dateStart, trip.data.dateEnd);
+            return (
+              <tr>
+                <td data-label="Bulan">
+                  <span class="att-month">{trip.data.month}</span>
+                </td>
+                <td data-label="Destinasi">
+                  <a href={`/trips/${trip.data.slug}`} class="att-dest-link">
+                    <span class="att-flag" aria-hidden="true">{trip.data.flag}</span>
+                    <span class="att-dest-name">{trip.data.destination}</span>
+                  </a>
+                </td>
+                <td data-label="Kategori">
+                  <span class={`att-pill att-pill--${trip.data.category === 'Internasional' ? 'intl' : 'lokal'}`}>
+                    {trip.data.category}
+                  </span>
+                </td>
+                <td data-label="Durasi">
+                  <span class="att-duration">{trip.data.duration}</span>
+                </td>
+                <td data-label="Estimasi Tanggal">
+                  <span class="att-date">{dateRange.replace(/\d{4}/, '').trim()}</span>
+                </td>
+                <td data-label="Segmen Pasar">
+                  <ul class="att-segments">
+                    {trip.data.segmenPasar.map((seg) => (
+                      <li>{seg}</li>
+                    ))}
+                  </ul>
+                </td>
+                <td data-label="Fokus Utama Program">
+                  <span class="att-focus">{trip.data.focus}.</span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer note -->
+    <div class="att-footer">
+      <p class="att-note">
+        <span aria-hidden="true">📌</span>
+        Klik nama destinasi untuk lihat itinerary lengkap, harga, dan paket detail per program.
+      </p>
+      <a href="#agenda" class="att-back">
+        ← Lihat tampilan kartu
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .agenda-table-section {
+    background: var(--color-white);
+  }
+
+  /* ── Header ── */
+  .att-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+
+  .att-header-left { max-width: 720px; }
+
+  .att-sub {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-grey);
+    margin-top: 16px;
+  }
+
+  .att-header-stat {
+    background: var(--color-orange-light);
+    border: 2px solid var(--color-orange);
+    border-radius: 20px;
+    padding: 20px 28px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .att-stat-num {
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--color-orange);
+    line-height: 1;
+    margin: 0 0 4px;
+  }
+
+  .att-stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-orange-dark);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* ── Table ── */
+  .att-wrapper {
+    border-radius: 20px;
+    border: 1px solid var(--color-grey-light);
+    overflow-x: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    background: var(--color-white);
+  }
+
+  .att-wrapper:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+  }
+
+  .att-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+  }
+
+  /* Header row */
+  .att-table thead {
+    background: linear-gradient(135deg, #1F2937 0%, #0A0A0A 100%);
+  }
+
+  .att-table thead th {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    text-align: left;
+    padding: 18px 20px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    white-space: nowrap;
+  }
+
+  .att-table thead th:last-child { border-right: none; }
+  .att-table thead th:nth-child(5) { color: var(--color-orange-light); }
+
+  /* Body rows */
+  .att-table tbody tr {
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-grey-light);
+    transition: background 0.2s ease;
+  }
+
+  .att-table tbody tr:nth-child(even) {
+    background: var(--color-paper);
+  }
+
+  .att-table tbody tr:hover {
+    background: var(--color-orange-light);
+  }
+
+  .att-table tbody tr:last-child { border-bottom: none; }
+
+  .att-table tbody td {
+    padding: 18px 20px;
+    font-size: 14px;
+    color: var(--color-ink);
+    vertical-align: top;
+    border-right: 1px solid var(--color-grey-light);
+  }
+
+  .att-table tbody td:last-child { border-right: none; }
+
+  /* Cell content styles */
+  .att-month {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--color-ink);
+  }
+
+  .att-dest-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--color-ink);
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+
+  .att-dest-link:hover {
+    color: var(--color-orange);
+  }
+
+  .att-flag {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .att-dest-name {
+    font-size: 14px;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.2s;
+  }
+
+  .att-dest-link:hover .att-dest-name {
+    border-bottom-color: var(--color-orange);
+  }
+
+  .att-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .att-pill--intl {
+    background: var(--color-orange);
+    color: white;
+  }
+
+  .att-pill--lokal {
+    background: var(--color-orange-light);
+    color: var(--color-orange-dark);
+  }
+
+  .att-duration {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .att-date {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-grey);
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  .att-segments {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .att-segments li {
+    font-size: 12px;
+    color: var(--color-grey);
+    line-height: 1.4;
+    padding-left: 10px;
+    position: relative;
+  }
+
+  .att-segments li::before {
+    content: '·';
+    color: var(--color-orange);
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+  }
+
+  .att-focus {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--color-ink);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* ── Footer ── */
+  .att-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .att-note {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-grey);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .att-back {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-orange);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid var(--color-orange);
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+
+  .att-back:hover {
+    background: var(--color-orange);
+    color: white;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── Responsive: convert to cards on mobile ── */
+  @media (max-width: 968px) {
+    .att-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .att-wrapper {
+      border: none;
+      box-shadow: none;
+      overflow: visible;
+      background: transparent;
+    }
+
+    .att-table {
+      display: block;
+    }
+
+    .att-table thead {
+      display: none;
+    }
+
+    .att-table tbody {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .att-table tbody tr {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: var(--color-white) !important;
+      border: 1px solid var(--color-grey-light);
+      border-radius: 16px;
+      padding: 20px;
+      border-bottom: 1px solid var(--color-grey-light);
+    }
+
+    .att-table tbody td {
+      display: block;
+      padding: 0;
+      border: none;
+      font-size: 13px;
+    }
+
+    .att-table tbody td::before {
+      content: attr(data-label);
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-orange);
+      margin-bottom: 6px;
+    }
+
+    .att-table tbody td:nth-child(1),
+    .att-table tbody td:nth-child(2) {
+      grid-column: span 1;
+    }
+
+    .att-table tbody td:nth-child(3),
+    .att-table tbody td:nth-child(4) {
+      grid-column: span 1;
+    }
+
+    .att-table tbody td:nth-child(5),
+    .att-table tbody td:nth-child(6),
+    .att-table tbody td:nth-child(7) {
+      grid-column: span 2;
+    }
+  }
+</style>

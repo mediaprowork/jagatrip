@@ -18,6 +18,7 @@ const trips = defineCollection({
     dateEnd:           z.coerce.date(),
     earlyBirdDeadline: z.coerce.date().optional(),
     focus:             z.string(),
+    segmenPasar:       z.array(z.string()).default([]),
     gradient:          z.string(),
     pricing: z.object({
       earlyBird:    z.number().optional(),

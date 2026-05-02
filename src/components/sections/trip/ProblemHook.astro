@@ -10,12 +10,12 @@ const { destination, dateRange } = Astro.props;
 const waHref = waLink(destination);
 
 const problems = [
-  'Sekolahmu sudah bagus — tapi kamu ngerasa ada yang kurang, dan belum tahu cara mengatasinya...',
-  'Kamu pengen sistem pendidikan yang lebih modern, tapi bingung harus mulai dari mana...',
-  'Sudah banyak seminar dan pelatihan, tapi hasilnya belum benar-benar mengubah kultur sekolahmu...',
-  'Kamu ingin tahu bagaimana sekolah-sekolah terbaik dunia mengelola guru, kurikulum, dan siswa...',
-  'Siswa dan guru butuh inspirasi baru yang nyata — bukan teori, tapi pengalaman langsung...',
-  'Ingin mengadopsi praktik terbaik dari sekolah internasional tapi gak tahu yang mana yang relevan...',
+  'Sekolahmu sudah bagus — tapi kamu ngerasa ada yang kurang, dan nggak tau harus mulai dari mana.',
+  'Kamu pengen sistem pendidikan yang lebih modern, tapi referensinya terbatas dan tidak bisa keluar dari "zona nyaman" yang itu-itu aja.',
+  'Sudah banyak seminar dan pelatihan, tapi hasilnya belum mengubah kualitas sekolahmu secara nyata.',
+  'Kamu ingin tahu bagaimana sekolah-sekolah terbaik dunia membangun budaya belajar yang kuat — tapi akses ke mereka terasa sangat jauh.',
+  'Siswa dan guru butuh inspirasi baru — tapi kamu sendiri bingung harus mencari inspirasi itu ke mana.',
+  'Ingin mengadopsi praktik terbaik dari sekolah internasional, tapi tidak punya networking yang tepat untuk memulainya.',
 ];
 ---
 
@@ -43,7 +43,7 @@ const problems = [
 
     <div class="problem-closing">
       <p class="closing-headline">
-        Kalau jawabanmu <strong>'IYA'</strong> — maka kamu perlu ikut event ini.
+        Kalau jawabanmu <strong>"IYA"</strong> maka kamu perlu ikut event ini
       </p>
       <p class="closing-trip">JAGATRIP TO {destination.toUpperCase()}</p>
       <p class="closing-date">{dateRange}</p>
@@ -51,6 +51,10 @@ const problems = [
         Daftar Sekarang →
       </a>
     </div>
+
+    <p class="problem-tagline">
+      Karena ilmu yang paling mahal bukan yang ada di buku teks — melainkan yang tersimpan di balik tembok sekolah-sekolah terbaik yang jarang dibuka untuk umum.
+    </p>
   </div>
 </section>
 
@@ -117,6 +121,19 @@ const problems = [
     letter-spacing: 2px;
     color: var(--color-grey);
     margin: 0;
+  }
+
+  .problem-tagline {
+    margin-top: 32px;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--color-grey);
+    max-width: 680px;
+    margin-inline: auto;
+    line-height: 1.7;
   }
 
   @media (max-width: 768px) {

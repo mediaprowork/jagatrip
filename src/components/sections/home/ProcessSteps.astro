@@ -29,50 +29,42 @@ const steps = [
 ---
 
 <section
-  class="section"
-  style="background: var(--color-ink);"
+  class="section process-section"
   aria-labelledby="process-title"
 >
   <div class="container">
     <!-- Header -->
-    <div style="text-align: center; max-width: 720px; margin-inline: auto; margin-bottom: 64px;">
-      <span class="eyebrow" style="color: var(--color-orange);">CARA IKUT</span>
-      <h2 id="process-title" class="section-title" style="color: white;">
-        Dari Konsultasi hingga <span class="italic" style="color: var(--color-orange);">Pulang Bawa Insight,</span>
+    <div class="process-header reveal">
+      <span class="eyebrow">CARA IKUT</span>
+      <h2 id="process-title" class="section-title">
+        Dari Konsultasi hingga <span class="italic">Pulang Bawa Insight</span>
       </h2>
-      <p style="
-        font-family: var(--font-body);
-        font-size: 17px;
-        line-height: 1.7;
-        color: rgba(255,255,255,0.7);
-        margin-top: 16px;
-      ">
+      <p class="process-sub">
         Proses mudah, transparan, dan didampingi dari awal sampai akhir.
       </p>
     </div>
 
-    <!-- Steps -->
-    <div class="steps-grid">
-      {steps.map((step) => (
-        <div class="step-item reveal" style="text-align: center;">
-          <div class="process-num" aria-hidden="true">{step.num}</div>
-          <h3 style="
-            font-family: var(--font-display);
-            font-size: 20px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 12px;
-          ">
-            {step.title}
-          </h3>
-          <p style="
-            font-family: var(--font-body);
-            font-size: 14px;
-            line-height: 1.65;
-            color: rgba(255,255,255,0.6);
-          ">
-            {step.desc}
-          </p>
+    <!-- Vertical timeline -->
+    <div class="timeline-wrap">
+      {steps.map((step, i) => (
+        <div class="timeline-item reveal" style={i % 2 === 1 ? 'margin-left: 24px;' : ''}>
+          {/* Connector line above (except first) */}
+          {i > 0 && (
+            <div class="timeline-connector" aria-hidden="true"></div>
+          )}
+
+          <div class="step-card">
+            {/* Step number circle */}
+            <div class="step-circle" aria-hidden="true">
+              {step.num}
+            </div>
+
+            {/* Step content */}
+            <div class="step-content">
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-desc">{step.desc}</p>
+            </div>
+          </div>
         </div>
       ))}
     </div>
@@ -80,37 +72,132 @@ const steps = [
 </section>
 
 <style>
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 24px;
+  .process-section {
+    background: var(--color-paper);
   }
 
-  .step-item {
+  /* Header */
+  .process-header {
+    text-align: center;
+    max-width: 720px;
+    margin-inline: auto;
+    margin-bottom: 64px;
+  }
+
+  .process-sub {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-grey);
+    margin-top: 16px;
+  }
+
+  /* Timeline container */
+  .timeline-wrap {
+    max-width: 800px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Each item wrapper */
+  .timeline-item {
     position: relative;
+    transition: margin-left 0.3s ease;
   }
 
-  @media (max-width: 1024px) {
-    .steps-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-    }
-
-    .steps-grid .step-item:last-child {
-      grid-column: 1 / -1;
-      max-width: 300px;
-      margin-inline: auto;
-    }
+  /* Connector line */
+  .timeline-connector {
+    width: 2px;
+    height: 32px;
+    background: rgba(255, 107, 53, 0.28);
+    margin-left: 27px; /* center below circle (56px / 2 = 28px, minus 1px for border) */
+    margin-bottom: 0;
   }
 
-  @media (max-width: 768px) {
-    .steps-grid {
-      grid-template-columns: 1fr;
+  /* Step card */
+  .step-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    background: var(--color-white);
+    border-radius: 20px;
+    padding: 24px 28px;
+    border: 1px solid var(--color-grey-light);
+    transition: border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.25s ease;
+  }
+
+  .step-card:hover {
+    border-color: rgba(255, 107, 53, 0.35);
+    box-shadow: 0 8px 28px rgba(255, 107, 53, 0.09);
+    transform: translateY(-2px);
+  }
+
+  /* Step number circle */
+  .step-circle {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    background: var(--color-orange);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1;
+    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.35);
+    flex-shrink: 0;
+  }
+
+  /* Step text content */
+  .step-content {
+    padding-top: 4px;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .step-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-grey);
+    margin: 0;
+  }
+
+  /* Mobile: remove odd offsets */
+  @media (max-width: 640px) {
+    .timeline-item {
+      margin-left: 0 !important;
     }
 
-    .steps-grid .step-item:last-child {
-      grid-column: auto;
-      max-width: none;
+    .step-card {
+      padding: 20px 20px;
+      gap: 18px;
+    }
+
+    .step-circle {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      font-size: 16px;
+    }
+
+    .timeline-connector {
+      margin-left: 23px;
     }
   }
 </style>

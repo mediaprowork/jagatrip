@@ -4,94 +4,341 @@ import { waLink } from '../../../data/site';
 ---
 
 <section
-  class="section glow-orange-center"
-  style="
-    background: var(--color-ink);
-    position: relative;
-    overflow: hidden;
-  "
+  class="section cta-section"
   aria-labelledby="cta-title"
 >
-  <div class="container" style="text-align: center; position: relative; z-index: 1;">
-    <!-- Eyebrow -->
-    <span class="eyebrow" style="color: var(--color-orange);">MULAI SEKARANG</span>
+  <!-- Decorative orange glow top-left -->
+  <div class="cta-glow" aria-hidden="true"></div>
 
-    <!-- Heading -->
-    <h2
-      id="cta-title"
-      class="section-title"
-      style="
-        color: white;
-        font-weight: 900;
-        margin-bottom: 20px;
-        max-width: 680px;
-        margin-inline: auto;
-      "
-    >
-      Sekolahmu Layak Dapat <span class="italic" style="color: var(--color-orange);">yang Terbaik.</span>
-    </h2>
+  <div class="container cta-container">
+    <!-- LEFT column: text content -->
+    <div class="cta-left">
+      <span class="eyebrow">MULAI SEKARANG</span>
 
-    <!-- Lead -->
-    <p style="
-      font-family: var(--font-body);
-      font-size: 18px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.7);
-      max-width: 560px;
-      margin-inline: auto;
-      margin-bottom: 40px;
-    ">
-      Ribuan sekolah masih menunggu. Tapi kursi JAGATRIP Insider Series 2026 tidak.
-    </p>
+      <h2 id="cta-title" class="cta-heading">
+        Sekolahmu Layak Dapat <span class="cta-italic">yang Terbaik.</span>
+      </h2>
 
-    <!-- CTAs -->
-    <div style="
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-      margin-bottom: 28px;
-    ">
-      <Button
-        href={waLink()}
-        variant="wa"
-        size="lg"
-        target="_blank"
-        rel="noopener noreferrer"
-        ariaLabel="Daftar via WhatsApp sekarang"
-      >
-        Daftar via WhatsApp 💬
-      </Button>
+      <p class="cta-lead">
+        Bergabunglah dengan ratusan praktisi pendidikan terbaik Indonesia. Kursi terbatas.
+      </p>
 
-      <Button
-        href="/#agenda"
-        variant="secondary"
-        size="lg"
-        ariaLabel="Lihat seluruh agenda 2026"
-      >
-        <span style="color: white;">Lihat Agenda 2026</span>
-      </Button>
+      <div class="cta-buttons">
+        <Button
+          href={waLink()}
+          variant="wa"
+          size="lg"
+          target="_blank"
+          rel="noopener noreferrer"
+          ariaLabel="Daftar via WhatsApp sekarang"
+        >
+          Daftar via WhatsApp 💬
+        </Button>
+
+        <Button
+          href="/#agenda"
+          variant="secondary"
+          size="lg"
+          ariaLabel="Lihat seluruh agenda 2026"
+        >
+          Lihat Agenda 2026
+        </Button>
+      </div>
+
+      <p class="cta-urgency">
+        ⚡ Early Bird Malaysia-Thailand s/d 10 Juni 2026
+      </p>
     </div>
 
-    <!-- Urgency -->
-    <p style="
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--color-orange);
-    ">
-      ⚡ Kuota TERBATAS · Early Bird Malaysia-Thailand s/d 10 Juni 2026
-    </p>
+    <!-- RIGHT column: brand card -->
+    <div class="cta-right">
+      <!-- Big brand card -->
+      <div class="brand-card">
+        <!-- Logo icon -->
+        <img
+          src="/images/logo-icon.png"
+          alt="JAGATRIP logo"
+          class="brand-logo"
+          width="48"
+          height="48"
+        />
+
+        <!-- Big number watermark -->
+        <span class="brand-number" aria-hidden="true">7</span>
+
+        <!-- Card text -->
+        <div class="brand-text">
+          <p class="brand-program">Program</p>
+          <p class="brand-title">Destinasi 2026</p>
+        </div>
+
+        <!-- Domain -->
+        <p class="brand-domain">jagatrip.com</p>
+      </div>
+
+      <!-- Floating credential card -->
+      <div class="cred-card">
+        <div class="cred-item">
+          <span class="cred-check" aria-hidden="true">✓</span>
+          <span>Sertifikat Resmi</span>
+        </div>
+        <div class="cred-divider" aria-hidden="true"></div>
+        <div class="cred-item">
+          <span class="cred-check" aria-hidden="true">✓</span>
+          <span>100% Safety Record</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
+  .cta-section {
+    background: var(--color-paper);
+    position: relative;
+    overflow: hidden;
+    padding-block: 100px;
+  }
+
   @media (max-width: 768px) {
-    .section > .container > div[style*="flex"] {
-      flex-direction: column;
+    .cta-section {
+      padding-block: 64px;
+    }
+  }
+
+  /* Orange glow top-left */
+  .cta-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: -80px;
+    left: -80px;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Container layout */
+  .cta-container {
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---- LEFT ---- */
+  .cta-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-heading {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5.5vw, 64px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--color-ink);
+    margin-bottom: 20px;
+  }
+
+  .cta-italic {
+    font-style: italic;
+    color: var(--color-orange);
+  }
+
+  .cta-lead {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--color-grey);
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .cta-urgency {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-orange);
+  }
+
+  /* ---- RIGHT ---- */
+  .cta-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  /* Brand card */
+  .brand-card {
+    width: 100%;
+    background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-dark) 100%);
+    border-radius: 24px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 20px 60px rgba(255, 107, 53, 0.30);
+  }
+
+  .brand-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  /* Fallback when logo-icon.png doesn't exist */
+  .brand-logo[src="/images/logo-icon.png"]:not([width]) {
+    display: none;
+  }
+
+  .brand-number {
+    position: absolute;
+    top: 16px;
+    right: 28px;
+    font-family: var(--font-display);
+    font-size: 96px;
+    font-weight: 900;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.18);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -4px;
+  }
+
+  .brand-text {
+    margin-bottom: 24px;
+  }
+
+  .brand-program {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 4px;
+  }
+
+  .brand-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+
+  .brand-domain {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  /* Credential card */
+  .cred-card {
+    width: 100%;
+    background: var(--color-white);
+    border-radius: 16px;
+    padding: 18px 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-grey-light);
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .cred-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .cred-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #D1FAE5;
+    color: #059669;
+    font-size: 11px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .cred-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--color-grey-light);
+    margin: 0 20px;
+    flex-shrink: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .cta-container {
+      grid-template-columns: 1fr;
+      gap: 56px;
+    }
+
+    .cta-right {
+      max-width: 480px;
+      margin-inline: auto;
+      width: 100%;
+    }
+
+    .cta-left {
       align-items: center;
+      text-align: center;
+    }
+
+    .cta-lead {
+      max-width: none;
+    }
+
+    .cta-buttons {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cta-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .cta-buttons :global(.btn) {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>

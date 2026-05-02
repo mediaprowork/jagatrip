@@ -33,10 +33,10 @@ const showPricing = status === 'open' || status === 'limited';
     <div class="pricing-header">
       <p class="eyebrow">INVESTASI</p>
       <h2 id="pricing-heading" class="section-title">
-        Investasi Terbaik yang <span class="italic">Pernah Kamu Buat</span>
+        Investasi Terbaik yang Pernah Kamu Buat untuk <span class="italic">Sekolah dan Instansimu</span>
       </h2>
       <p class="pricing-sub">
-        Kuota <strong>TERBATAS</strong> — Amankan kursimu sekarang.
+        Kuota <strong>TERBATAS</strong> — Hanya untuk Peserta Serius yang Siap Level Up!
       </p>
     </div>
 
@@ -77,7 +77,10 @@ const showPricing = status === 'open' || status === 'limited';
               </div>
 
               <div class="pricing-card-inner">
-                <h3 class="pricing-card-title">Harga Early Bird</h3>
+                <h3 class="pricing-card-title">
+                  <span aria-hidden="true">🔥</span> EARLY BIRD
+                  {deadlineFormatted && <span class="deadline-text"> — Sampai {deadlineFormatted}</span>}
+                </h3>
 
                 <div class="price-display">
                   <span class="price-amount">{formatIDRShort(earlyBird)}</span>
@@ -124,11 +127,11 @@ const showPricing = status === 'open' || status === 'limited';
                     {formatIDRShort(normal)}
                   </span>
                 </div>
-                <p class="price-per-orang">per orang</p>
+                <p class="price-per-orang">per orang | Berlaku setelah {deadlineFormatted ?? '10 Juni 2026'}</p>
 
                 {earlyBird && (
                   <p class="normal-note">
-                    Berlaku setelah batas waktu early bird berakhir
+                    Harga normal berlaku setelah batas early bird berakhir
                   </p>
                 )}
 
@@ -145,6 +148,10 @@ const showPricing = status === 'open' || status === 'limited';
           DP {dpPercentage}% untuk konfirmasi seat · Pelunasan H-7 sebelum keberangkatan
         </p>
 
+        <div class="pricing-urgency">
+          <p>JANGAN TUNDA LAGI! Kursi Terbatas — Daftar Sekarang Sebelum Penuh</p>
+        </div>
+
         <div class="pricing-wa-cta">
           <a
             href={`https://wa.me/${SITE.waNumber}`}
@@ -153,7 +160,7 @@ const showPricing = status === 'open' || status === 'limited';
             rel="noopener noreferrer"
             aria-label={`Daftar via WhatsApp ${SITE.waDisplay}`}
           >
-            Daftar Sekarang via WhatsApp <span aria-hidden="true">📱</span> {SITE.waDisplay}
+            DAFTAR SEKARANG via WhatsApp <span aria-hidden="true">📱</span> {SITE.waDisplay}
           </a>
         </div>
       </div>
@@ -181,6 +188,23 @@ const showPricing = status === 'open' || status === 'limited';
 
   .pricing-sub strong {
     color: var(--color-orange);
+  }
+
+  .pricing-urgency {
+    background: var(--color-orange);
+    border-radius: 16px;
+    padding: 16px 24px;
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .pricing-urgency p {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    margin: 0;
+    line-height: 1.4;
   }
 
   /* TBA / Soldout state */

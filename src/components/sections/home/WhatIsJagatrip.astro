@@ -1,112 +1,285 @@
 ---
+const pillars = [
+  {
+    icon: '🎯',
+    num: '01',
+    title: 'Field Learning',
+    desc: 'Pengalaman belajar langsung di lapangan, observasi kelas, dan dialog terbuka dengan manajemen sekolah internasional.',
+  },
+  {
+    icon: '🎤',
+    num: '02',
+    title: 'Workshop Eksklusif',
+    desc: 'Bersama praktisi pendidikan internasional untuk memperdalam insight manajemen sekolah kelas dunia.',
+  },
+  {
+    icon: '🤝',
+    num: '03',
+    title: 'Networking Premium',
+    desc: 'Bangun koneksi bermakna antar praktisi pendidikan terbaik Indonesia yang bertahan jauh setelah program selesai.',
+  },
+];
 ---
 
 <section
-  class="section"
-  style="background: var(--color-white);"
+  class="section what-section"
   aria-labelledby="what-is-jagatrip-title"
 >
   <div class="container">
-    <!-- Header -->
-    <div style="text-align: center; max-width: 720px; margin-inline: auto; margin-bottom: 64px;">
-      <span class="eyebrow">TENTANG KAMI</span>
-      <h2 id="what-is-jagatrip-title" class="section-title" style="margin-bottom: 24px;">
-        Bukan studi banding biasa — ini <span class="italic">benchmarking premium.</span>
-      </h2>
-      <p
-        id="jagatrip-definition"
-        style="
-          font-family: var(--font-body);
-          font-size: 17px;
-          line-height: 1.75;
-          color: var(--color-grey);
-        "
-      >
-        JAGATRIP adalah program Edu-Tourism premium yang dirancang khusus untuk praktisi pendidikan
-        Indonesia — kepala sekolah, guru, pengawas, dan pemilik yayasan. Kami membuka akses langsung
-        ke sekolah-sekolah terbaik dunia melalui observasi kelas, workshop eksklusif, dan networking
-        bermakna yang menghasilkan perubahan nyata di institusi Anda.
-      </p>
-    </div>
 
-    <!-- Cards -->
-    <div class="cards-grid">
-      <!-- Card 1 -->
-      <div class="solution-card reveal">
-        <p style="font-size: 40px; margin-bottom: 16px;" aria-hidden="true">🎯</p>
-        <h3 style="
-          font-family: var(--font-display);
-          font-size: 22px;
-          font-weight: 700;
-          color: var(--color-ink);
-          margin-bottom: 12px;
-        ">Field Learning</h3>
-        <p style="
-          font-family: var(--font-body);
-          font-size: 15px;
-          line-height: 1.7;
-          color: var(--color-grey);
-        ">
-          Pengalaman belajar langsung di lapangan, observasi kelas, dan dialog terbuka dengan
-          manajemen sekolah internasional.
+    <!-- Top: 2-col editorial layout -->
+    <div class="what-layout">
+
+      <!-- Left: text block -->
+      <div class="what-left">
+        <span class="eyebrow">TENTANG KAMI</span>
+        <h2 id="what-is-jagatrip-title" class="section-title">
+          Bukan studi banding biasa —<br />ini <span class="italic">benchmarking premium.</span>
+        </h2>
+
+        <p id="jagatrip-definition" class="what-body">
+          JAGATRIP adalah program Edu-Tourism premium yang dirancang khusus untuk praktisi pendidikan
+          Indonesia — kepala sekolah, guru, pengawas, dan pemilik yayasan. Kami membuka akses langsung
+          ke sekolah-sekolah terbaik dunia melalui observasi kelas, workshop eksklusif, dan networking
+          bermakna yang menghasilkan perubahan nyata di sekolahmu.
+        </p>
+
+        <p class="what-tagline">
+          Bukan sekadar jalan-jalan. Bukan sekadar studi banding biasa.
         </p>
       </div>
 
-      <!-- Card 2 -->
-      <div class="solution-card reveal">
-        <p style="font-size: 40px; margin-bottom: 16px;" aria-hidden="true">🎤</p>
-        <h3 style="
-          font-family: var(--font-display);
-          font-size: 22px;
-          font-weight: 700;
-          color: var(--color-ink);
-          margin-bottom: 12px;
-        ">Workshop Eksklusif</h3>
-        <p style="
-          font-family: var(--font-body);
-          font-size: 15px;
-          line-height: 1.7;
-          color: var(--color-grey);
-        ">
-          Bersama praktisi pendidikan internasional untuk memperdalam insight manajemen
-          sekolah kelas dunia.
-        </p>
-      </div>
+      <!-- Right: brand identity visual -->
+      <div class="what-right" aria-hidden="true">
 
-      <!-- Card 3 -->
-      <div class="solution-card reveal">
-        <p style="font-size: 40px; margin-bottom: 16px;" aria-hidden="true">🤝</p>
-        <h3 style="
-          font-family: var(--font-display);
-          font-size: 22px;
-          font-weight: 700;
-          color: var(--color-ink);
-          margin-bottom: 12px;
-        ">Networking Premium</h3>
-        <p style="
-          font-family: var(--font-body);
-          font-size: 15px;
-          line-height: 1.7;
-          color: var(--color-grey);
-        ">
-          Bangun koneksi bermakna antar praktisi pendidikan terbaik Indonesia yang bertahan
-          jauh setelah program selesai.
-        </p>
+        <!-- Brand stat cards grid (editorial flat-lay style) -->
+        <div class="brand-grid">
+
+          <!-- Card: Program count -->
+          <div class="brand-tile brand-tile--orange">
+            <p class="brand-tile-num">7</p>
+            <p class="brand-tile-label">Program<br />2026</p>
+          </div>
+
+          <!-- Card: Countries -->
+          <div class="brand-tile brand-tile--cream">
+            <p class="brand-tile-icon">🌏</p>
+            <p class="brand-tile-label">Internasional<br />&amp; Lokal</p>
+          </div>
+
+          <!-- Card: Alumni -->
+          <div class="brand-tile brand-tile--dark">
+            <p class="brand-tile-num">500+</p>
+            <p class="brand-tile-label">Alumni<br />Praktisi</p>
+          </div>
+
+          <!-- Card: Certificate -->
+          <div class="brand-tile brand-tile--white">
+            <p class="brand-tile-icon">🏅</p>
+            <p class="brand-tile-label">Sertifikat<br />Resmi</p>
+          </div>
+
+        </div>
       </div>
     </div>
+
+    <!-- Bottom: pillar cards -->
+    <div class="pillar-row">
+      {pillars.map((p, i) => (
+        <div class="pillar-card reveal" style={`transition-delay:${i*100}ms`}>
+          <div class="pillar-num" aria-hidden="true">{p.num}</div>
+          <div class="pillar-content">
+            <p class="pillar-icon" aria-hidden="true">{p.icon}</p>
+            <h3 class="pillar-title">{p.title}</h3>
+            <p class="pillar-desc">{p.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
   </div>
 </section>
 
 <style>
-  .cards-grid {
+  .what-section {
+    background: var(--color-white);
+  }
+
+  /* Top layout */
+  .what-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 72px;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+
+  .what-body {
+    font-size: 17px;
+    line-height: 1.78;
+    color: var(--color-grey);
+    margin-bottom: 20px;
+  }
+
+  .what-tagline {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--color-orange);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Brand grid (flat-lay 2×2) */
+  .brand-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .brand-tile {
+    border-radius: 20px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 140px;
+    transition: transform 0.3s ease;
+  }
+
+  .brand-tile:hover {
+    transform: translateY(-4px);
+  }
+
+  .brand-tile--orange {
+    background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-dark) 100%);
+    box-shadow: 0 12px 32px rgba(255,107,53,0.25);
+  }
+
+  .brand-tile--cream {
+    background: var(--color-paper);
+    border: 2px solid var(--color-grey-light);
+  }
+
+  .brand-tile--dark {
+    background: var(--color-ink);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  }
+
+  .brand-tile--white {
+    background: var(--color-white);
+    border: 2px solid var(--color-orange-light);
+  }
+
+  .brand-tile-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1;
+    margin: 0 0 4px;
+  }
+
+  .brand-tile--orange .brand-tile-num  { color: rgba(255,255,255,0.95); }
+  .brand-tile--dark   .brand-tile-num  { color: var(--color-orange); }
+
+  .brand-tile-icon {
+    font-size: 36px;
+    line-height: 1;
+    margin: 0 0 8px;
+  }
+
+  .brand-tile-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .brand-tile--orange .brand-tile-label { color: rgba(255,255,255,0.8); }
+  .brand-tile--cream  .brand-tile-label { color: var(--color-grey); }
+  .brand-tile--dark   .brand-tile-label { color: rgba(255,255,255,0.5); }
+  .brand-tile--white  .brand-tile-label { color: var(--color-orange); }
+
+  /* Pillar cards row */
+  .pillar-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    border-top: 1px solid var(--color-grey-light);
+    padding-top: 48px;
   }
 
-  @media (max-width: 768px) {
-    .cards-grid {
+  .pillar-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--color-paper);
+    border-radius: 20px;
+    padding: 28px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .pillar-card:hover {
+    border-color: var(--color-orange-light);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(255,107,53,0.08);
+  }
+
+  .pillar-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--color-orange-light);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 40px;
+  }
+
+  .pillar-content { flex: 1; }
+
+  .pillar-icon {
+    font-size: 28px;
+    margin: 0 0 10px;
+    line-height: 1;
+  }
+
+  .pillar-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: 8px;
+  }
+
+  .pillar-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-grey);
+    margin: 0;
+  }
+
+  @media (max-width: 968px) {
+    .what-layout {
       grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .pillar-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-grid {
+      grid-template-columns: 1fr 1fr;
     }
   }
 </style>

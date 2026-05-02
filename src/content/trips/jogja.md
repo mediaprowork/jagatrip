@@ -12,6 +12,10 @@ durationDays: 3
 dateStart: 2026-07-21
 dateEnd: 2026-07-23
 focus: "Budaya lokal & inovasi pendidikan seni"
+segmenPasar:
+  - "Guru Seni"
+  - "Praktisi Pendidikan Budaya"
+  - "Sekolah Berbasis Karakter"
 gradient: "--color-grad-jogja"
 pricing:
   dpPercentage: 50

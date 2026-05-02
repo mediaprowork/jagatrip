@@ -12,6 +12,10 @@ durationDays: 5
 dateStart: 2026-10-23
 dateEnd: 2026-10-27
 focus: "Pameran pendidikan teknologi edu vietnam-china"
+segmenPasar:
+  - "Kepala Sekolah Teknologi"
+  - "Tim IT Pendidikan"
+  - "Pengembang Kurikulum"
 gradient: "--color-grad-china"
 pricing:
   dpPercentage: 50

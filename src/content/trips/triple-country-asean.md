@@ -12,6 +12,10 @@ durationDays: 7
 dateStart: 2026-12-15
 dateEnd: 2026-12-21
 focus: "Triple-country immersion & kolaborasi budaya (MY, TH, SG)"
+segmenPasar:
+  - "Kepala Sekolah Elite"
+  - "Pemilik Yayasan Premium"
+  - "Tim Manajemen Senior"
 gradient: "--color-grad-msia"
 pricing:
   dpPercentage: 50

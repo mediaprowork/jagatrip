@@ -13,6 +13,10 @@ dateStart: 2026-06-24
 dateEnd: 2026-06-28
 earlyBirdDeadline: 2026-06-10
 focus: "Cross-border networking & kunjungan sekolah ASEAN"
+segmenPasar:
+  - "Kepala Sekolah"
+  - "Pemilik Yayasan"
+  - "Pengawas Pendidikan"
 gradient: "--color-grad-msia"
 pricing:
   earlyBird: 7900000
