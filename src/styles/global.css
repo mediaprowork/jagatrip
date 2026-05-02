@@ -1,67 +1,59 @@
 @import "tailwindcss";
 @import "./tokens.css";
-@import "./animations.css";
-@import "./components.css";
 
-/* Base */
+/* === Base === */
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-body);
-  background: var(--color-paper);
-  color: var(--color-ink);
 }
-* { box-sizing: border-box; }
 
 body {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--color-ink);
-  background: var(--color-paper);
+  font-family: var(--font-sans);
+  background: var(--color-jaga-bg);
+  color: #1F2937;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Focus styles */
+::selection {
+  background: var(--color-jaga-orange);
+  color: white;
+}
+
+@layer base {
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+a { transition: color 0.2s ease; }
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  background: var(--color-jaga-orange);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 16px; }
+
 :focus-visible {
-  outline: 2px solid var(--color-orange);
+  outline: 2px solid var(--color-jaga-orange);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Images */
-img { max-width: 100%; height: auto; display: block; }
-
-/* Smooth links */
-a { transition: color 0.2s ease; }
-
-/* Remove default list styles when needed */
-.list-none { list-style: none; padding: 0; margin: 0; }
-
-/* Text utilities */
-.text-orange { color: var(--color-orange); }
-.text-grey   { color: var(--color-grey); }
-.text-ink    { color: var(--color-ink); }
-.text-white  { color: var(--color-white); }
-
-/* Font utilities */
-.font-display  { font-family: var(--font-display); }
-.font-body     { font-family: var(--font-body); }
-.font-mono     { font-family: var(--font-mono); }
-.italic        { font-style: italic; }
-.font-900      { font-weight: 900; }
-.font-800      { font-weight: 800; }
-.font-700      { font-weight: 700; }
-
-/* BG utilities */
-.bg-paper      { background: var(--color-paper); }
-.bg-white      { background: var(--color-white); }
-.bg-ink        { background: var(--color-ink); }
-.bg-ink-deeper { background: var(--color-ink-deeper); }
-.bg-orange     { background: var(--color-orange); }
-.bg-orange-light { background: var(--color-orange-light); }
-
-/* Stats section orange gradient BG */
-.bg-stats {
-  background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-dark) 100%);
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

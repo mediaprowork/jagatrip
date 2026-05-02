@@ -1,35 +1,57 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav       from '../components/layout/Nav.astro';
-import Footer    from '../components/layout/Footer.astro';
+import Nav        from '../components/layout/Nav.astro';
+import Footer     from '../components/layout/Footer.astro';
 import FloatingWA from '../components/layout/FloatingWA.astro';
 import { waLink } from '../data/site';
+const wa = waLink();
 ---
+
 <BaseLayout
   title="404 — Halaman Tidak Ditemukan | JAGATRIP"
   description="Halaman yang kamu cari tidak ada. Kembali ke beranda atau jelajahi program JAGATRIP Insider Series 2026."
   noindex={true}
 >
   <Nav />
-  <main id="main" style="min-height:70vh; display:flex; align-items:center; justify-content:center; background:var(--color-paper);">
-    <div class="container" style="text-align:center; padding-block:80px;">
-      <div style="font-size:96px; margin-bottom:8px; line-height:1;" aria-hidden="true">✈️</div>
-      <div style="font-family:var(--font-display); font-size:120px; font-weight:900; font-style:italic; color:var(--color-orange-light); line-height:1; margin-bottom:8px;">404</div>
-      <h1 style="font-family:var(--font-display); font-size:clamp(28px,4vw,40px); font-weight:800; color:var(--color-ink); margin-bottom:16px;">
-        Halaman Tidak Ditemukan
+
+  <main id="main" class="min-h-[80vh] flex items-center justify-center bg-jaga-bg pt-32 pb-20 lg:pt-40">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <div class="text-7xl md:text-8xl mb-4" aria-hidden="true">✈️</div>
+      <p class="text-7xl md:text-9xl font-black text-jaga-orange leading-none mb-4">404</p>
+
+      <h1 class="text-3xl md:text-5xl font-black text-gray-900 tracking-tight mb-6">
+        Halaman <span class="text-jaga-orange">Tidak Ditemukan</span>
       </h1>
-      <p style="font-size:17px; color:var(--color-grey); max-width:440px; margin:0 auto 36px; line-height:1.7;">
-        Sepertinya halaman ini sudah terbang ke destinasi lain. Mari kembali ke beranda atau jelajahi program JAGATRIP 2026.
+
+      <p class="text-lg md:text-xl text-gray-600 leading-relaxed mb-10">
+        Sepertinya halaman ini sudah terbang ke destinasi lain. Mari kembali ke beranda atau
+        jelajahi program JAGATRIP 2026.
       </p>
-      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-        <a href="/" class="btn btn-primary btn-lg">← Kembali ke Beranda</a>
-        <a href="/#agenda" class="btn btn-secondary btn-lg">Lihat Agenda 2026</a>
-        <a href={waLink()} target="_blank" rel="noopener noreferrer" class="btn btn-wa">
-          <span aria-hidden="true">💬</span> WhatsApp
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/"
+          class="inline-block bg-jaga-orange hover:bg-jaga-orange-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+        >
+          ← Kembali ke Beranda
+        </a>
+        <a
+          href="/#agenda"
+          class="inline-block bg-white text-gray-900 border-2 border-gray-200 hover:border-jaga-orange hover:text-jaga-orange px-8 py-4 rounded-full font-bold text-lg transition-all"
+        >
+          Lihat Agenda 2026
         </a>
       </div>
+
+      <p class="mt-10 text-sm text-gray-500">
+        atau hubungi
+        <a href={wa} target="_blank" rel="noopener noreferrer" class="text-jaga-orange font-bold hover:underline">
+          admin via WhatsApp
+        </a>
+      </p>
     </div>
   </main>
+
   <Footer />
   <FloatingWA />
 </BaseLayout>

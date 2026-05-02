@@ -1,131 +1,135 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav       from '../components/layout/Nav.astro';
-import Footer    from '../components/layout/Footer.astro';
+import Nav        from '../components/layout/Nav.astro';
+import Footer     from '../components/layout/Footer.astro';
 import FloatingWA from '../components/layout/FloatingWA.astro';
-import Logo      from '../components/brand/Logo.astro';
 import { SITE, waLink } from '../data/site';
 import { breadcrumbSchema } from '../data/schemas/breadcrumb';
 
+const wa = waLink();
+
 const extraSchemas = [
-  breadcrumbSchema([{ name: 'Tentang JAGATRIP', url: `${SITE.url}/tentang` }]),
+  breadcrumbSchema([{ name: 'Tentang', url: `${SITE.url}/tentang` }]),
 ];
 
 const team = [
-  { name: 'Ahmad Fathullah', role: 'CEO & Co-Founder', avatar: 'AF', grad: '--color-grad-avatar-1' },
-  { name: 'Riko Saputra',    role: 'Program Director', avatar: 'RS', grad: '--color-grad-avatar-2' },
-  { name: 'Dewi Handayani',  role: 'Partnership Manager', avatar: 'DH', grad: '--color-grad-avatar-3' },
-  { name: 'Budi Santoso',    role: 'Operations Lead', avatar: 'BS', grad: '--color-grad-avatar-4' },
+  { name: 'Ahmad Fathullah', role: 'CEO & Co-Founder',     initial: 'AF' },
+  { name: 'Riko Saputra',    role: 'Program Director',     initial: 'RS' },
+  { name: 'Dewi Handayani',  role: 'Partnership Manager',  initial: 'DH' },
+  { name: 'Budi Santoso',    role: 'Operations Lead',      initial: 'BS' },
 ];
 ---
+
 <BaseLayout
   title="Tentang JAGATRIP — PT Jagatrip Mitra Edukasi"
-  description="Kenali lebih dekat JAGATRIP, program Edu-Tourism premium untuk praktisi pendidikan Indonesia. Bermitra dengan Alfatihah Tour & Travel."
+  description="Kenali lebih dekat JAGATRIP, program Edu-Tourism premium untuk praktisi pendidikan Indonesia."
   extraSchemas={extraSchemas}
 >
   <Nav />
+
   <main id="main">
 
-    <!-- Hero subpage -->
-    <section style="background:var(--color-ink); padding:80px 0; position:relative; overflow:hidden;">
-      <div style="position:absolute; top:-50%; right:-10%; width:600px; height:600px; background:radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%); pointer-events:none;"></div>
-      <div class="container" style="text-align:center; position:relative; z-index:1;">
-        <span class="eyebrow" style="color:var(--color-orange);">TENTANG KAMI</span>
-        <h1 class="section-title" style="color:white; margin-top:8px; font-size:clamp(36px,6vw,64px); font-weight:900;">
-          Siapa <span class="italic" style="color:var(--color-orange);">JAGATRIP?</span>
+    <!-- HERO -->
+    <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden bg-jaga-bg">
+      <div class="absolute inset-0 z-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-jaga-orange via-transparent to-transparent"></div>
+
+      <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <span class="inline-block py-2 px-5 rounded-full bg-jaga-orange/10 text-jaga-orange font-bold text-sm md:text-base mb-6 tracking-widest uppercase shadow-sm">
+          Tentang Kami
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.1] mb-6">
+          Siapa Itu <span class="text-transparent bg-clip-text bg-gradient-to-r from-jaga-orange to-orange-400">JAGATRIP?</span>
         </h1>
-        <p style="font-size:18px; color:rgba(255,255,255,0.7); max-width:600px; margin:20px auto 0; line-height:1.7;">
-          Program Edu-Tourism premium yang dirancang khusus untuk praktisi pendidikan Indonesia yang ingin berkembang bersama.
+        <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+          Program Edu-Tourism premium yang dirancang khusus untuk praktisi pendidikan Indonesia
+          yang ingin berkembang bersama melalui benchmarking ke sekolah-sekolah terbaik dunia.
         </p>
       </div>
     </section>
 
-    <!-- Tentang -->
-    <section class="section" style="background:var(--color-white);">
-      <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
-        <div>
-          <span class="eyebrow">TENTANG JAGATRIP</span>
-          <h2 class="section-title" style="margin-top:8px;">
-            Bukan Travel Biasa —<br>
-            <span class="italic">Ini Misi Pendidikan.</span>
-          </h2>
-          <p style="margin-top:24px; color:var(--color-grey); line-height:1.8; font-size:16px;">
-            JAGATRIP lahir dari keyakinan bahwa praktisi pendidikan Indonesia berhak mendapatkan akses ke wawasan dan pengalaman terbaik dunia.
-            Kami memfasilitasi benchmarking langsung ke sekolah-sekolah top, bukan sekadar wisata — tapi perjalanan edukasi yang mengubah perspektif.
-          </p>
-          <p style="margin-top:16px; color:var(--color-grey); line-height:1.8; font-size:16px;">
-            Berdiri tahun 2026, JAGATRIP bermitra dengan <strong>Alfatihah Tour & Travel</strong> sebagai operator perjalanan resmi.
-            Kami menggabungkan keahlian pendidikan dengan layanan travel premium untuk menghadirkan pengalaman yang tak terlupakan.
-          </p>
-          <div style="margin-top:32px; display:flex; gap:16px; flex-wrap:wrap;">
-            <div style="background:var(--color-paper); border-radius:16px; padding:20px 24px; text-align:center;">
-              <div style="font-family:var(--font-display); font-size:40px; font-weight:900; font-style:italic; color:var(--color-orange);">7+</div>
-              <div style="font-size:13px; color:var(--color-grey); font-weight:600; margin-top:4px;">Destinasi 2026</div>
+    <!-- ABOUT -->
+    <section class="py-24 bg-white">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6 tracking-tight">
+              Bukan Travel Biasa — <span class="text-jaga-orange">Ini Misi Pendidikan.</span>
+            </h2>
+            <p class="text-lg text-gray-600 leading-relaxed mb-4">
+              JAGATRIP lahir dari keyakinan bahwa praktisi pendidikan Indonesia berhak mendapatkan
+              akses ke wawasan dan pengalaman terbaik dunia. Kami memfasilitasi benchmarking langsung
+              ke sekolah-sekolah top, bukan sekadar wisata — tapi perjalanan edukasi yang mengubah perspektif.
+            </p>
+            <p class="text-lg text-gray-600 leading-relaxed">
+              Berdiri tahun 2026, JAGATRIP bermitra dengan <strong>Alfatihah Tour & Travel</strong> sebagai
+              operator perjalanan resmi. Kami menggabungkan keahlian pendidikan dengan layanan travel premium.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div class="bg-jaga-bg p-5 rounded-2xl border border-gray-100 text-center">
+              <p class="text-3xl md:text-4xl font-black text-jaga-orange leading-none">7+</p>
+              <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mt-2">Destinasi</p>
             </div>
-            <div style="background:var(--color-paper); border-radius:16px; padding:20px 24px; text-align:center;">
-              <div style="font-family:var(--font-display); font-size:40px; font-weight:900; font-style:italic; color:var(--color-orange);">500+</div>
-              <div style="font-size:13px; color:var(--color-grey); font-weight:600; margin-top:4px;">Alumni Praktisi</div>
+            <div class="bg-jaga-bg p-5 rounded-2xl border border-gray-100 text-center">
+              <p class="text-3xl md:text-4xl font-black text-jaga-orange leading-none">500+</p>
+              <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mt-2">Alumni</p>
             </div>
-            <div style="background:var(--color-paper); border-radius:16px; padding:20px 24px; text-align:center;">
-              <div style="font-family:var(--font-display); font-size:40px; font-weight:900; font-style:italic; color:var(--color-orange);">100%</div>
-              <div style="font-size:13px; color:var(--color-grey); font-weight:600; margin-top:4px;">Safety Record</div>
+            <div class="bg-jaga-bg p-5 rounded-2xl border border-gray-100 text-center">
+              <p class="text-3xl md:text-4xl font-black text-jaga-orange leading-none">100%</p>
+              <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mt-2">Safety</p>
             </div>
           </div>
-        </div>
-        <div style="display:flex; justify-content:center;">
-          <Logo variant="stacked" height={200} />
         </div>
       </div>
     </section>
 
-    <!-- Visi Misi -->
-    <section class="section" style="background:var(--color-paper);">
-      <div class="container">
-        <div style="text-align:center; max-width:600px; margin:0 auto 56px;">
-          <span class="eyebrow">VISI & MISI</span>
-          <h2 class="section-title" style="margin-top:8px;">
-            Mengapa Kami <span class="italic">Ada?</span>
+    <!-- VISI MISI -->
+    <section class="py-24 bg-jaga-bg">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
+            Visi & <span class="text-jaga-orange">Misi</span>
           </h2>
         </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
-          <div class="solution-card">
-            <div style="font-size:32px; margin-bottom:16px;" aria-hidden="true">🌏</div>
-            <h3 style="font-family:var(--font-display); font-size:24px; font-weight:800; color:var(--color-ink); margin-bottom:12px;">Visi</h3>
-            <p style="color:var(--color-grey); line-height:1.7;">
-              Menjadi platform benchmarking pendidikan terdepan yang menghubungkan praktisi pendidikan Indonesia
-              dengan standar dan praktik terbaik pendidikan global.
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white p-10 rounded-[2rem] shadow-sm border border-gray-100">
+            <div class="text-4xl mb-6" aria-hidden="true">🌏</div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Visi</h3>
+            <p class="text-gray-600 text-lg leading-relaxed">
+              Menjadi platform benchmarking pendidikan terdepan yang menghubungkan praktisi pendidikan
+              Indonesia dengan standar dan praktik terbaik pendidikan global.
             </p>
           </div>
-          <div class="solution-card">
-            <div style="font-size:32px; margin-bottom:16px;" aria-hidden="true">🎯</div>
-            <h3 style="font-family:var(--font-display); font-size:24px; font-weight:800; color:var(--color-ink); margin-bottom:12px;">Misi</h3>
-            <ul style="color:var(--color-grey); line-height:1.8; list-style:none; padding:0;">
-              <li style="display:flex; gap:10px; margin-bottom:8px;"><span style="color:var(--color-orange);">→</span> Memfasilitasi benchmarking langsung ke sekolah terbaik dunia</li>
-              <li style="display:flex; gap:10px; margin-bottom:8px;"><span style="color:var(--color-orange);">→</span> Membangun komunitas praktisi pendidikan Indonesia yang kuat</li>
-              <li style="display:flex; gap:10px; margin-bottom:8px;"><span style="color:var(--color-orange);">→</span> Mendorong inovasi dan transformasi pendidikan dari akar rumput</li>
+          <div class="bg-white p-10 rounded-[2rem] shadow-sm border border-gray-100">
+            <div class="text-4xl mb-6" aria-hidden="true">🎯</div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Misi</h3>
+            <ul class="text-gray-600 text-lg leading-relaxed space-y-2">
+              <li class="flex gap-3"><span class="text-jaga-orange shrink-0">→</span> Memfasilitasi benchmarking langsung ke sekolah terbaik dunia</li>
+              <li class="flex gap-3"><span class="text-jaga-orange shrink-0">→</span> Membangun komunitas praktisi pendidikan Indonesia yang kuat</li>
+              <li class="flex gap-3"><span class="text-jaga-orange shrink-0">→</span> Mendorong inovasi dan transformasi pendidikan dari akar rumput</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Team -->
-    <section class="section" style="background:var(--color-white);">
-      <div class="container">
-        <div style="text-align:center; max-width:500px; margin:0 auto 56px;">
-          <span class="eyebrow">TIM KAMI</span>
-          <h2 class="section-title" style="margin-top:8px;">
-            Orang-orang di Balik <span class="italic">JAGATRIP</span>
+    <!-- TEAM -->
+    <section class="py-24 bg-white">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
+            Tim <span class="text-jaga-orange">JAGATRIP</span>
           </h2>
         </div>
-        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px;">
-          {team.map((member) => (
-            <div style="text-align:center; padding:32px 24px; background:var(--color-paper); border-radius:20px;">
-              <div style={`width:72px; height:72px; border-radius:50%; background:var(${member.grad}); display:flex; align-items:center; justify-content:center; font-family:var(--font-body); font-weight:700; font-size:20px; color:white; margin:0 auto 16px;`}>
-                {member.avatar}
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {team.map((m) => (
+            <div class="text-center bg-jaga-bg p-8 rounded-3xl border border-gray-100">
+              <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-jaga-orange to-orange-500 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                {m.initial}
               </div>
-              <div style="font-family:var(--font-body); font-weight:700; font-size:15px; color:var(--color-ink);">{member.name}</div>
-              <div style="font-size:13px; color:var(--color-grey); margin-top:4px;">{member.role}</div>
+              <p class="font-bold text-gray-900">{m.name}</p>
+              <p class="text-sm text-gray-500 mt-1">{m.role}</p>
             </div>
           ))}
         </div>
@@ -133,38 +137,27 @@ const team = [
     </section>
 
     <!-- CTA -->
-    <section class="section glow-orange-center" style="background:var(--color-ink); position:relative; overflow:hidden; text-align:center;">
-      <div class="container" style="position:relative; z-index:1;">
-        <span class="eyebrow">BERGABUNG BERSAMA KAMI</span>
-        <h2 class="section-title" style="color:white; margin-top:8px; font-weight:900;">
-          Siap Membawa Sekolahmu ke <span class="italic">Level Berikutnya?</span>
-        </h2>
-        <p style="color:rgba(255,255,255,0.7); margin-top:16px; font-size:17px;">
-          Hubungi kami sekarang dan mulai perjalanan transformasi pendidikanmu.
-        </p>
-        <div style="display:flex; gap:16px; justify-content:center; margin-top:36px; flex-wrap:wrap;">
-          <a href={waLink()} target="_blank" rel="noopener noreferrer" class="btn btn-wa btn-lg">
-            <span aria-hidden="true">💬</span> Hubungi via WhatsApp
-          </a>
-          <a href="/#agenda" class="btn btn-secondary btn-lg" style="color:white; border-color:rgba(255,255,255,0.3);">
-            Lihat Agenda 2026
-          </a>
+    <section class="py-16 md:py-24 bg-jaga-bg">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="bg-jaga-orange rounded-[2rem] p-8 md:p-14 flex flex-col md:flex-row items-center justify-between shadow-xl">
+          <div class="text-white mb-8 md:mb-0 md:pr-8 text-center md:text-left">
+            <h2 class="text-3xl md:text-4xl font-bold mb-3 tracking-tight">Siap Membawa Sekolahmu ke Level Berikutnya?</h2>
+            <p class="text-orange-50 text-lg md:text-xl font-medium">Hubungi kami sekarang dan mulai perjalanan transformasimu.</p>
+          </div>
+          <div class="shrink-0 w-full md:w-auto">
+            <a href={wa} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full md:w-auto bg-white text-jaga-orange font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 whitespace-nowrap">
+              Hubungi WhatsApp
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
   </main>
+
   <Footer />
   <FloatingWA />
 </BaseLayout>
-
-<style>
-  @media (max-width: 768px) {
-    .container > div[style*="grid-template-columns:1fr 1fr"] {
-      grid-template-columns: 1fr !important;
-    }
-    .container > div[style*="grid-template-columns:repeat(4"] {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-  }
-</style>

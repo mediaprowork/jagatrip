@@ -1,53 +1,43 @@
 ---
-import Logo from '../brand/Logo.astro';
-import { SITE, waLink } from '../../data/site';
+import { waLink } from '../../data/site';
+const wa = waLink();
 
-const navLinks = [
-  { label: 'Beranda',    href: '/' },
-  { label: 'Agenda 2026', href: '/#agenda' },
-  { label: 'Tentang',    href: '/tentang' },
-  { label: 'FAQ',        href: '/faq' },
-  { label: 'Kontak',     href: '/kontak' },
+const links = [
+  { label: 'Beranda', href: '/' },
+  { label: 'Agenda', href: '/#agenda' },
+  { label: 'Why Us', href: '/#why' },
+  { label: 'Pricing', href: '/#pricing' },
 ];
 
 const currentPath = Astro.url.pathname;
 ---
-<header class="nav" role="banner">
-  <div class="container">
-    <nav
-      aria-label="Navigasi utama"
-      style="display:flex; align-items:center; justify-content:space-between; height:68px;"
-    >
+
+<header class="absolute top-0 left-0 right-0 z-50 pt-5">
+  <div class="max-w-7xl mx-auto px-6">
+    <nav class="flex items-center justify-between" aria-label="Navigasi utama">
+
       <!-- Logo -->
-      <a href="/" aria-label="JAGATRIP — kembali ke beranda" style="display:flex; align-items:center; flex-shrink:0;">
-        <Logo variant="horizontal" height={36} />
+      <a href="/" aria-label="JAGATRIP — kembali ke beranda" class="flex items-center shrink-0">
+        <img
+          src="/images/logo-horizontal.png"
+          alt="JAGATRIP"
+          class="h-9 md:h-10 w-auto"
+          width="180"
+          height="40"
+        />
       </a>
 
       <!-- Desktop links -->
-      <ul
-        class="list-none"
-        style="display:flex; align-items:center; gap:32px;"
-        aria-label="Menu utama"
-        id="desktop-nav"
-      >
-        {navLinks.map((link) => {
-          const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href.replace('/#agenda',''));
+      <ul class="hidden lg:flex items-center gap-10" id="desktop-nav">
+        {links.map((link) => {
+          const isActive = link.href === currentPath || (link.href.startsWith('/#') && currentPath === '/');
           return (
             <li>
               <a
                 href={link.href}
-                aria-current={isActive ? 'page' : undefined}
-                style={`
-                  font-family: var(--font-body);
-                  font-size: 14px;
-                  font-weight: 600;
-                  color: ${isActive ? 'var(--color-orange)' : 'var(--color-ink)'};
-                  text-decoration: none;
-                  transition: color 0.2s;
-                  white-space: nowrap;
-                `}
-                onmouseover="this.style.color='var(--color-orange)'"
-                onmouseout={`this.style.color='${isActive ? 'var(--color-orange)' : 'var(--color-ink)'}'`}
+                class={`font-semibold text-sm uppercase tracking-wider transition-colors hover:text-jaga-orange ${
+                  isActive ? 'text-jaga-orange' : 'text-gray-700'
+                }`}
               >
                 {link.label}
               </a>
@@ -56,38 +46,30 @@ const currentPath = Astro.url.pathname;
         })}
       </ul>
 
-      <!-- CTA -->
-      <div style="display:flex; align-items:center; gap:12px; flex-shrink:0;">
+      <!-- CTA + mobile toggle -->
+      <div class="flex items-center gap-3">
         <a
-          href={waLink()}
+          href={wa}
           target="_blank"
           rel="noopener noreferrer"
-          class="btn btn-primary btn-sm"
-          style="box-shadow: var(--shadow-nav-cta);"
-          aria-label="Daftar via WhatsApp"
+          class="hidden sm:inline-flex items-center gap-2 bg-jaga-orange hover:bg-[#e55a2b] text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md hover:shadow-lg transition-all"
         >
-          <span aria-hidden="true">💬</span> Daftar Sekarang
+          <span aria-hidden="true">💬</span>
+          Daftar Sekarang
         </a>
 
-        <!-- Mobile menu button -->
         <button
           id="mobile-menu-btn"
           aria-expanded="false"
           aria-controls="mobile-menu"
-          aria-label="Buka menu navigasi"
-          style="
-            display:none;
-            background:none;
-            border:none;
-            cursor:pointer;
-            padding:8px;
-            color:var(--color-ink);
-          "
+          aria-label="Buka menu"
+          class="lg:hidden p-2 text-gray-900"
+          type="button"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <line x1="3" y1="6"  x2="21" y2="6"  />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
           </svg>
         </button>
       </div>
@@ -95,77 +77,71 @@ const currentPath = Astro.url.pathname;
   </div>
 </header>
 
-<!-- Mobile menu overlay -->
+<!-- Mobile menu -->
 <div
   id="mobile-menu"
-  class="hidden"
+  class="hidden fixed inset-0 z-[60] bg-jaga-dark/60 backdrop-blur-sm"
   role="dialog"
   aria-modal="true"
-  aria-label="Menu navigasi mobile"
-  style="
-    position:fixed; inset:0; z-index:200;
-    background:rgba(0,0,0,0.5);
-    backdrop-filter:blur(4px);
-  "
+  aria-label="Menu navigasi"
 >
-  <div style="
-    position:absolute; top:0; right:0; bottom:0; width:280px; max-width:90vw;
-    background:white;
-    padding:24px;
-    display:flex; flex-direction:column; gap:8px;
-    overflow-y:auto;
-  ">
-    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
-      <Logo variant="horizontal" height={32} />
+  <div class="absolute top-0 right-0 bottom-0 w-72 max-w-[88vw] bg-white p-6 flex flex-col gap-2 overflow-y-auto shadow-2xl">
+    <div class="flex items-center justify-between mb-6">
+      <img src="/images/logo-horizontal.png" alt="" class="h-8 w-auto" width="160" height="32" />
       <button
         id="mobile-menu-close"
         aria-label="Tutup menu"
-        style="background:none; border:none; cursor:pointer; padding:8px; color:var(--color-ink);"
+        class="p-2 text-gray-900"
+        type="button"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <line x1="18" y1="6" x2="6" y2="18" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
           <line x1="6" y1="6" x2="18" y2="18" />
+          <line x1="18" y1="6" x2="6" y2="18" />
         </svg>
       </button>
     </div>
-    {navLinks.map((link) => (
+
+    {links.map((link) => (
       <a
         href={link.href}
-        style="
-          display:block;
-          padding:14px 16px;
-          font-family:var(--font-body);
-          font-size:16px;
-          font-weight:600;
-          color:var(--color-ink);
-          text-decoration:none;
-          border-radius:12px;
-          transition:background 0.2s, color 0.2s;
-        "
-        onmouseover="this.style.background='var(--color-orange-light)'; this.style.color='var(--color-orange)';"
-        onmouseout="this.style.background=''; this.style.color='var(--color-ink)';"
+        class="block px-4 py-3 rounded-xl font-semibold text-gray-900 hover:bg-jaga-bg hover:text-jaga-orange transition-colors"
       >
         {link.label}
       </a>
     ))}
+
     <a
-      href={waLink()}
+      href="/tentang"
+      class="block px-4 py-3 rounded-xl font-semibold text-gray-900 hover:bg-jaga-bg hover:text-jaga-orange transition-colors"
+    >
+      Tentang
+    </a>
+
+    <a
+      href="/faq"
+      class="block px-4 py-3 rounded-xl font-semibold text-gray-900 hover:bg-jaga-bg hover:text-jaga-orange transition-colors"
+    >
+      FAQ
+    </a>
+
+    <a
+      href="/kontak"
+      class="block px-4 py-3 rounded-xl font-semibold text-gray-900 hover:bg-jaga-bg hover:text-jaga-orange transition-colors"
+    >
+      Kontak
+    </a>
+
+    <a
+      href={wa}
       target="_blank"
       rel="noopener noreferrer"
-      class="btn btn-wa"
-      style="margin-top:16px; justify-content:center;"
+      class="mt-4 inline-flex items-center justify-center gap-2 bg-jaga-orange text-white px-6 py-3.5 rounded-full font-bold shadow-lg"
     >
-      <span aria-hidden="true">💬</span> Daftar via WhatsApp
+      <span aria-hidden="true">💬</span>
+      Daftar via WhatsApp
     </a>
   </div>
 </div>
-
-<style>
-  @media (max-width: 768px) {
-    #desktop-nav { display: none !important; }
-    #mobile-menu-btn { display: flex !important; }
-  }
-</style>
 
 <script>
   import { initMobileMenu } from '../../lib/mobile-menu';

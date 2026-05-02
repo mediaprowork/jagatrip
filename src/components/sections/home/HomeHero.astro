@@ -1,626 +1,100 @@
 ---
 import { waLink } from '../../../data/site';
+const wa = waLink('Malaysia-Thailand', '24-28 Juni 2026');
 ---
 
-<section class="hero" aria-label="Hero — JAGATRIP Insider Series 2026">
-  <!-- Background pattern -->
-  <div class="hero-pattern" aria-hidden="true"></div>
+<section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-jaga-bg">
+  <div class="absolute inset-0 z-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-jaga-orange via-transparent to-transparent"></div>
 
-  <div class="container">
-    <div class="hero-grid">
+  <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center gap-16">
 
-      <!-- ─── LEFT: Text content ─── -->
-      <div class="hero-text">
-        <!-- Top eyebrow with horizontal lines (like PDF "—— HERO SECTION ——") -->
-        <div class="hero-eyebrow" aria-hidden="true">
-          <span class="hero-eyebrow-line"></span>
-          <span class="hero-eyebrow-text">JAGATRIP INSIDER SERIES 2026</span>
-          <span class="hero-eyebrow-line"></span>
-        </div>
+    <div class="lg:w-1/2 text-center lg:text-left">
+      <span class="inline-block py-2 px-5 rounded-full bg-jaga-orange/10 text-jaga-orange font-bold text-sm md:text-base mb-6 tracking-widest uppercase shadow-sm">
+        Ekspedisi Benchmarking Internasional
+      </span>
 
-        <h1 class="hero-h1">
-          Buka Jendela <span class="hero-highlight">Dunia</span><br/>
-          untuk <span class="hero-italic">Generasi Indonesia.</span>
-        </h1>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1.1] mb-6">
+        JAGATRIP TO <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-jaga-orange to-orange-400">
+          MALAYSIA - THAILAND
+        </span>
+      </h1>
 
-        <p class="hero-tagline">
-          Temukan rahasia manajemen sekolah kelas dunia yang belum pernah
-          terungkap ke publik — <strong>langsung dari sumbernya.</strong>
-        </p>
+      <p class="text-xl md:text-2xl text-gray-700 mb-6 font-semibold">
+        Edukasi Wisata dan jelajah Sekolah di Malaysia dan Thailand
+      </p>
 
-        <p class="hero-lead">
-          Program Edu-Tourism premium untuk praktisi pendidikan yang ingin
-          benchmarking langsung ke sekolah-sekolah terbaik dunia.
-        </p>
+      <p class="text-lg md:text-xl text-gray-500 mb-10 leading-relaxed">
+        Temukan rahasia manajemen sekolah kelas dunia yang belum pernah terungkap ke publik —
+        langsung dari sumbernya.
+      </p>
 
-        <div class="hero-ctas">
-          <a href="#agenda" class="btn btn-primary btn-lg">
-            Lihat Agenda 2026 →
-          </a>
-          <a href={waLink()} target="_blank" rel="noopener noreferrer" class="btn btn-wa btn-lg">
-            <span aria-hidden="true">💬</span> Konsultasi WhatsApp
-          </a>
-        </div>
+      <a
+        href="#pricing"
+        class="inline-block bg-jaga-orange hover:bg-[#e55a2b] text-white px-10 py-5 rounded-full font-bold text-lg shadow-[0_10px_30px_rgba(255,107,53,0.3)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.4)] transition-all duration-300 transform hover:-translate-y-1"
+      >
+        Amankan Kursi Sekarang
+      </a>
+    </div>
 
-        <ul class="hero-trust" role="list">
-          <li><span class="trust-dot" aria-hidden="true"></span> Tour Leader Bersertifikat</li>
-          <li><span class="trust-dot" aria-hidden="true"></span> Asuransi Lengkap</li>
-          <li><span class="trust-dot" aria-hidden="true"></span> Workshop Eksklusif</li>
-        </ul>
-      </div>
+    <div class="lg:w-1/2 w-full max-w-md mx-auto lg:max-w-none">
+      <a
+        href={wa}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block relative w-full aspect-[4/5] rounded-[2.5rem] bg-white shadow-2xl border border-gray-100 overflow-hidden group"
+      >
+        <!-- Gradient bg -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-jaga-orange to-orange-300 opacity-10 group-hover:opacity-20 transition-opacity duration-500"></div>
 
-      <!-- ─── RIGHT: Magazine-style poster card ─── -->
-      <aside class="hero-poster" aria-hidden="true">
+        <!-- Hero poster content -->
+        <div class="relative z-10 h-full flex flex-col justify-between p-10 md:p-12">
 
-        <!-- Decorative tape/sticker -->
-        <span class="poster-tape">INSIDER 2026</span>
+          <!-- Top: badge -->
+          <div class="flex items-center justify-between">
+            <img src="/images/logo-icon.png" alt="" class="h-10 w-auto" />
+            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Insider 2026</span>
+          </div>
 
-        <!-- Main poster card -->
-        <article class="poster-card">
-
-          <!-- Top section (dark navy header) -->
-          <header class="poster-header">
-            <div class="poster-header-row">
-              <span class="poster-mark">JT</span>
-              <span class="poster-tag">EDISI PERTAMA</span>
-            </div>
-            <p class="poster-subtitle">EKSPEDISI BENCHMARKING<br/>INTERNASIONAL</p>
-          </header>
-
-          <!-- Hero section: program name -->
-          <div class="poster-body">
-            <p class="poster-prefix">JAGATRIP TO</p>
-            <h2 class="poster-title">
+          <!-- Middle: program name -->
+          <div class="text-center">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-jaga-orange mb-3">JAGATRIP TO</p>
+            <h2 class="text-4xl md:text-5xl font-black text-gray-900 leading-none mb-4">
               MALAYSIA<br/>
-              <span class="poster-amp">&amp;</span> THAILAND
+              <span class="text-jaga-orange">&amp;</span> THAILAND
             </h2>
-            <p class="poster-flags">🇲🇾 🇹🇭</p>
+            <p class="text-3xl">🇲🇾 🇹🇭</p>
           </div>
 
-          <!-- Stats grid -->
-          <div class="poster-stats">
-            <div class="poster-stat">
-              <p class="poster-stat-num">5</p>
-              <p class="poster-stat-label">HARI</p>
-            </div>
-            <div class="poster-stat">
-              <p class="poster-stat-num">2</p>
-              <p class="poster-stat-label">NEGARA</p>
-            </div>
-            <div class="poster-stat">
-              <p class="poster-stat-num">10+</p>
-              <p class="poster-stat-label">SEKOLAH</p>
-            </div>
-          </div>
-
-          <!-- Footer with date + price -->
-          <footer class="poster-footer">
-            <div>
-              <p class="poster-meta-label">TANGGAL</p>
-              <p class="poster-meta-value">24–28 JUNI 2026</p>
-            </div>
-            <div class="poster-divider"></div>
-            <div>
-              <p class="poster-meta-label">EARLY BIRD</p>
-              <p class="poster-meta-price">Rp 7.9jt</p>
-            </div>
-          </footer>
-
-          <!-- Watermark -->
-          <span class="poster-wm" aria-hidden="true">01</span>
-        </article>
-
-        <!-- Floating social proof card -->
-        <div class="poster-float">
-          <div class="poster-float-avatars">
-            <span class="pf-av" style="background:var(--color-grad-avatar-1)">BH</span>
-            <span class="pf-av" style="background:var(--color-grad-avatar-3)">SR</span>
-            <span class="pf-av" style="background:var(--color-grad-avatar-2)">AF</span>
-            <span class="pf-av" style="background:var(--color-grad-avatar-4)">RK</span>
-          </div>
+          <!-- Bottom: stats + price -->
           <div>
-            <p class="poster-float-count">47+ praktisi sudah daftar</p>
-            <p class="poster-float-sub">
-              <span class="live-dot"></span> Pendaftaran sedang dibuka
-            </p>
+            <div class="grid grid-cols-3 gap-2 mb-5 pb-5 border-b border-gray-200">
+              <div class="text-center">
+                <p class="text-2xl md:text-3xl font-black text-jaga-orange leading-none">5</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mt-1">Hari</p>
+              </div>
+              <div class="text-center border-x border-gray-200">
+                <p class="text-2xl md:text-3xl font-black text-jaga-orange leading-none">2</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mt-1">Negara</p>
+              </div>
+              <div class="text-center">
+                <p class="text-2xl md:text-3xl font-black text-jaga-orange leading-none">10+</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mt-1">Sekolah</p>
+              </div>
+            </div>
+            <div class="flex items-end justify-between">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Tanggal</p>
+                <p class="text-sm font-bold text-gray-900">24 – 28 Juni 2026</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Early Bird</p>
+                <p class="text-2xl font-black text-jaga-orange">Rp 7.9Jt</p>
+              </div>
+            </div>
           </div>
         </div>
-
-      </aside>
-
+      </a>
     </div>
   </div>
 </section>
-
-<style>
-  /* ── Section ── */
-  .hero {
-    background: var(--color-paper);
-    position: relative;
-    overflow: hidden;
-    padding-block: 56px 80px;
-  }
-
-  .hero-pattern {
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(255,107,53,0.06) 0%, transparent 50%),
-      radial-gradient(circle at 90% 80%, rgba(255,107,53,0.05) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  /* ── Layout ── */
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    gap: 64px;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── Text side ── */
-  .hero-text { max-width: 600px; }
-
-  /* PDF-style eyebrow */
-  .hero-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .hero-eyebrow-line {
-    flex: 0 0 24px;
-    height: 2px;
-    background: var(--color-orange);
-  }
-
-  .hero-eyebrow-text {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: var(--color-orange);
-  }
-
-  /* H1 */
-  .hero-h1 {
-    font-family: var(--font-display);
-    font-size: clamp(36px, 5vw, 60px);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -1.5px;
-    color: var(--color-ink);
-    margin: 0 0 20px;
-  }
-
-  .hero-italic {
-    font-style: italic;
-    color: var(--color-orange);
-  }
-
-  .hero-highlight {
-    position: relative;
-    display: inline-block;
-    z-index: 1;
-  }
-
-  .hero-highlight::after {
-    content: '';
-    position: absolute;
-    bottom: 4px;
-    left: -4px;
-    right: -4px;
-    height: 14px;
-    background: var(--color-orange-light);
-    border-radius: 4px;
-    z-index: -1;
-  }
-
-  .hero-tagline {
-    font-family: var(--font-display);
-    font-size: clamp(16px, 1.4vw, 18px);
-    font-weight: 500;
-    font-style: italic;
-    color: var(--color-orange-dark);
-    line-height: 1.5;
-    margin: 0 0 16px;
-    max-width: 540px;
-  }
-
-  .hero-tagline strong {
-    color: var(--color-ink);
-    font-style: normal;
-    font-weight: 700;
-  }
-
-  .hero-lead {
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--color-grey);
-    margin: 0 0 32px;
-    max-width: 480px;
-  }
-
-  /* CTAs */
-  .hero-ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 32px;
-  }
-
-  /* Trust list */
-  .hero-trust {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .hero-trust li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-grey);
-  }
-
-  .trust-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-orange);
-    flex-shrink: 0;
-  }
-
-  /* ─────────────────── POSTER CARD (RIGHT) ─────────────────── */
-  .hero-poster {
-    position: relative;
-    max-width: 440px;
-    margin-left: auto;
-    width: 100%;
-  }
-
-  /* Decorative tape sticker (rotated badge) */
-  .poster-tape {
-    position: absolute;
-    top: -18px;
-    right: 30px;
-    z-index: 5;
-    background: var(--color-orange);
-    color: white;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    padding: 6px 16px;
-    border-radius: 100px;
-    box-shadow: 0 6px 16px rgba(255,107,53,0.4);
-    transform: rotate(3deg);
-  }
-
-  /* Main poster card */
-  .poster-card {
-    background: var(--color-white);
-    border: 2px solid var(--color-ink);
-    border-radius: 24px;
-    overflow: hidden;
-    position: relative;
-    box-shadow:
-      0 24px 60px rgba(0,0,0,0.12),
-      0 8px 16px rgba(0,0,0,0.06);
-    transform: rotate(-1.5deg);
-    transition: transform 0.4s ease;
-  }
-
-  .poster-card:hover {
-    transform: rotate(0) scale(1.01);
-  }
-
-  /* Header strip (dark navy like PDF) */
-  .poster-header {
-    background: linear-gradient(135deg, #1F2937 0%, #0A0A0A 100%);
-    color: white;
-    padding: 18px 24px;
-    text-align: center;
-  }
-
-  .poster-header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-
-  .poster-mark {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--color-orange);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-    font-size: 13px;
-    font-weight: 900;
-    color: white;
-  }
-
-  .poster-tag {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,0.6);
-  }
-
-  .poster-subtitle {
-    font-family: var(--font-display);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: rgba(255,255,255,0.92);
-    margin: 0;
-    line-height: 1.4;
-  }
-
-  /* Body — destination */
-  .poster-body {
-    padding: 32px 24px 24px;
-    text-align: center;
-    background: var(--color-paper);
-    position: relative;
-  }
-
-  .poster-prefix {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--color-orange);
-    margin: 0 0 6px;
-  }
-
-  .poster-title {
-    font-family: var(--font-display);
-    font-size: 38px;
-    font-weight: 900;
-    color: var(--color-ink);
-    line-height: 1.0;
-    letter-spacing: -1.5px;
-    margin: 0 0 12px;
-  }
-
-  .poster-amp {
-    color: var(--color-orange);
-    font-style: italic;
-  }
-
-  .poster-flags {
-    font-size: 28px;
-    margin: 0;
-    line-height: 1;
-  }
-
-  /* Stats row */
-  .poster-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    border-top: 2px solid var(--color-ink);
-  }
-
-  .poster-stat {
-    padding: 14px 8px;
-    text-align: center;
-    border-right: 1px solid var(--color-grey-light);
-    background: var(--color-white);
-  }
-
-  .poster-stat:last-child { border-right: none; }
-
-  .poster-stat-num {
-    font-family: var(--font-display);
-    font-size: 24px;
-    font-weight: 900;
-    font-style: italic;
-    color: var(--color-orange);
-    line-height: 1;
-    margin: 0 0 2px;
-  }
-
-  .poster-stat-label {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--color-grey);
-    margin: 0;
-  }
-
-  /* Footer with date + price */
-  .poster-footer {
-    background: var(--color-orange);
-    color: white;
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .poster-divider {
-    width: 1px;
-    height: 32px;
-    background: rgba(255,255,255,0.3);
-  }
-
-  .poster-meta-label {
-    font-family: var(--font-mono);
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,0.7);
-    margin: 0 0 3px;
-  }
-
-  .poster-meta-value {
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 700;
-    color: white;
-    margin: 0;
-    white-space: nowrap;
-  }
-
-  .poster-meta-price {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 900;
-    font-style: italic;
-    color: white;
-    margin: 0;
-    line-height: 1;
-  }
-
-  /* Watermark */
-  .poster-wm {
-    position: absolute;
-    top: 80px;
-    right: 12px;
-    font-family: var(--font-display);
-    font-size: 96px;
-    font-weight: 900;
-    font-style: italic;
-    color: rgba(255,107,53,0.06);
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  /* ── Floating social proof ── */
-  .poster-float {
-    position: absolute;
-    bottom: -30px;
-    left: -20px;
-    background: white;
-    border-radius: 16px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
-    border: 1px solid var(--color-grey-light);
-    transform: rotate(2deg);
-    z-index: 4;
-  }
-
-  .poster-float-avatars {
-    display: flex;
-    flex-shrink: 0;
-  }
-
-  .pf-av {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 2px solid white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-body);
-    font-size: 9px;
-    font-weight: 700;
-    color: white;
-    margin-left: -6px;
-    flex-shrink: 0;
-  }
-
-  .pf-av:first-child { margin-left: 0; }
-
-  .poster-float-count {
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--color-ink);
-    margin: 0 0 2px;
-    white-space: nowrap;
-  }
-
-  .poster-float-sub {
-    font-family: var(--font-body);
-    font-size: 10px;
-    color: var(--color-grey);
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .live-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #10B981;
-    animation: pulse 2s infinite;
-  }
-
-  /* ─────────────── Responsive ─────────────── */
-  @media (max-width: 968px) {
-    .hero { padding-block: 40px 60px; }
-
-    .hero-grid {
-      grid-template-columns: 1fr;
-      gap: 56px;
-    }
-
-    .hero-poster {
-      margin-inline: auto;
-      max-width: 380px;
-    }
-
-    .hero-text { max-width: 100%; }
-  }
-
-  @media (max-width: 640px) {
-    .hero-h1 {
-      font-size: clamp(32px, 8vw, 44px);
-    }
-
-    .hero-eyebrow-line {
-      flex: 0 0 16px;
-    }
-
-    .hero-eyebrow-text {
-      font-size: 10px;
-      letter-spacing: 2px;
-    }
-
-    .poster-card { transform: rotate(-1deg); }
-
-    .poster-title {
-      font-size: 32px;
-    }
-
-    .poster-float {
-      left: 0;
-      right: 0;
-      bottom: -40px;
-      transform: rotate(0);
-      width: max-content;
-      max-width: calc(100% - 16px);
-      margin: 0 auto;
-    }
-
-    .hero-tagline {
-      font-size: 15px;
-    }
-  }
-</style>

@@ -1,0 +1,54 @@
+---
+import { getEntry } from 'astro:content';
+
+const trip = await getEntry('trips', 'malaysia-thailand');
+const itinerary = trip!.data.itinerary;
+
+const monthLong: Record<number, string> = {
+  1: 'Januari',
+  2: 'Februari',
+  3: 'Maret',
+  4: 'April',
+  5: 'Mei',
+  6: 'Juni',
+  7: 'Juli',
+  8: 'Agustus',
+  9: 'September',
+  10: 'Oktober',
+  11: 'November',
+  12: 'Desember',
+};
+
+function formatDayDate(d: Date): string {
+  const day = d.getUTCDate();
+  const m = monthLong[d.getUTCMonth() + 1];
+  const y = d.getUTCFullYear();
+  return `${day} ${m} ${y}`;
+}
+---
+
+<section class="py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-20">
+      <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">5 Hari yang Bisa Mengubah <span class="text-jaga-orange">5 Tahun ke Depan</span> Sekolahmu.</h2>
+      <p class="text-xl text-gray-600 font-medium">Selama 5 hari 4 malam, kamu akan menjalani pengalaman yang tidak akan kamu temukan di seminar manapun, di buku manapun — karena ini nyata, langsung, dan personal.</p>
+    </div>
+
+    <div class="relative border-l-4 border-jaga-orange/30 ml-4 md:ml-10 space-y-16">
+      {itinerary.map((day) => (
+        <div class="relative pl-10 md:pl-16">
+          <div class="absolute -left-[18px] md:-left-[22px] top-0 w-8 h-8 md:w-10 md:h-10 bg-jaga-orange rounded-full border-4 border-white shadow-lg flex items-center justify-center text-white font-bold text-sm md:text-base">{day.day}</div>
+          <div class="bg-jaga-bg p-8 md:p-10 rounded-[2rem] shadow-sm border border-gray-100">
+            <h3 class="text-xl md:text-2xl font-bold text-jaga-orange mb-2">HARI {day.day} — {day.dayName}, {formatDayDate(day.date)}</h3>
+            <h4 class="text-2xl md:text-3xl font-black text-gray-900 mb-6 uppercase tracking-wide">{day.theme}</h4>
+            <ul class="space-y-3">
+              {day.activities.map((activity) => (
+                <li class="flex items-start text-gray-700 text-lg font-medium"><span class="text-jaga-orange mr-3">✔</span> {activity}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

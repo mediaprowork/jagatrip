@@ -1,0 +1,48 @@
+---
+const reasons = [
+  {
+    icon: '🎓',
+    title: 'Sistem Pendidikan Kelas Dunia',
+    desc: 'Capek lihat sistem sekolah yang itu-itu aja? Di sini kamu akan menyaksikan langsung bagaimana sekolah-sekolah terbaik Malaysia dan Thailand membangun sistem pendidikan yang konsisten, inovatif, dan berdampak — dan kamu akan pulang membawa cetak birunya.',
+  },
+  {
+    icon: '💡',
+    title: 'Guru yang Benar-Benar Menginspirasi',
+    desc: 'Bagaimana cara membuat guru semangat mengajar dan murid antusias belajar? Jawabannya ada di sekolah yang akan kamu kunjungi. Saksikan budaya belajar yang hidup dan rasakan sendiri perbedaannya.',
+  },
+  {
+    icon: '📱',
+    title: 'Teknologi Pendidikan yang Relevan',
+    desc: 'Pengen tahu gimana caranya bikin murid melek teknologi tanpa kehilangan esensi belajar? Program JAGATRIP akan membukakan matamu terhadap integrasi teknologi yang tepat guna di ruang kelas nyata.',
+  },
+  {
+    icon: '🤝',
+    title: 'Jaringan yang Tidak Ternilai',
+    desc: 'Bergabung dengan ratusan praktisi pendidikan terbaik dari Indonesia. Satu koneksi yang tepat bisa membuka puluhan peluang kolaborasi, kemitraan, dan pertumbuhan untuk sekolahmu.',
+  },
+  {
+    icon: '🏆',
+    title: 'Rekognisi & Sertifikasi',
+    desc: 'Peserta mendapatkan sertifikat resmi dari PT JAGATRIP MITRA EDUKASI sebagai bukti partisipasi dalam program benchmarking pendidikan internasional.',
+  },
+];
+---
+
+<section id="why" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-4xl mx-auto mb-20">
+      <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">Karena Sekolahmu Layak Dapat yang Terbaik</h2>
+      <p class="text-xl md:text-2xl text-gray-500 font-medium">Satu perjalanan bersama JAGATRIP bisa mengubah cara pandangmu terhadap pendidikan - selamanya.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-8">
+      {reasons.map((reason) => (
+        <div class="bg-jaga-bg p-10 rounded-[2rem] hover:shadow-2xl transition-all border border-gray-100 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] text-left">
+          <div class="text-4xl mb-6">{reason.icon}</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">{reason.title}</h3>
+          <p class="text-gray-600 text-lg leading-relaxed">{reason.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

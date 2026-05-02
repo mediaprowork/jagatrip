@@ -1,126 +1,137 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav       from '../components/layout/Nav.astro';
-import Footer    from '../components/layout/Footer.astro';
-import FloatingWA from '../components/layout/FloatingWA.astro';
+import BaseLayout  from '../layouts/BaseLayout.astro';
+import Nav         from '../components/layout/Nav.astro';
+import Footer      from '../components/layout/Footer.astro';
+import FloatingWA  from '../components/layout/FloatingWA.astro';
 import { getCollection } from 'astro:content';
 import { SITE, waLink }  from '../data/site';
 import { faqPageSchema }    from '../data/schemas/faqPage';
 import { breadcrumbSchema } from '../data/schemas/breadcrumb';
 
-const allFaqs = await getCollection('faqs');
-const sorted  = allFaqs.sort((a, b) => a.data.order - b.data.order);
+const wa = waLink();
+const allFaqs = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
 
 const categories = [
-  { key: 'semua',        label: 'Semua' },
-  { key: 'umum',         label: 'Umum' },
-  { key: 'pendaftaran',  label: 'Pendaftaran' },
-  { key: 'paket',        label: 'Paket' },
-  { key: 'pembayaran',   label: 'Pembayaran' },
-  { key: 'persiapan',    label: 'Persiapan' },
-  { key: 'kebijakan',    label: 'Kebijakan' },
+  { key: 'semua',       label: 'Semua' },
+  { key: 'umum',        label: 'Umum' },
+  { key: 'pendaftaran', label: 'Pendaftaran' },
+  { key: 'paket',       label: 'Paket' },
+  { key: 'pembayaran',  label: 'Pembayaran' },
+  { key: 'persiapan',   label: 'Persiapan' },
+  { key: 'kebijakan',   label: 'Kebijakan' },
 ];
 
 const extraSchemas = [
-  faqPageSchema(sorted.map(f => ({ question: f.data.question, answer: f.data.answer }))),
+  faqPageSchema(allFaqs.map((f) => ({ question: f.data.question, answer: f.data.answer }))),
   breadcrumbSchema([{ name: 'FAQ', url: `${SITE.url}/faq` }]),
 ];
 ---
+
 <BaseLayout
   title="FAQ JAGATRIP — Pertanyaan Umum Program Edu-Tourism"
-  description="Temukan jawaban atas pertanyaan umum tentang program JAGATRIP Insider Series 2026: pendaftaran, paket, pembayaran, persiapan, dan kebijakan."
+  description="Temukan jawaban atas pertanyaan umum tentang program JAGATRIP: pendaftaran, paket, pembayaran, persiapan, kebijakan."
   extraSchemas={extraSchemas}
 >
   <Nav />
+
   <main id="main">
 
-    <!-- Hero -->
-    <section style="background:var(--color-ink); padding:80px 0; position:relative; overflow:hidden;">
-      <div style="position:absolute; top:-50%; right:-10%; width:600px; height:600px; background:radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%); pointer-events:none;"></div>
-      <div class="container" style="text-align:center; position:relative; z-index:1;">
-        <span class="eyebrow" style="color:var(--color-orange);">BANTUAN</span>
-        <h1 class="section-title" style="color:white; margin-top:8px; font-size:clamp(36px,6vw,64px); font-weight:900;">
-          Pertanyaan yang <span class="italic" style="color:var(--color-orange);">Sering Ditanyakan</span>
+    <!-- HERO -->
+    <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden bg-jaga-bg">
+      <div class="absolute inset-0 z-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-jaga-orange via-transparent to-transparent"></div>
+
+      <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <span class="inline-block py-2 px-5 rounded-full bg-jaga-orange/10 text-jaga-orange font-bold text-sm md:text-base mb-6 tracking-widest uppercase shadow-sm">
+          Bantuan
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.1] mb-6">
+          FAQ <span class="text-transparent bg-clip-text bg-gradient-to-r from-jaga-orange to-orange-400">(Frequently Asked Questions)</span>
         </h1>
-        <p style="font-size:17px; color:rgba(255,255,255,0.7); max-width:560px; margin:16px auto 0; line-height:1.7;">
-          Tidak menemukan jawaban yang kamu cari? Langsung hubungi kami via WhatsApp.
+        <p class="text-xl md:text-2xl text-gray-500 font-medium">
+          Ada Pertanyaan? Kami Jawab Semuanya di Sini.
         </p>
       </div>
     </section>
 
-    <!-- FAQ content -->
-    <section class="section" style="background:var(--color-white);">
-      <div class="container" style="max-width:860px; margin:0 auto;">
+    <!-- FAQ -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-6">
 
         <!-- Category filter -->
         <div
           id="faq-filter"
-          style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:48px;"
+          class="flex flex-wrap gap-3 mb-12 justify-center"
           role="tablist"
-          aria-label="Filter FAQ berdasarkan kategori"
+          aria-label="Filter FAQ"
         >
           {categories.map((cat) => (
             <button
               data-filter={cat.key}
               role="tab"
               aria-selected={cat.key === 'semua' ? 'true' : 'false'}
-              style="
-                padding:8px 20px;
-                border-radius:100px;
-                border:2px solid var(--color-grey-light);
-                background:white;
-                font-family:var(--font-body);
-                font-size:14px;
-                font-weight:600;
-                color:var(--color-grey);
-                cursor:pointer;
-                transition:all 0.2s;
-              "
-              class={cat.key === 'semua' ? 'filter-active' : ''}
+              type="button"
+              class={`px-5 py-2 rounded-full font-bold text-sm border-2 transition-all ${
+                cat.key === 'semua'
+                  ? 'bg-jaga-orange text-white border-jaga-orange shadow-md'
+                  : 'bg-white text-gray-600 border-gray-200 hover:border-jaga-orange hover:text-jaga-orange'
+              }`}
             >
               {cat.label}
             </button>
           ))}
         </div>
 
-        <!-- FAQ list -->
-        <div id="faq-list">
-          {sorted.map((faq) => (
+        <!-- FAQ list (accordion) -->
+        <div id="faq-list" class="divide-y divide-gray-200 border-y border-gray-200">
+          {allFaqs.map((faq, i) => (
             <div
-              class="faq-item"
+              class="page-faq-item"
               data-category={faq.data.category}
               id={faq.data.id}
             >
               <button
-                class="faq-question"
-                aria-expanded="false"
-                aria-controls={`answer-${faq.data.id}`}
+                class="page-faq-trigger w-full flex items-center justify-between py-6 text-left gap-6"
+                aria-expanded={i === 0 ? 'true' : 'false'}
+                aria-controls={`page-faq-answer-${i}`}
+                id={`page-faq-trigger-${i}`}
+                type="button"
               >
-                <span>{faq.data.question}</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="text-lg md:text-xl font-bold text-gray-900 leading-snug">
+                  {faq.data.question}
+                </span>
+                <span
+                  class={`page-faq-icon shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-300 ${
+                    i === 0 ? 'bg-jaga-orange text-white shadow-md' : 'bg-orange-100 text-jaga-orange'
+                  }`}
+                  aria-hidden="true"
+                >
+                  {i === 0 ? '×' : '+'}
+                </span>
               </button>
               <div
-                class="faq-answer"
-                id={`answer-${faq.data.id}`}
+                class="page-faq-answer overflow-hidden transition-all duration-300"
+                id={`page-faq-answer-${i}`}
                 role="region"
-                aria-labelledby={faq.data.id}
+                aria-labelledby={`page-faq-trigger-${i}`}
+                style={i === 0 ? 'max-height: 400px; padding-bottom: 24px;' : 'max-height: 0;'}
               >
-                <p>{faq.data.answer}</p>
+                <p class="text-gray-600 text-base md:text-lg leading-relaxed">{faq.data.answer}</p>
               </div>
             </div>
           ))}
         </div>
 
         <!-- CTA -->
-        <div style="text-align:center; margin-top:64px; padding:40px; background:var(--color-paper); border-radius:24px;">
-          <p style="font-family:var(--font-display); font-size:20px; font-weight:700; color:var(--color-ink); margin-bottom:8px;">
-            Masih ada pertanyaan lain?
-          </p>
-          <p style="color:var(--color-grey); font-size:15px; margin-bottom:24px;">
-            Tim admin JAGATRIP siap membantu kamu langsung via WhatsApp.
-          </p>
-          <a href={waLink()} target="_blank" rel="noopener noreferrer" class="btn btn-wa btn-lg">
-            <span aria-hidden="true">💬</span> Chat WhatsApp Sekarang
+        <div class="text-center mt-16 p-10 bg-jaga-bg rounded-[2rem] border border-gray-100">
+          <p class="text-2xl font-bold text-gray-900 mb-3">Masih ada pertanyaan lain?</p>
+          <p class="text-gray-600 mb-6">Tim admin JAGATRIP siap membantu kamu langsung via WhatsApp.</p>
+          <a
+            href={wa}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-jaga-orange hover:bg-jaga-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+          >
+            💬 Chat WhatsApp Sekarang
           </a>
         </div>
 
@@ -128,40 +139,66 @@ const extraSchemas = [
     </section>
 
   </main>
+
   <Footer />
   <FloatingWA />
 </BaseLayout>
 
-<style>
-  .filter-active {
-    background: var(--color-orange) !important;
-    color: white !important;
-    border-color: var(--color-orange) !important;
-  }
-</style>
-
 <script>
-  import { initFaqToggle } from '../lib/faq-toggle';
-  document.addEventListener('DOMContentLoaded', initFaqToggle);
-
-  // Category filter
+  // ── Category filter ──
   const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-  const faqItems   = document.querySelectorAll<HTMLElement>('[data-category]');
+  const faqItems   = document.querySelectorAll<HTMLElement>('.page-faq-item');
 
   filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter!;
       filterBtns.forEach((b) => {
-        b.classList.remove('filter-active');
+        b.classList.remove('bg-jaga-orange', 'text-white', 'border-jaga-orange', 'shadow-md');
+        b.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
         b.setAttribute('aria-selected', 'false');
       });
-      btn.classList.add('filter-active');
+      btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+      btn.classList.add('bg-jaga-orange', 'text-white', 'border-jaga-orange', 'shadow-md');
       btn.setAttribute('aria-selected', 'true');
 
       faqItems.forEach((item) => {
         const cat = item.dataset.category!;
         item.style.display = (filter === 'semua' || cat === filter) ? 'block' : 'none';
       });
+    });
+  });
+
+  // ── Accordion ──
+  faqItems.forEach((item) => {
+    const btn    = item.querySelector<HTMLButtonElement>('.page-faq-trigger')!;
+    const answer = item.querySelector<HTMLElement>('.page-faq-answer')!;
+    const icon   = item.querySelector<HTMLElement>('.page-faq-icon')!;
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      // Close all visible
+      faqItems.forEach((other) => {
+        if (other.style.display === 'none') return;
+        const ob = other.querySelector<HTMLButtonElement>('.page-faq-trigger')!;
+        const oa = other.querySelector<HTMLElement>('.page-faq-answer')!;
+        const oi = other.querySelector<HTMLElement>('.page-faq-icon')!;
+        if (!ob) return;
+        ob.setAttribute('aria-expanded', 'false');
+        oa.style.maxHeight = '0';
+        oa.style.paddingBottom = '0';
+        oi.textContent = '+';
+        oi.classList.remove('bg-jaga-orange', 'text-white', 'shadow-md');
+        oi.classList.add('bg-orange-100', 'text-jaga-orange');
+      });
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        answer.style.paddingBottom = '24px';
+        icon.textContent = '×';
+        icon.classList.remove('bg-orange-100', 'text-jaga-orange');
+        icon.classList.add('bg-jaga-orange', 'text-white', 'shadow-md');
+      }
     });
   });
 </script>

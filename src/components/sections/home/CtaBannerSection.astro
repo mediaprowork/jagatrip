@@ -1,0 +1,22 @@
+---
+import { waLink } from '../../../data/site';
+
+const wa = waLink('Malaysia-Thailand', '24-28 Juni 2026');
+---
+
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="bg-jaga-orange rounded-[2rem] p-8 md:p-14 flex flex-col md:flex-row items-center justify-between shadow-xl">
+      <div class="text-white mb-8 md:mb-0 md:pr-8 text-center md:text-left">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3 tracking-tight">JANGAN TUNDA LAGI! Kursi Terbatas</h2>
+        <p class="text-orange-50 text-lg md:text-xl font-medium">Daftar Sekarang Sebelum Penuh</p>
+      </div>
+      <div class="flex-shrink-0 w-full md:w-auto">
+        <a href={wa} target="_blank" class="inline-flex items-center justify-center w-full md:w-auto bg-white text-jaga-orange font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 whitespace-nowrap">
+          Daftar Sekarang
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

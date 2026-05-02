@@ -23,22 +23,9 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Plus Jakarta Sans',
-      cssVariable: '--font-body',
-      weights: [400, 500, 600, 700, 800],
-    },
-    {
-      provider: fontProviders.google(),
-      name: 'Fraunces',
-      cssVariable: '--font-display',
-      weights: [400, 500, 700, 900],
-      styles: ['normal', 'italic'],
-    },
-    {
-      provider: fontProviders.google(),
-      name: 'JetBrains Mono',
-      cssVariable: '--font-mono',
-      weights: [400, 500, 700],
+      name: 'Outfit',
+      cssVariable: '--font-sans',
+      weights: [300, 400, 500, 600, 700, 800, 900],
     },
   ],
 });

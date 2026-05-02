@@ -1,74 +1,19 @@
 @theme {
-  /* Colors */
-  --color-orange:        #FF6B35;
-  --color-orange-dark:   #E85A2C;
-  --color-orange-light:  #FFE4D6;
+  /* === JAGA Brand Colors (from fix.html) === */
+  --color-jaga-orange:      #FF6B35;
+  --color-jaga-orange-600:  #e55a2b;
+  --color-jaga-orange-500:  #f97316;
+  --color-jaga-orange-400:  #fb923c;
+  --color-jaga-orange-50:   #fff7ed;
+  --color-jaga-bg:          #FAF7F2;
+  --color-jaga-dark:        #0F172A;
 
-  --color-ink:           #0A0A0A;
-  --color-ink-deeper:    #050505;
-  --color-grey:          #6B7280;
-  --color-grey-light:    #E5E7EB;
+  /* WhatsApp */
+  --color-wa: #25D366;
 
-  --color-paper:         #FAF7F2;
-  --color-white:         #FFFFFF;
-  --color-green:         #10B981;
+  /* Font */
+  --font-sans: var(--font-sans, 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
 
-  --color-wa-green:      #25D366;
-  --color-star:          #FBBF24;
-
-  /* Destination gradients */
-  --color-grad-japan:     linear-gradient(135deg, #DC2626, #FCA5A5);
-  --color-grad-korea:     linear-gradient(135deg, #1E40AF, #93C5FD);
-  --color-grad-spore:     linear-gradient(135deg, #DC2626, #F87171);
-  --color-grad-msia:      linear-gradient(135deg, #047857, #6EE7B7);
-  --color-grad-aus:       linear-gradient(135deg, #C2410C, #FDBA74);
-  --color-grad-turki:     linear-gradient(135deg, #1F2937, #6B7280);
-  --color-grad-egypt:     linear-gradient(135deg, #7C2D12, #FB923C);
-  --color-grad-saudi:     linear-gradient(135deg, #166534, #86EFAC);
-  --color-grad-thailand:  linear-gradient(135deg, #C2410C, #FCD34D);
-  --color-grad-china:     linear-gradient(135deg, #B91C1C, #F87171);
-  --color-grad-jogja:     linear-gradient(135deg, #92400E, #FCD34D);
-  --color-grad-bogor:     linear-gradient(135deg, #166534, #86EFAC);
-  --color-grad-malang:    linear-gradient(135deg, #1E3A8A, #93C5FD);
-
-  /* Avatar gradients */
-  --color-grad-avatar-1:  linear-gradient(135deg, #047857, #34D399);
-  --color-grad-avatar-2:  linear-gradient(135deg, #1E40AF, #60A5FA);
-  --color-grad-avatar-3:  linear-gradient(135deg, #7C3AED, #C4B5FD);
-  --color-grad-avatar-4:  linear-gradient(135deg, #FF6B35, #FFB088);
-
-  --color-grad-hero-card: linear-gradient(135deg, #FF6B35 0%, #FF8B5A 100%);
-
-  /* Fonts */
-  --font-body:    var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  --font-display: var(--font-display, 'Fraunces', serif);
-  --font-mono:    var(--font-mono, 'JetBrains Mono', monospace);
-
-  /* Container */
-  --container-max:      1200px;
-  --container-padding:  24px;
-
-  /* Section spacing */
-  --section-py:         100px;
-  --section-py-mobile:  60px;
-  --section-py-stats:   80px;
-
-  /* Border radius */
-  --radius-card:     24px;
-  --radius-card-md:  20px;
-  --radius-input:    16px;
-  --radius-input-sm: 12px;
-  --radius-pill:     100px;
-  --radius-icon:     16px;
-
-  /* Shadows */
-  --shadow-nav-cta:        0 4px 12px rgba(255, 107, 53, 0.25);
-  --shadow-btn-primary:    0 8px 24px rgba(255, 107, 53, 0.35);
-  --shadow-btn-hover:      0 12px 32px rgba(255, 107, 53, 0.45);
-  --shadow-hero-card:      0 20px 50px rgba(0, 0, 0, 0.10);
-  --shadow-comparison:     0 20px 50px rgba(0, 0, 0, 0.06);
-  --shadow-solution-hover: 0 20px 40px rgba(255, 107, 53, 0.15);
-  --shadow-testi-hover:    0 20px 40px rgba(0, 0, 0, 0.08);
-  --shadow-form:           0 30px 60px rgba(0, 0, 0, 0.20);
-  --shadow-wa:             0 10px 30px rgba(37, 211, 102, 0.40);
+  /* Layout */
+  --container-max: 80rem;
 }

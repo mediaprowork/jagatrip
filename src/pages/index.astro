@@ -4,41 +4,39 @@ import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 import FloatingWA from '../components/layout/FloatingWA.astro';
 
-import HomeHero from '../components/sections/home/HomeHero.astro';
-import LogoBar from '../components/sections/home/LogoBar.astro';
-import WhatIsJagatrip from '../components/sections/home/WhatIsJagatrip.astro';
-import AgendaPreview from '../components/sections/home/AgendaPreview.astro';
-import AgendaTable from '../components/sections/home/AgendaTable.astro';
-import WhyJoin from '../components/sections/home/WhyJoin.astro';
-import Stats from '../components/sections/home/Stats.astro';
-import Testimonials from '../components/sections/home/Testimonials.astro';
-import ProcessSteps from '../components/sections/home/ProcessSteps.astro';
-import HomeFaq from '../components/sections/home/HomeFaq.astro';
-import HomeCta from '../components/sections/home/HomeCta.astro';
+import HomeHero          from '../components/sections/home/HomeHero.astro';
+import ProblemSection    from '../components/sections/home/ProblemSection.astro';
+import AboutSection      from '../components/sections/home/AboutSection.astro';
+import WhySection        from '../components/sections/home/WhySection.astro';
+import BenefitSection    from '../components/sections/home/BenefitSection.astro';
+import AgendaTableSection from '../components/sections/home/AgendaTableSection.astro';
+import TimelineSection   from '../components/sections/home/TimelineSection.astro';
+import PricingSection    from '../components/sections/home/PricingSection.astro';
+import FaqSection        from '../components/sections/home/FaqSection.astro';
+import CtaBannerSection  from '../components/sections/home/CtaBannerSection.astro';
 
 import { travelAgencySchema } from '../data/schemas/travelAgency';
-import { breadcrumbSchema } from '../data/schemas/breadcrumb';
+import { breadcrumbSchema }   from '../data/schemas/breadcrumb';
 ---
 
 <BaseLayout
-  title="JAGATRIP — Edu-Tourism Premium untuk Praktisi Pendidikan Indonesia"
-  description="Program benchmarking internasional & lokal untuk kepala sekolah, guru, dan pemilik yayasan. 7 destinasi 2026 — daftar sekarang."
+  title="JAGATRIP — Ekspedisi Benchmarking Internasional"
+  description="Program Edu-Tourism premium untuk praktisi pendidikan Indonesia. Benchmarking sekolah-sekolah terbaik dunia. JAGATRIP TO MALAYSIA - THAILAND, 24-28 Juni 2026."
   extraSchemas={[travelAgencySchema(), breadcrumbSchema([])]}
 >
   <Nav />
 
   <main id="main">
     <HomeHero />
-    <LogoBar />
-    <WhatIsJagatrip />
-    <AgendaPreview />
-    <AgendaTable />
-    <WhyJoin />
-    <Stats />
-    <Testimonials />
-    <ProcessSteps />
-    <HomeFaq />
-    <HomeCta />
+    <ProblemSection />
+    <AboutSection />
+    <WhySection />
+    <BenefitSection />
+    <AgendaTableSection />
+    <TimelineSection />
+    <PricingSection />
+    <FaqSection />
+    <CtaBannerSection />
   </main>
 
   <Footer />

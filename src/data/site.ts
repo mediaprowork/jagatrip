@@ -7,7 +7,8 @@ export const SITE = {
   description: 'Program Edu-Tourism premium untuk praktisi pendidikan Indonesia. Benchmarking sekolah-sekolah terbaik dunia: kepala sekolah, guru, pengawas, pemilik yayasan.',
   waNumber:    '6285643972139',
   waDisplay:   '085643972139',
-  email:       'alfatihahtourtravel@alfatihah.com',
+  email:       'admin@jagatrip.com',
+  emailLegacy: 'alfatihahtourtravel@alfatihah.com',
   operator:    'Alfatihah Tour & Travel',
   locale:      'id-ID',
   lang:        'id',
@@ -18,9 +19,13 @@ export const SITE = {
 export const WA_URL = `https://wa.me/${SITE.waNumber}`;
 
 export function waLink(tripName?: string, tripDate?: string): string {
-  let msg = 'Halo, saya tertarik dengan program JAGATRIP Insider Series 2026';
-  if (tripName) msg += ` — ${tripName}`;
+  // Default message matches fix.html
+  if (!tripName) {
+    const defaultMsg = 'Halo admin, saya mau daftar edu-tourism premium di jagatrip.com, mohon penjelsannya. Terimakasih';
+    return `https://wa.me/${SITE.waNumber}?text=${encodeURIComponent(defaultMsg)}`;
+  }
+  let msg = `Halo admin, saya tertarik dengan program JAGATRIP — ${tripName}`;
   if (tripDate) msg += ` (${tripDate})`;
-  msg += '. Bisa info lebih lanjut?';
+  msg += '. Mohon info lebih lanjut. Terimakasih.';
   return `https://wa.me/${SITE.waNumber}?text=${encodeURIComponent(msg)}`;
 }
