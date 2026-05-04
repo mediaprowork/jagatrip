@@ -43,7 +43,7 @@ ${tripList}
 ## Pricing Reference (Malaysia-Thailand)
 
 - Early Bird (sampai 10 Juni 2026): **Rp 7.900.000** per orang
-- Harga Normal (setelah 10 Juni 2026): **Rp 8.250.000** per orang
+- Harga Normal (setelah 11 Juni 2026): **Rp 8.250.000** per orang
 - DP: 50% untuk konfirmasi seat
 - Pelunasan: H-7 sebelum keberangkatan
 - All-in: tiket PP, hotel bintang 3, 10× makan, workshop kit, merchandise, sertifikat, asuransi, dokumentasi profesional

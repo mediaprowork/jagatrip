@@ -12,7 +12,7 @@ durationDays: 5
 dateStart: 2026-06-24
 dateEnd: 2026-06-28
 earlyBirdDeadline: 2026-06-10
-focus: "Cross-border networking & kunjungan sekolah ASEAN"
+focus: "Cross-border networking & kunjungan sekolah Malaysia dan Thailand"
 segmenPasar:
   - "Kepala Sekolah"
   - "Pemilik Yayasan"
@@ -43,19 +43,16 @@ itinerary:
     dayName: Rabu
     theme: "SEKOLAH & BENCHMARKING DAY (MALAYSIA)"
     activities:
-      - "Sarapan di hotel"
       - "Kunjungan Sekolah Internasional 1 di Malaysia"
       - "Sesi observasi kelas & dialog dengan kepala sekolah"
       - "Workshop: Sistem Manajemen Sekolah Kelas Dunia"
       - "Kunjungan Sekolah 2 — fokus pada inovasi kurikulum"
       - "City Tour Kuala Lumpur (Petronas Twin Towers)"
-      - "Makan malam eksklusif peserta"
   - day: 3
     date: 2026-06-26
     dayName: Kamis
     theme: "WORKSHOP & NETWORKING DAY"
     activities:
-      - "Sarapan di hotel"
       - "Workshop intensif: Best Practice Pengembangan Guru"
       - "Sesi: Teknologi Pendidikan yang Relevan di Ruang Kelas"
       - "Panel Discussion: Membangun Budaya Belajar yang Kuat"
@@ -67,7 +64,6 @@ itinerary:
     dayName: Jumat
     theme: "SEKOLAH & INSIGHT DAY (THAILAND)"
     activities:
-      - "Sarapan di hotel"
       - "Kunjungan Sekolah Internasional di Thailand"
       - "Benchmarking: Sistem Pendidikan & Karakter Siswa Thailand"
       - "Dialog terbuka dengan praktisi pendidikan lokal"
@@ -79,10 +75,8 @@ itinerary:
     dayName: Sabtu
     theme: "CLOSING & HOMECOMING DAY"
     activities:
-      - "Sarapan terakhir di hotel"
       - "Sesi closing & komitmen aksi nyata"
       - "Foto bersama & pembagian hadiah Door Prize"
-      - "Check-out hotel"
       - "Perjalanan pulang ke Indonesia"
 benefits:
   - icon: "✈️"

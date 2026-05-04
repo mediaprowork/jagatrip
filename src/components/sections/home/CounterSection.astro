@@ -1,0 +1,20 @@
+---
+const counters = [
+  { value: '+3',  label: 'Hari' },
+  { value: '+7',  label: 'Negara' },
+  { value: '+20', label: 'Sekolah' },
+];
+---
+
+<section class="py-12 md:py-16 bg-white border-t border-gray-100">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid grid-cols-3 gap-4 md:gap-8">
+      {counters.map((c) => (
+        <div class="text-center">
+          <p class="text-5xl md:text-7xl font-black text-jaga-orange tracking-tight leading-none">{c.value}</p>
+          <p class="mt-2 md:mt-3 text-base md:text-lg font-bold text-gray-700 uppercase tracking-widest">{c.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

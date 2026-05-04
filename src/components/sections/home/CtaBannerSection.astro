@@ -1,31 +1,38 @@
 ---
 import { waLink } from '../../../data/site';
 const wa = waLink('Malaysia-Thailand', '24-28 Juni 2026');
+const waConsult = waLink('Konsultasi Gratis');
 ---
 
 <section class="py-16 md:py-24 bg-white">
   <div class="max-w-4xl mx-auto px-6 text-center">
-    <p class="text-gray-500 text-lg font-medium mb-6">Dan sekarang, saatnya kamu ambil langkah pertama.</p>
-
-    <div class="inline-block bg-gray-900 text-white font-black text-sm uppercase tracking-widest px-6 py-3 rounded-full mb-8">
-      🔥 PROGRAM PERDANA — JAGATRIP INSIDER SERIES 2026
-    </div>
+    <p class="text-gray-700 text-2xl md:text-3xl font-black mb-8 tracking-tight uppercase">SAATNYA KAMU AMBIL LANGKAH NYATA</p>
 
     <div class="bg-jaga-orange rounded-4xl p-10 md:p-14 shadow-xl text-white mb-8">
       <h2 class="text-2xl md:text-3xl font-black mb-3 leading-tight">
         CLASS CONFIDENTIAL:
       </h2>
       <p class="text-xl md:text-2xl font-bold text-orange-100 leading-snug mb-8">
-        Rahasia Sekolah Kelas Dunia yang Tidak Diajarkan di Seminar Manapun
+        Mengulik Rahasia Sekolah Kelas Dunia yang Tidak Diajarkan di Seminar Manapun
       </p>
-      <a
-        href={wa}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center bg-white text-jaga-orange font-bold text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 whitespace-nowrap"
-      >
-        Daftar Sekarang →
-      </a>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center bg-white text-jaga-orange font-bold text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 whitespace-nowrap"
+        >
+          Daftar Sekarang →
+        </a>
+        <a
+          href={waConsult}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-jaga-orange font-bold text-lg px-10 py-4 rounded-full transition-all whitespace-nowrap"
+        >
+          💬 Konsultasi Gratis
+        </a>
+      </div>
     </div>
   </div>
 </section>

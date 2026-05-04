@@ -1,6 +1,7 @@
 ---
 import { waLink } from '../../../data/site';
 const wa = waLink('Malaysia-Thailand', '24-28 Juni 2026');
+const waConsult = waLink('Konsultasi Gratis');
 ---
 
 <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-jaga-bg">
@@ -27,7 +28,7 @@ const wa = waLink('Malaysia-Thailand', '24-28 Juni 2026');
       <!-- Subheadline -->
       <p class="text-xl md:text-2xl text-gray-800 font-bold mb-4 leading-snug">
         Dunia adalah Ruang Kelas Terbesar.<br/>
-        Yuk Belajar Langsung dari Sumbernya!
+        Belajar langsung dari sumbernya sekarang juga!
       </p>
 
       <!-- Body -->
@@ -49,7 +50,7 @@ const wa = waLink('Malaysia-Thailand', '24-28 Juni 2026');
           <span>✈️</span>
           <span>5 Hari 4 Malam</span>
           <span class="text-gray-400">·</span>
-          <span>Kuala Lumpur → Bangkok</span>
+          <span>Kuala Lumpur → Hatyai</span>
         </div>
       </div>
 
@@ -64,10 +65,12 @@ const wa = waLink('Malaysia-Thailand', '24-28 Juni 2026');
           Daftar Sekarang →
         </a>
         <a
-          href="#itinerary"
+          href={waConsult}
+          target="_blank"
+          rel="noopener noreferrer"
           class="inline-block border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 text-center"
         >
-          Lihat Itinerary ↓
+          💬 Konsultasi Gratis
         </a>
       </div>
 
