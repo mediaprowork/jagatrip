@@ -1,7 +1,7 @@
 ---
 const bullets = [
   'Pengalaman belajar langsung di lapangan (field learning)',
-  'Workshop eksklusif bersama praktisi pendidikan di negara2 kunjungan',
+  'Workshop eksklusif bersama praktisi pendidikan di negara-negara kunjungan',
   'Sesi dialog terbuka dengan manajemen sekolah internasional',
   'City tour edukatif destinasi wisata',
   'Networking eksklusif antar sesama praktisi pendidikan Indonesia',
@@ -10,20 +10,46 @@ const bullets = [
 
 <section class="py-24 bg-jaga-bg border-t border-gray-200">
   <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-8 tracking-tight">Apa Itu JAGATRIP?</h2>
-    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
-      JAGATRIP adalah program Edu-Tourism premium yang dirancang khusus untuk para praktisi pendidikan — kepala sekolah, guru, pengawas, dan pemangku pendidikan — yang ingin melakukan BENCHMARKING langsung ke sekolah-sekolah terbaik di di seluruh dunia.
-    </p>
-    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 mb-12 inline-block">
-      <p class="text-2xl md:text-3xl font-black text-jaga-orange">Bukan sekadar jalan-jalan. <br class="md:hidden"/> Bukan sekadar studi banding biasa.</p>
+    <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-12 tracking-tight">Apa Itu JAGATRIP?</h2>
+
+    <!-- Filosofi nama -->
+    <div class="grid grid-cols-2 gap-6 mb-10 text-left max-w-2xl mx-auto">
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <p class="text-jaga-orange font-black text-xl mb-1">◆ JAGAT</p>
+        <p class="text-gray-400 text-sm italic mb-2">(Sanskerta-Jawa Kuno)</p>
+        <p class="text-gray-700 font-semibold">= dunia, semesta, alam raya</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <p class="text-jaga-orange font-black text-xl mb-1">◆ TRIP</p>
+        <p class="text-gray-400 text-sm italic mb-2">(English - global)</p>
+        <p class="text-gray-700 font-semibold">= perjalanan, kunjungan</p>
+      </div>
     </div>
 
-    <p id="layanan" class="text-xl text-gray-800 font-bold mb-8">JAGATRIP adalah perjalanan edukasi penuh makna yang menggabungkan:</p>
+    <!-- Tagline -->
+    <div class="bg-gray-900 text-white py-4 px-8 rounded-2xl mb-10 inline-block">
+      <p class="text-xl md:text-2xl font-black">"Perjalanan ke Seluruh Penjuru Dunia"</p>
+    </div>
+
+    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+      JAGATRIP adalah program Edu-Tourism premium yang dirancang khusus untuk para praktisi pendidikan —
+      kepala sekolah, guru, pengawas, dan pemangku pendidikan — yang ingin melakukan
+      <strong class="text-gray-900">BENCHMARKING</strong> langsung ke sekolah-sekolah terbaik di seluruh dunia.
+    </p>
+
+    <!-- Diferensiasi -->
+    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 mb-12 inline-block">
+      <p class="text-2xl md:text-3xl font-black text-jaga-orange">
+        Bukan sekadar jalan-jalan.<br class="md:hidden"/> Bukan sekadar studi banding biasa.
+      </p>
+    </div>
+
+    <p class="text-xl text-gray-800 font-bold mb-8">JAGATRIP menggabungkan:</p>
 
     <div class="grid md:grid-cols-2 gap-4 text-left max-w-3xl mx-auto">
       {bullets.map((item, i) => (
         <div class={`flex items-start bg-white p-5 rounded-2xl border border-gray-100 shadow-sm${i === bullets.length - 1 ? ' md:col-span-2 md:mx-auto md:w-1/2' : ''}`}>
-          <span class="text-jaga-orange text-xl mr-4 flex-shrink-0">✔</span>
+          <span class="text-jaga-orange font-black text-xl mr-4 shrink-0">✓</span>
           <span class="text-gray-700 font-medium">{item}</span>
         </div>
       ))}
