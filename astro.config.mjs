@@ -3,9 +3,12 @@ import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   site: 'https://jagatrip.com',
   output: 'static',
+
   integrations: [
     sitemap({
       changefreq: 'weekly',
@@ -17,9 +20,11 @@ export default defineConfig({
       },
     }),
   ],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   fonts: [
     {
       provider: fontProviders.google(),
@@ -28,4 +33,6 @@ export default defineConfig({
       weights: [300, 400, 500, 600, 700, 800, 900],
     },
   ],
+
+  adapter: cloudflare(),
 });
