@@ -3,10 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav        from '../components/layout/Nav.astro';
 import Footer     from '../components/layout/Footer.astro';
 import FloatingWA from '../components/layout/FloatingWA.astro';
-import { SITE, waLink } from '../data/site';
+import { SITE } from '../data/site';
 import { breadcrumbSchema } from '../data/schemas/breadcrumb';
-
-const wa = waLink();
 
 const extraSchemas = [
   breadcrumbSchema([{ name: 'Tentang', url: `${SITE.url}/tentang` }]),
@@ -31,14 +29,14 @@ const team = [
 
     <!-- HERO -->
     <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden bg-jaga-bg">
-      <div class="absolute inset-0 z-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-jaga-orange via-transparent to-transparent"></div>
+      <div class="absolute inset-0 z-0 opacity-10 bg-[radial-gradient(circle_at_top_right,var(--tw-gradient-stops))] from-jaga-orange via-transparent to-transparent"></div>
 
       <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
         <span class="inline-block py-2 px-5 rounded-full bg-jaga-orange/10 text-jaga-orange font-bold text-sm md:text-base mb-6 tracking-widest uppercase shadow-sm">
           Tentang Kami
         </span>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.1] mb-6">
-          Siapa Itu <span class="text-transparent bg-clip-text bg-gradient-to-r from-jaga-orange to-orange-400">JAGATRIP?</span>
+          Siapa Itu <span class="text-transparent bg-clip-text bg-linear-to-r from-jaga-orange to-orange-400">JAGATRIP?</span>
         </h1>
         <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
           Program Edu-Tourism premium yang dirancang khusus untuk praktisi pendidikan Indonesia
@@ -93,7 +91,7 @@ const team = [
           </h2>
         </div>
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-white p-10 rounded-[2rem] shadow-sm border border-gray-100">
+          <div class="bg-white p-10 rounded-4xl shadow-sm border border-gray-100">
             <div class="text-4xl mb-6" aria-hidden="true">🌏</div>
             <h3 class="text-2xl font-bold text-gray-900 mb-4">Visi</h3>
             <p class="text-gray-600 text-lg leading-relaxed">
@@ -101,7 +99,7 @@ const team = [
               Indonesia dengan standar dan praktik terbaik pendidikan global.
             </p>
           </div>
-          <div class="bg-white p-10 rounded-[2rem] shadow-sm border border-gray-100">
+          <div class="bg-white p-10 rounded-4xl shadow-sm border border-gray-100">
             <div class="text-4xl mb-6" aria-hidden="true">🎯</div>
             <h3 class="text-2xl font-bold text-gray-900 mb-4">Misi</h3>
             <ul class="text-gray-600 text-lg leading-relaxed space-y-2">
@@ -110,6 +108,100 @@ const team = [
               <li class="flex gap-3"><span class="text-jaga-orange shrink-0">→</span> Mendorong inovasi dan transformasi pendidikan dari akar rumput</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFIL FOUNDER -->
+    <section class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-12 max-w-3xl mx-auto">
+          <span class="inline-block bg-jaga-orange/10 text-jaga-orange font-black text-xs md:text-sm uppercase tracking-[0.3em] px-5 py-2 rounded-full mb-6">
+            ✨ Profil Founder ✨
+          </span>
+          <h2 class="text-3xl md:text-5xl font-black text-gray-900 tracking-tight leading-tight">
+            Bukan sekadar nge-trip — kamu belajar langsung dari orang yang
+            <span class="text-jaga-orange">sudah melakukannya</span> 👇
+          </h2>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+
+          <!-- Photo + name -->
+          <div class="lg:col-span-4 lg:sticky lg:top-32">
+            <div class="relative rounded-[2.5rem] overflow-hidden bg-linear-to-br from-jaga-orange to-orange-500 p-1 shadow-2xl">
+              <img
+                src="/images/owner/owner.jpeg"
+                alt="Ust. Dedi Gunawan — CEO JAGATRIP"
+                class="w-full aspect-4/5 object-cover rounded-[2.25rem] bg-white"
+                width="600"
+                height="750"
+                loading="lazy"
+              />
+            </div>
+            <div class="mt-6 text-center lg:text-left">
+              <p class="text-xs font-bold uppercase tracking-[0.25em] text-jaga-orange mb-2">CEO JAGATRIP</p>
+              <h3 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
+                Ust. Dedi Gunawan
+              </h3>
+              <p class="text-gray-500 font-medium mt-2 leading-relaxed">
+                Founder &amp; pemimpin program edu-tourism JAGATRIP
+              </p>
+            </div>
+          </div>
+
+          <!-- Bullet points -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="flex items-start gap-4 bg-jaga-bg border border-gray-100 rounded-2xl p-5 md:p-6 hover:shadow-md transition-shadow">
+              <span class="text-3xl shrink-0" aria-hidden="true">🌍</span>
+              <p class="text-gray-700 leading-relaxed">
+                Telah <strong class="text-gray-900">menjejakkan kaki di 30+ negara</strong> di Asia, Afrika &amp; Eropa — bukan sekadar jalan-jalan, tapi membawa pulang ilmu nyata tentang sistem pendidikan dunia.
+              </p>
+            </div>
+
+            <div class="flex items-start gap-4 bg-jaga-bg border border-gray-100 rounded-2xl p-5 md:p-6 hover:shadow-md transition-shadow">
+              <span class="text-3xl shrink-0" aria-hidden="true">✈️</span>
+              <p class="text-gray-700 leading-relaxed">
+                Menggagas <strong class="text-gray-900">program backpacker edukatif lintas negara</strong> — dari 2 negara hingga 30 negara dalam satu perjalanan. Belajar sambil menjelajah, bukan pilih salah satu.
+              </p>
+            </div>
+
+            <div class="flex items-start gap-4 bg-jaga-bg border border-gray-100 rounded-2xl p-5 md:p-6 hover:shadow-md transition-shadow">
+              <span class="text-3xl shrink-0" aria-hidden="true">👨‍🏫</span>
+              <p class="text-gray-700 leading-relaxed">
+                Berpengalaman mendampingi kepala sekolah, guru &amp; praktisi pendidikan dalam <strong class="text-gray-900">study visit ke institusi pendidikan kelas dunia</strong> di Jepang, China, Korea, Taiwan, hingga Timur Tengah.
+              </p>
+            </div>
+
+            <div class="flex items-start gap-4 bg-jaga-bg border border-gray-100 rounded-2xl p-5 md:p-6 hover:shadow-md transition-shadow">
+              <span class="text-3xl shrink-0" aria-hidden="true">🔍</span>
+              <p class="text-gray-700 leading-relaxed">
+                Aktif melakukan <strong class="text-gray-900">benchmarking langsung ke sekolah &amp; kampus internasional</strong> di Asia Timur &amp; Timur Tengah — riset lapangan yang jadi pondasi setiap program JAGATRIP.
+              </p>
+            </div>
+
+            <div class="flex items-start gap-4 bg-jaga-bg border border-gray-100 rounded-2xl p-5 md:p-6 hover:shadow-md transition-shadow">
+              <span class="text-3xl shrink-0" aria-hidden="true">🕌</span>
+              <p class="text-gray-700 leading-relaxed">
+                Memiliki rekam jejak pendampingan <strong class="text-gray-900">program studi Islam internasional</strong> di Malaysia, Madinah &amp; Cairo — menggabungkan wawasan global dengan nilai-nilai pendidikan Islam.
+              </p>
+            </div>
+
+            <div class="flex items-start gap-4 bg-jaga-bg border border-gray-100 rounded-2xl p-5 md:p-6 hover:shadow-md transition-shadow">
+              <span class="text-3xl shrink-0" aria-hidden="true">👥</span>
+              <p class="text-gray-700 leading-relaxed">
+                Telah <strong class="text-gray-900">mengkoordinasikan puluhan peserta per program</strong> — pelajar, guru, hingga pengelola sekolah — dengan manajemen perjalanan yang terstruktur &amp; tujuan pembelajaran yang jelas.
+              </p>
+            </div>
+
+            <div class="flex items-start gap-4 bg-jaga-bg border border-gray-100 rounded-2xl p-5 md:p-6 hover:shadow-md transition-shadow">
+              <span class="text-3xl shrink-0" aria-hidden="true">🎯</span>
+              <p class="text-gray-700 leading-relaxed">
+                Setiap destinasi dipilih berdasarkan <strong class="text-gray-900">observasi &amp; riset mendalam</strong>, bukan tren — sehingga setiap edutrip punya dampak nyata bagi pengembangan institusi pendidikan di Indonesia.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -125,33 +217,13 @@ const team = [
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           {team.map((m) => (
             <div class="text-center bg-jaga-bg p-8 rounded-3xl border border-gray-100">
-              <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-jaga-orange to-orange-500 flex items-center justify-center text-white font-bold text-xl shadow-md">
+              <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-linear-to-br from-jaga-orange to-orange-500 flex items-center justify-center text-white font-bold text-xl shadow-md">
                 {m.initial}
               </div>
               <p class="font-bold text-gray-900">{m.name}</p>
               <p class="text-sm text-gray-500 mt-1">{m.role}</p>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-16 md:py-24 bg-jaga-bg">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="bg-jaga-orange rounded-[2rem] p-8 md:p-14 flex flex-col md:flex-row items-center justify-between shadow-xl">
-          <div class="text-white mb-8 md:mb-0 md:pr-8 text-center md:text-left">
-            <h2 class="text-3xl md:text-4xl font-bold mb-3 tracking-tight">Siap Membawa Sekolahmu ke Level Berikutnya?</h2>
-            <p class="text-orange-50 text-lg md:text-xl font-medium">Hubungi kami sekarang dan mulai perjalanan transformasimu.</p>
-          </div>
-          <div class="shrink-0 w-full md:w-auto">
-            <a href={wa} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full md:w-auto bg-white text-jaga-orange font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 whitespace-nowrap">
-              Hubungi WhatsApp
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </section>

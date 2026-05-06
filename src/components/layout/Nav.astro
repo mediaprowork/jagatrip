@@ -4,6 +4,7 @@ const wa = waLink();
 
 const links = [
   { label: 'Beranda', href: '/' },
+  { label: 'Tentang', href: '/tentang' },
   { label: 'Agenda', href: '/#agenda' },
   { label: 'Why Us', href: '/#why' },
   { label: 'Pricing', href: '/#pricing' },
@@ -109,13 +110,6 @@ const currentPath = Astro.url.pathname;
         {link.label}
       </a>
     ))}
-
-    <a
-      href="/tentang"
-      class="block px-4 py-3 rounded-xl font-semibold text-gray-900 hover:bg-jaga-bg hover:text-jaga-orange transition-colors"
-    >
-      Tentang
-    </a>
 
     <a
       href="/faq"
