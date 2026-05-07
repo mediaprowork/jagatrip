@@ -11,6 +11,14 @@ const links = [
 ];
 
 const currentPath = Astro.url.pathname;
+
+// SSR active state: hanya exact path match.
+// Hash links di homepage di-handle scroll-spy client-side.
+function isActiveSSR(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  if (href.startsWith('/#')) return false;
+  return href === currentPath;
+}
 ---
 
 <header class="absolute top-0 left-0 right-0 z-50 pt-5">
@@ -30,21 +38,20 @@ const currentPath = Astro.url.pathname;
 
       <!-- Desktop links -->
       <ul class="hidden lg:flex items-center gap-10" id="desktop-nav">
-        {links.map((link) => {
-          const isActive = link.href === currentPath || (link.href.startsWith('/#') && currentPath === '/');
-          return (
-            <li>
-              <a
-                href={link.href}
-                class={`font-semibold text-sm uppercase tracking-wider transition-colors hover:text-jaga-orange ${
-                  isActive ? 'text-jaga-orange' : 'text-gray-700'
-                }`}
-              >
-                {link.label}
-              </a>
-            </li>
-          );
-        })}
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              data-nav-link={link.href}
+              class:list={[
+                'nav-link font-semibold text-sm uppercase tracking-wider transition-colors hover:text-jaga-orange',
+                isActiveSSR(link.href) ? 'text-jaga-orange is-active' : 'text-gray-700',
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
 
       <!-- CTA + mobile toggle -->
@@ -105,7 +112,13 @@ const currentPath = Astro.url.pathname;
     {links.map((link) => (
       <a
         href={link.href}
-        class="block px-4 py-3 rounded-xl font-semibold text-gray-900 hover:bg-jaga-bg hover:text-jaga-orange transition-colors"
+        data-nav-link={link.href}
+        class:list={[
+          'nav-link block px-4 py-3 rounded-xl font-semibold transition-colors',
+          isActiveSSR(link.href)
+            ? 'bg-jaga-orange/10 text-jaga-orange is-active'
+            : 'text-gray-900 hover:bg-jaga-bg hover:text-jaga-orange',
+        ]}
       >
         {link.label}
       </a>
@@ -139,5 +152,7 @@ const currentPath = Astro.url.pathname;
 
 <script>
   import { initMobileMenu } from '../../lib/mobile-menu';
+  import { initNavActiveState } from '../../lib/nav-active';
   initMobileMenu();
+  initNavActiveState();
 </script>
