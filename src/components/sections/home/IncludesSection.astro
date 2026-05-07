@@ -1,18 +1,26 @@
 ---
 const includes = [
   { icon: '✈️', label: 'TIKET PESAWAT', desc: 'Round-trip flight ke KLIA (PP)' },
-  { icon: '🏨', label: 'HOTEL BINTANG 3', desc: 'Penginapan nyaman selama 4 malam' },
+  { icon: '🏨', label: 'HOTEL', desc: 'Penginapan nyaman selama 4 malam' },
   { icon: '🍽️', label: '10x MAKAN', desc: 'Termasuk sarapan, makan siang, dan makan malam pilihan' },
   { icon: '🥂', label: 'WELCOME DRINK', desc: 'Minuman sambutan di hari pertama' },
   { icon: '🚌', label: 'BUS PARIWISATA LUXURY', desc: 'Transportasi darat Malaysia–Thailand (VIP)' },
-  { icon: '📚', label: 'WORKSHOP & SEMINAR KIT', desc: 'Modul, buku, dan alat tulis eksklusif' },
-  { icon: '🛍️', label: 'MERCHANDISE JAGATRIP', desc: 'Tas, kaos, dan souvenir eksklusif Insider Series' },
+  { icon: '📚', label: 'WORKSHOP & SEMINAR KIT', desc: 'Modul, buku, dan alat tulis' },
+  { icon: '🛍️', label: 'MERCHANDISE JAGATRIP', desc: 'Souvenir eksklusif Insider Series' },
   { icon: '🎁', label: 'DOOR PRIZE', desc: 'Hadiah menarik untuk peserta beruntung' },
   { icon: '🥇', label: 'SERTIFIKAT RESMI', desc: 'Sertifikat benchmarking internasional dari PT Jagatrip Mitra Edukasi' },
   { icon: '📸', label: 'DOKUMENTASI', desc: 'Foto dan video profesional selama perjalanan' },
   { icon: '🗺️', label: 'CITY TOUR', desc: 'Tur kota Kuala Lumpur & Bangkok' },
   { icon: '👨‍🏫', label: 'TOUR LEADER PROFESIONAL', desc: 'Pendamping berpengalaman selama perjalanan' },
   { icon: '🛡️', label: 'ASURANSI PERJALANAN', desc: 'Perlindungan selama program berlangsung' },
+];
+
+const excludes = [
+  { icon: '🛂', label: 'Paspor' },
+  { icon: '🧳', label: 'Bagasi tambahan' },
+  { icon: '🛍️', label: 'Pengeluaran pribadi (cth: laundry, jajan, oleh-oleh)' },
+  { icon: '🗺️', label: 'Biaya tambahan tour wisata di luar jadwal resmi' },
+  { icon: '🛏️', label: 'Single Supplement: biaya tambahan bagi peserta yang ingin tidur sendiri' },
 ];
 ---
 
@@ -27,7 +35,7 @@ const includes = [
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 gap-4 mb-10">
+    <div class="grid sm:grid-cols-2 gap-4 mb-12">
       {includes.map((item, i) => (
         <div class={`flex items-start bg-jaga-bg p-5 rounded-xl border border-gray-100${i === includes.length - 1 ? ' sm:col-span-2 sm:max-w-sm sm:mx-auto' : ''}`}>
           <span class="text-2xl mr-4 shrink-0">{item.icon}</span>
@@ -37,6 +45,26 @@ const includes = [
           </div>
         </div>
       ))}
+    </div>
+
+    <!-- EXCLUDE -->
+    <div class="mb-10">
+      <div class="text-center mb-6">
+        <span class="inline-block bg-red-50 border border-red-200 text-red-700 font-black text-xs md:text-sm uppercase tracking-[0.25em] px-5 py-2 rounded-full">
+          ⚠️ Exclude
+        </span>
+        <p class="mt-3 text-gray-500 text-sm md:text-base">
+          Hal-hal berikut <strong class="text-gray-900">tidak termasuk</strong> dalam paket:
+        </p>
+      </div>
+      <ul class="grid sm:grid-cols-2 gap-3">
+        {excludes.map((item) => (
+          <li class="flex items-start gap-3 bg-red-50/40 border border-red-100 rounded-xl px-4 py-3">
+            <span class="text-xl shrink-0">{item.icon}</span>
+            <span class="text-gray-700 text-sm md:text-base font-medium leading-relaxed">{item.label}</span>
+          </li>
+        ))}
+      </ul>
     </div>
 
     <div class="bg-orange-50 border border-orange-200 rounded-2xl p-6">
