@@ -7,7 +7,7 @@ import { SITE, waLink } from '../data/site';
 import { breadcrumbSchema } from '../data/schemas/breadcrumb';
 
 const wa = waLink('Malaysia-Thailand', '24-28 Juni 2026');
-const waConsult = waLink('Konsultasi Harga');
+const waConsult = waLink('Konsultasi Admin');
 
 const extraSchemas = [
   breadcrumbSchema([{ name: 'Daftar Harga', url: `${SITE.url}/harga` }]),
@@ -293,7 +293,7 @@ const tabs = [
             <p class="text-gray-500 font-medium">Kota tidak ditemukan. Hubungi admin untuk info lebih lanjut.</p>
             <a href={waConsult} target="_blank" rel="noopener noreferrer"
                class="inline-block mt-4 bg-jaga-orange text-white font-bold px-6 py-3 rounded-full text-sm hover:bg-jaga-orange-600 transition-colors">
-              Tanya Harga Kotamu →
+              Konsultasi Admin →
             </a>
           </div>
 
@@ -316,7 +316,7 @@ const tabs = [
             </a>
             <a href={waConsult} target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold text-lg px-10 py-4 rounded-full transition-all whitespace-nowrap">
-              Tanya Harga Kotamu
+              Konsultasi Admin
             </a>
           </div>
         </div>
