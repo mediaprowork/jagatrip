@@ -26,7 +26,7 @@ hero:
   title: "JAGATRIP TO MALAYSIA-THAILAND"
   titleHighlight: "MALAYSIA-THAILAND"
   subtitle: "Ekspedisi Benchmarking Internasional"
-  lead: "Edukasi Wisata dan Jelajah Sekolah di Malaysia dan Thailand. Temukan rahasia manajemen sekolah kelas dunia yang belum pernah terungkap ke publik — langsung dari sumbernya."
+  lead: "Edukasi Wisata dan Jelajah Sekolah di Malaysia dan Thailand. Temukan rahasia manajemen sekolah di negara kunjungan yang belum pernah terungkap ke publik — langsung dari sumbernya."
 itinerary:
   - day: 1
     date: 2026-06-24
@@ -34,53 +34,50 @@ itinerary:
     theme: "ARRIVAL & ORIENTATION DAY"
     activities:
       - "Keberangkatan dari Indonesia — meeting point KLIA"
-      - "Check-in Hotel Bintang 3 di Kuala Lumpur"
-      - "Welcome Dinner bersama seluruh peserta"
-      - "Briefing program & orientasi kota"
-      - "Pembagian Welcome Kit & Merchandise Eksklusif JAGATRIP"
+      - "Check-in Hotel Bintang 3 di Kuala Lumpur (My Hotel @ Bukit Bintang)"
+      - "Makan malam (di hotel)"
+      - "Waktu bebas"
+      - "Istirahat"
   - day: 2
     date: 2026-06-25
     dayName: Rabu
     theme: "SEKOLAH & BENCHMARKING DAY (MALAYSIA)"
     activities:
-      - "Kunjungan Sekolah Internasional 1 di Malaysia"
-      - "Sesi observasi kelas & dialog dengan kepala sekolah"
-      - "Workshop: Sistem Manajemen Sekolah Kelas Dunia"
-      - "Kunjungan Sekolah 2 — fokus pada inovasi kurikulum"
-      - "City Tour Kuala Lumpur (Petronas Twin Towers)"
+      - "Briefing pagi dan pembagian merchandise"
+      - "Kunjungan KV Shah Alam"
+      - "Kunjungan KV Sungai Buloh (Selangor)"
+      - "Kunjungan KV Kuala Selangor"
+      - "Masjid Sultan Ibrahim & Central Market (tentative)"
   - day: 3
     date: 2026-06-26
     dayName: Kamis
-    theme: "WORKSHOP & NETWORKING DAY"
+    theme: "NETWORKING DAY"
     activities:
-      - "Workshop intensif: Best Practice Pengembangan Guru"
-      - "Sesi: Teknologi Pendidikan yang Relevan di Ruang Kelas"
-      - "Panel Discussion: Membangun Budaya Belajar yang Kuat"
-      - "Sesi networking & kolaborasi antar peserta"
-      - "Perjalanan menuju Thailand via Luxury Bus"
-      - "Check-in hotel di Thailand"
+      - "Checkout hotel"
+      - "Explore Petronas"
+      - "Perjalanan ke Thailand"
+      - "Makan malam di hotel"
+      - "Istirahat"
   - day: 4
     date: 2026-06-27
     dayName: Jumat
     theme: "SEKOLAH & INSIGHT DAY (THAILAND)"
     activities:
-      - "Kunjungan Sekolah Internasional di Thailand"
-      - "Benchmarking: Sistem Pendidikan & Karakter Siswa Thailand"
-      - "Dialog terbuka dengan praktisi pendidikan lokal"
-      - "City Tour Bangkok: Wat Pho, Grand Palace, Chatuchak"
-      - "Gala Dinner & Sertifikasi Peserta"
-      - "Sesi refleksi dan rencana aksi pasca program"
+      - "Kunjungan Sekolah Sangkhom Wittaya Islamic School"
+      - "Kunjungan ke Darul Hikmah Narathiwat"
+      - "Sayonara & komitmen aksi nyata"
+      - "Asean Night Bazaar"
+      - "Perjalanan ke KLIA"
   - day: 5
     date: 2026-06-28
     dayName: Sabtu
     theme: "CLOSING & HOMECOMING DAY"
     activities:
-      - "Sesi closing & komitmen aksi nyata"
-      - "Foto bersama & pembagian hadiah Door Prize"
+      - "Sayonara seluruh peserta"
       - "Perjalanan pulang ke Indonesia"
 benefits:
   - icon: "✈️"
-    text: "Merasakan langsung suasana dan kultur sekolah kelas dunia di Malaysia & Thailand"
+    text: "Merasakan langsung suasana dan kultur sekolah di negara kunjungan (Malaysia & Thailand)"
   - icon: "🏫"
     text: "Akses eksklusif ke sesi benchmarking & observasi kelas di sekolah internasional pilihan"
   - icon: "🎙️"

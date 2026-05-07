@@ -4,7 +4,7 @@ export const SITE = {
   legalName:   'PT JAGATRIP MITRA EDUKASI',
   tagline:     'Buka Jendela Dunia untuk Generasi Indonesia',
   subTagline:  'Ekspedisi Benchmarking Internasional · Edu-Tourism Premium',
-  description: 'Program Edu-Tourism premium untuk praktisi pendidikan Indonesia. Benchmarking sekolah-sekolah terbaik dunia: kepala sekolah, guru, pengawas, pemilik yayasan.',
+  description: 'Program Edu-Tourism premium untuk praktisi pendidikan Indonesia. Benchmarking sekolah-sekolah mancanegara: kepala sekolah, guru, pengawas, pemilik yayasan.',
   waNumber:    '628139190363',
   waDisplay:   '08139190363',
   email:       'pm@jagatrip.com',

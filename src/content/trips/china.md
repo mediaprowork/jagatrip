@@ -45,7 +45,7 @@ itinerary:
       - "Kunjungan Pameran Pendidikan Teknologi Internasional China-Vietnam"
       - "Sesi workshop: Inovasi EdTech yang Mengubah Wajah Pendidikan"
       - "Demo teknologi AI, AR, dan VR untuk ruang kelas masa depan"
-      - "Pertemuan dengan vendor dan inovator EdTech kelas dunia"
+      - "Pertemuan dengan vendor dan inovator EdTech mancanegara"
       - "City Tour sore hari"
       - "Makan malam eksklusif peserta"
   - day: 3
@@ -84,7 +84,7 @@ itinerary:
       - "Transfer ke bandara & perjalanan pulang ke Indonesia"
 benefits:
   - icon: "🇨🇳"
-    text: "Merasakan langsung suasana dan kultur sekolah teknologi kelas dunia di China"
+    text: "Merasakan langsung suasana dan kultur sekolah teknologi di China"
   - icon: "🏫"
     text: "Akses eksklusif ke sesi benchmarking & observasi kelas di sekolah internasional pilihan"
   - icon: "🎙️"

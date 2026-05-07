@@ -14,7 +14,7 @@ export const GET: APIRoute = async () => {
 
   const content = `# JAGATRIP
 
-> JAGATRIP adalah program Edu-Tourism premium dari PT JAGATRIP MITRA EDUKASI yang dirancang khusus untuk praktisi pendidikan Indonesia (kepala sekolah, guru, pengawas, pemilik yayasan) yang ingin BENCHMARKING langsung ke sekolah-sekolah terbaik dunia. Bukan studi banding biasa — perjalanan edukasi yang menggabungkan field learning, workshop eksklusif, dialog dengan manajemen sekolah internasional, city tour edukatif, dan networking premium antar praktisi pendidikan Indonesia.
+> JAGATRIP adalah program Edu-Tourism premium dari PT JAGATRIP MITRA EDUKASI yang dirancang khusus untuk praktisi pendidikan Indonesia (kepala sekolah, guru, pengawas, pemilik yayasan) yang ingin BENCHMARKING langsung ke sekolah-sekolah mancanegara. Bukan studi banding biasa — perjalanan edukasi yang menggabungkan field learning, workshop eksklusif, dialog dengan manajemen sekolah internasional, city tour edukatif, dan networking premium antar praktisi pendidikan Indonesia.
 
 ## Key Information
 
@@ -42,8 +42,7 @@ ${tripList}
 
 ## Pricing Reference (Malaysia-Thailand)
 
-- Early Bird (sampai 10 Juni 2026): **Rp 7.900.000** per orang
-- Harga Normal (setelah 11 Juni 2026): **Rp 8.250.000** per orang
+- Harga mulai dari **Rp 6.600.000** per orang (bervariasi sesuai kota keberangkatan, lihat /harga)
 - DP: 50% untuk konfirmasi seat
 - Pelunasan: H-7 sebelum keberangkatan
 - All-in: tiket PP, hotel bintang 3, 10× makan, workshop kit, merchandise, sertifikat, asuransi, dokumentasi profesional

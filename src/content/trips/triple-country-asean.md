@@ -106,7 +106,7 @@ itinerary:
       - "Transfer ke Bandara Changi & perjalanan pulang ke Indonesia"
 benefits:
   - icon: "🌏"
-    text: "Merasakan langsung suasana dan kultur sekolah kelas dunia di 3 negara ASEAN sekaligus"
+    text: "Merasakan langsung suasana dan kultur sekolah di 3 negara ASEAN sekaligus"
   - icon: "🏫"
     text: "Akses eksklusif ke sesi benchmarking & observasi kelas di sekolah internasional pilihan"
   - icon: "🎙️"

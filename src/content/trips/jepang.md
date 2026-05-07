@@ -23,7 +23,7 @@ hero:
   title: "JAGATRIP TO JEPANG"
   titleHighlight: "JEPANG"
   subtitle: "Ekspedisi Benchmarking Internasional"
-  lead: "Selami sistem pendidikan Jepang yang melahirkan inovator kelas dunia. Pelajari bagaimana sekolah-sekolah Jepang memadukan disiplin, teknologi, dan kreativitas untuk mencetak generasi masa depan."
+  lead: "Selami sistem pendidikan Jepang yang melahirkan inovator mancanegara. Pelajari bagaimana sekolah-sekolah Jepang memadukan disiplin, teknologi, dan kreativitas untuk mencetak generasi masa depan."
 itinerary:
   - day: 1
     date: 2026-08-25
@@ -84,7 +84,7 @@ itinerary:
       - "Transfer ke bandara & perjalanan pulang ke Indonesia"
 benefits:
   - icon: "🇯🇵"
-    text: "Merasakan langsung suasana dan kultur sekolah teknologi kelas dunia di Jepang"
+    text: "Merasakan langsung suasana dan kultur sekolah teknologi di Jepang"
   - icon: "🏫"
     text: "Akses eksklusif ke sesi benchmarking & observasi kelas di sekolah internasional pilihan"
   - icon: "🎙️"
