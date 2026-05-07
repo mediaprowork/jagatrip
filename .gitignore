@@ -33,4 +33,4 @@ pnpm-debug.log*
 docs/
 
 # source materials (not for repo)
-Jagatrip Materi Lp #2.pdf
+*.pdf
