@@ -57,16 +57,11 @@ const trips = (await getCollection('trips'))
         <ul class="space-y-3">
           {trips.map((trip) => (
             <li>
-              <a
-                href={`/trips/${trip.data.slug}`}
-                class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm group"
-              >
+              <div class="flex items-center gap-2 text-gray-400 text-sm">
                 <span aria-hidden="true" class="text-base leading-none">{trip.data.flag}</span>
-                <span class="group-hover:text-jaga-orange transition-colors">
-                  {trip.data.destination}
-                </span>
+                <span>{trip.data.destination}</span>
                 <span class="ml-auto text-xs text-gray-600 shrink-0">{trip.data.month}</span>
-              </a>
+              </div>
             </li>
           ))}
         </ul>
