@@ -88,9 +88,8 @@ function rp(n: number): string {
 }
 
 const tabs = [
-  { id: 'trip-juni',     label: 'Harga Jual Juni 2026' },
-  { id: 'per-kota',      label: 'Per Kota' },
-  { id: 'detail-tiket',  label: 'Detail Tiket' },
+  { id: 'trip-juni',    label: 'Harga Juni 2026' },
+  { id: 'detail-tiket', label: 'Detail Tiket' },
 ];
 ---
 
@@ -112,11 +111,13 @@ const tabs = [
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-tight mb-6">
           Daftar Harga Program
         </h1>
-        <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8">
+        <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-4">
           Harga bervariasi sesuai kota keberangkatan. Semua paket <strong class="text-gray-900">All-in</strong> — tiket pesawat PP sudah termasuk.
         </p>
+        <p class="text-sm md:text-base text-red-600 font-semibold mb-8">
+          <span class="uppercase tracking-wider mr-1">Exclude:</span> Passport · Bagasi Tambahan
+        </p>
         <div class="inline-flex flex-wrap gap-3 justify-center">
-          <div class="bg-white border border-gray-200 rounded-full px-5 py-2 text-sm font-semibold text-gray-700 shadow-sm">📅 Early Bird s/d 10 Juni 2026</div>
           <div class="bg-white border border-gray-200 rounded-full px-5 py-2 text-sm font-semibold text-gray-700 shadow-sm">✈️ 29 Kota Keberangkatan</div>
           <div class="bg-jaga-orange text-white rounded-full px-5 py-2 text-sm font-bold shadow-sm">🔥 Mulai Rp 6.600.000</div>
         </div>
@@ -137,12 +138,10 @@ const tabs = [
           ))}
         </div>
 
-        <!-- ── Tab 1: Harga Jual Juni ────────────────────────────────────────── -->
+        <!-- ── Tab 1: Harga Juni 2026 ────────────────────────────────────────── -->
         <div id="panel-trip-juni" class="tab-panel">
           <p class="text-gray-500 text-sm leading-relaxed bg-orange-50 border border-orange-200 rounded-xl px-5 py-3 mb-6">
-            <strong class="text-jaga-orange">CATATAN:</strong> Kapasitas 40 peserta + 5 panitia.
-            Harga dalam satu tier yang selisihnya ≤ Rp300.000 disamakan ke harga tertinggi.
-            Meeting point: KLIA (Kuala Lumpur International Airport).
+            <strong class="text-jaga-orange">CATATAN:</strong> Meeting point: KLIA (Kuala Lumpur International Airport).
           </p>
           <div class="overflow-hidden rounded-3xl border border-gray-200 shadow-sm">
             <table class="w-full text-left border-collapse">
@@ -174,36 +173,12 @@ const tabs = [
           </div>
         </div>
 
-        <!-- ── Tab 2: Per Kota ────────────────────────────────────────────────── -->
-        <div id="panel-per-kota" class="tab-panel hidden">
-          <p class="text-gray-500 text-sm leading-relaxed bg-orange-50 border border-orange-200 rounded-xl px-5 py-3 mb-6">
-            <strong class="text-jaga-orange">CATATAN:</strong> Tampilan per kota individual. Harga all-in termasuk tiket pesawat PP dari kota asal ke KLIA.
-          </p>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {tiers.map((row) => (
-              row.cities.map(city => (
-                <div class="bg-jaga-bg border border-gray-100 rounded-2xl p-5 flex items-center justify-between hover:shadow-md transition-shadow group">
-                  <div>
-                    <p class="font-bold text-gray-900 text-sm">{city}</p>
-                    <p class="text-xs text-gray-400 mt-0.5">All-in · Termasuk pesawat PP</p>
-                  </div>
-                  <p class="font-black text-jaga-orange text-base ml-4 shrink-0 group-hover:scale-105 transition-transform">{row.price}</p>
-                </div>
-              ))
-            ))}
-          </div>
-        </div>
-
-        <!-- ── Tab 3: Detail Tiket ────────────────────────────────────────────── -->
+        <!-- ── Tab 2: Detail Tiket ────────────────────────────────────────────── -->
         <div id="panel-detail-tiket" class="tab-panel hidden">
 
-          <!-- Source note -->
-          <div class="flex flex-col sm:flex-row gap-3 mb-6">
-            <p class="flex-1 text-gray-500 text-sm leading-relaxed bg-orange-50 border border-orange-200 rounded-xl px-5 py-3">
-              <strong class="text-jaga-orange">SUMBER DATA:</strong> Traveloka — tiket termurah di jadwal yang sesuai rundown (input 30 April 2026).
-              Harga tiket <em>belum</em> termasuk program. Ini adalah rincian komponen tiket pesawat per kota.
-            </p>
-            <div class="flex gap-4 items-start sm:items-center shrink-0 bg-gray-100 border border-gray-200 text-gray-700 px-5 py-3 rounded-xl text-sm">
+          <!-- Date legend -->
+          <div class="flex justify-center sm:justify-end mb-6">
+            <div class="flex gap-4 items-center bg-gray-100 border border-gray-200 text-gray-700 px-5 py-3 rounded-xl text-sm">
               <div class="text-center">
                 <p class="font-black text-gray-800 text-lg leading-none">✈️ Pergi</p>
                 <p class="text-gray-500 text-xs mt-0.5">24 Juni 2026</p>
