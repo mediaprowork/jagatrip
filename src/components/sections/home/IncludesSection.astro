@@ -1,6 +1,10 @@
 ---
-import { waLink } from '../../../data/site';
-const wa = waLink('Malaysia-Thailand', '24-28 Juni 2026');
+import { SITE } from '../../../data/site';
+
+function pkgWaLink(pkgName: string): string {
+  const msg = `Halo admin, saya mau daftar ${pkgName} — JAGATRIP Malaysia-Thailand (24-28 Juni 2026). Mohon info lebih lanjut. Terimakasih.`;
+  return `https://wa.me/${SITE.waNumber}?text=${encodeURIComponent(msg)}`;
+}
 
 type IncItem = { icon: string; label: string; desc: string; excluded?: boolean };
 type ExcItem = { icon: string; label: string };
@@ -26,7 +30,8 @@ type Package = {
   name: string;
   tagline: string;
   price: string;
-  color: string;  // badge color
+  color: string;
+  wa: string;
   includes: IncItem[];
   excludes: ExcItem[];
 };
@@ -38,6 +43,7 @@ const packages: Package[] = [
     tagline: 'Tanpa tiket pesawat',
     price: 'Rp 4.600.000',
     color: 'bg-green-600',
+    wa: pkgWaLink('Paket Hemat'),
     includes: [
       { icon: '✈️', label: 'TIKET PESAWAT', desc: 'Tidak termasuk — peserta atur sendiri', excluded: true },
       ...baseIncludes,
@@ -57,6 +63,7 @@ const packages: Package[] = [
     tagline: '+ Tiket pesawat',
     price: 'Rp 9.200.000',
     color: 'bg-jaga-orange',
+    wa: pkgWaLink('Paket Moderate'),
     includes: [
       { icon: '✈️', label: 'TIKET PESAWAT', desc: 'Round-trip flight ke KLIA (PP)' },
       ...baseIncludes,
@@ -75,6 +82,7 @@ const packages: Package[] = [
     tagline: '+ Tiket pesawat + Bagasi 20 kg',
     price: 'Rp 10.500.000',
     color: 'bg-gray-900',
+    wa: pkgWaLink('Paket Lengkap'),
     includes: [
       { icon: '✈️', label: 'TIKET PESAWAT', desc: 'Round-trip flight ke KLIA (PP)' },
       { icon: '🧳', label: 'BAGASI 20 KG', desc: 'Bagasi tambahan 20 kg sudah termasuk' },
@@ -135,7 +143,7 @@ const packages: Package[] = [
               {pkg.tagline}
             </span>
             <a
-              href={wa}
+              href={pkg.wa}
               target="_blank"
               rel="noopener noreferrer"
               class="bg-white text-gray-900 font-black text-sm px-6 py-2.5 rounded-full hover:bg-gray-100 transition-colors shrink-0"
