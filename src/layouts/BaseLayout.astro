@@ -49,8 +49,9 @@ const schemas = [
       noindex={noindex}
     />
 
-    <!-- Preload LCP image -->
-    <link rel="preload" as="image" type="image/webp" href="/jagatrip-hero.webp" fetchpriority="high" />
+    <!-- Preload LCP image (mobile-first) -->
+    <link rel="preload" as="image" type="image/webp" href="/jagatrip-hero-sm.webp" media="(max-width: 640px)" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="/jagatrip-hero.webp" media="(min-width: 641px)" fetchpriority="high" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/logo-icon.webp" />
