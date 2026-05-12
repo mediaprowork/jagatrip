@@ -2,114 +2,181 @@
 import { getCollection } from 'astro:content';
 
 const trips = (await getCollection('trips')).sort((a, b) => a.data.monthNum - b.data.monthNum);
+
+const jabatanOptions = [
+  'Kepala Sekolah',
+  'Guru / Pendidik',
+  'Pengawas Pendidikan',
+  'Owner Yayasan',
+  'Mahasiswa Pendidikan',
+  'Orang Tua',
+  'Siswa SMP/SMA',
+  'Pemerhati Pendidikan',
+  'Lainnya',
+];
+
+const kotaBerangkat = [
+  'Padang', 'Pekanbaru', 'Aceh (BTJ)', 'Batam', 'Medan', 'Palembang (PLM)',
+  'Jakarta', 'Pontianak', 'Bali (Denpasar)', 'Balikpapan (BPN)',
+  'Semarang (SRG)', 'Surabaya', 'Jogja (YIA)', 'Makassar (UPG)',
+  'Lampung (TKG)', 'Pangkal Pinang (PGK)', 'Tarakan (TRK)', 'Lombok (LOP)',
+  'Banjarmasin (BDJ)', 'Bengkulu (BKS)', 'NTT (Kupang/KOE)', 'Palu (PLW)',
+  'Maluku/Ambon (AMQ)', 'Palangkaraya (PKY)', 'Gorontalo (GTO)', 'Sorong (SOQ)',
+  'Kendari (KDI)', 'Jayapura (DJJ)', 'Merauke (MKQ)', 'Lainnya',
+];
+
+const inputClass = 'w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-jaga-orange focus:outline-none text-gray-900 placeholder:text-gray-400 text-sm font-medium transition-colors bg-white';
 ---
 
-<section id="konsultasi" class="py-20 md:py-28 bg-linear-to-br from-jaga-orange to-orange-600 text-white relative overflow-hidden">
+<section id="daftar" class="py-20 md:py-28 bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
 
-  <!-- Decorative blobs -->
-  <div class="absolute top-10 right-10 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-10 left-10 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+  <!-- Decorative -->
+  <div class="absolute top-10 right-10 w-64 h-64 bg-jaga-orange/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-10 left-10 w-80 h-80 bg-jaga-orange/10 rounded-full blur-3xl"></div>
 
   <div class="max-w-6xl mx-auto px-6 relative z-10">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
 
       <!-- Left: copy -->
-      <div>
-        <span class="inline-block bg-white/20 backdrop-blur-sm border border-white/30 text-white font-black text-xs md:text-sm uppercase tracking-[0.3em] px-5 py-2 rounded-full mb-6">
-          🎯 Konsultasi Gratis
+      <div class="lg:sticky lg:top-32">
+        <span class="inline-block bg-jaga-orange text-white font-black text-xs md:text-sm uppercase tracking-[0.3em] px-5 py-2 rounded-full mb-6 shadow-lg">
+          📝 Form Pendaftaran
         </span>
 
         <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-tight mb-6">
-          Mau diskusi dulu sebelum daftar? <span class="italic text-yellow-200">Gratis!</span>
+          Daftar Sekarang & <span class="text-jaga-orange">Amankan Kursimu</span>
         </h2>
 
-        <p class="text-lg md:text-xl text-orange-50 leading-relaxed mb-8">
-          Isi form di samping — tim JAGATRIP akan menghubungimu langsung via WhatsApp dalam <strong class="text-white">1×24 jam</strong> untuk berdiskusi denganmu.
+        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
+          Isi formulir pendaftaran — data kamu akan tersimpan otomatis dan admin JAGATRIP akan menghubungimu via WhatsApp dalam <strong class="text-white">1×24 jam</strong> untuk konfirmasi.
         </p>
 
-        <ul class="space-y-3 text-base text-orange-50">
-          <li class="flex items-center gap-3">
-            <span class="shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white font-black text-sm">✓</span>
-            Tanpa komitmen — diskusi dulu sampai kamu yakin
+        <ul class="space-y-4 text-base text-gray-300">
+          <li class="flex items-start gap-3">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-jaga-orange/20 flex items-center justify-center text-jaga-orange font-black text-sm mt-0.5">1</span>
+            <div>
+              <p class="font-bold text-white">Isi formulir pendaftaran</p>
+              <p class="text-sm text-gray-400">Data tersimpan otomatis ke sistem kami</p>
+            </div>
           </li>
-          <li class="flex items-center gap-3">
-            <span class="shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white font-black text-sm">✓</span>
-            Konsultasi langsung dengan admin jagatrip
+          <li class="flex items-start gap-3">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-jaga-orange/20 flex items-center justify-center text-jaga-orange font-black text-sm mt-0.5">2</span>
+            <div>
+              <p class="font-bold text-white">Konfirmasi via WhatsApp</p>
+              <p class="text-sm text-gray-400">Otomatis redirect ke WhatsApp admin</p>
+            </div>
           </li>
-          <li class="flex items-center gap-3">
-            <span class="shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white font-black text-sm">✓</span>
-            Dapatkan program sesuai kebutuhan
+          <li class="flex items-start gap-3">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-jaga-orange/20 flex items-center justify-center text-jaga-orange font-black text-sm mt-0.5">3</span>
+            <div>
+              <p class="font-bold text-white">Admin follow-up dalam 1×24 jam</p>
+              <p class="text-sm text-gray-400">Diskusi detail program & pembayaran</p>
+            </div>
           </li>
         </ul>
       </div>
 
       <!-- Right: form -->
-      <div class="bg-white text-gray-900 rounded-4xl p-6 md:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
-        <p class="text-xl md:text-2xl font-black text-gray-900 mb-1">Konsultasi Gratis Sekarang</p>
-        <p class="text-sm text-gray-500 mb-6">Tim kami akan menghubungi Anda dalam 1×24 jam.</p>
+      <div class="bg-white text-gray-900 rounded-4xl p-6 md:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.4)]">
+        <p class="text-xl md:text-2xl font-black text-gray-900 mb-1">Formulir Pendaftaran</p>
+        <p class="text-sm text-gray-500 mb-6">Lengkapi data berikut untuk mendaftar program JAGATRIP.</p>
 
-        <form id="konsultasi-form" novalidate class="space-y-3">
+        <form id="daftar-form" novalidate class="space-y-3">
+
+          <!-- Nama -->
           <div>
-            <label for="f-nama" class="sr-only">Nama Lengkap</label>
-            <input
-              id="f-nama" name="nama" type="text" required
-              placeholder="Nama Lengkap*"
-              class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-jaga-orange focus:outline-none text-gray-900 placeholder:text-gray-400 text-sm font-medium transition-colors"
-            />
+            <label for="f-nama" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Nama Lengkap *</label>
+            <input id="f-nama" name="nama" type="text" required placeholder="cth: Ahmad Fathullah" class={inputClass} />
           </div>
-          <div>
-            <label for="f-sekolah" class="sr-only">Nama Sekolah/Instansi</label>
-            <input
-              id="f-sekolah" name="sekolah" type="text" required
-              placeholder="Nama Sekolah / Instansi*"
-              class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-jaga-orange focus:outline-none text-gray-900 placeholder:text-gray-400 text-sm font-medium transition-colors"
-            />
+
+          <!-- Email & WA (2 col) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="f-email" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Email *</label>
+              <input id="f-email" name="email" type="email" required placeholder="email@sekolah.sch.id" class={inputClass} />
+            </div>
+            <div>
+              <label for="f-wa" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">No. WhatsApp *</label>
+              <input id="f-wa" name="wa" type="tel" required inputmode="numeric" placeholder="081234567890" class={inputClass} />
+            </div>
           </div>
+
+          <!-- Jabatan -->
           <div>
-            <label for="f-wa" class="sr-only">No. WhatsApp</label>
-            <input
-              id="f-wa" name="wa" type="tel" required inputmode="numeric"
-              placeholder="No. WhatsApp* (contoh: 081234567890)"
-              class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-jaga-orange focus:outline-none text-gray-900 placeholder:text-gray-400 text-sm font-medium transition-colors"
-            />
+            <label for="f-jabatan" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Jabatan / Profesi *</label>
+            <select id="f-jabatan" name="jabatan" required class={inputClass}>
+              <option value="">— Pilih Jabatan —</option>
+              {jabatanOptions.map(j => <option value={j}>{j}</option>)}
+            </select>
           </div>
+
+          <!-- Sekolah/Instansi -->
           <div>
-            <label for="f-program" class="sr-only">Program Tujuan</label>
-            <select
-              id="f-program" name="program" required
-              class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-jaga-orange focus:outline-none text-gray-900 text-sm font-medium bg-white transition-colors"
-            >
-              <option value="">Program Tujuan*</option>
+            <label for="f-sekolah" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Nama Sekolah / Instansi *</label>
+            <input id="f-sekolah" name="sekolah" type="text" required placeholder="cth: SMA Negeri 1 Semarang" class={inputClass} />
+          </div>
+
+          <!-- Kota Asal & Kota Berangkat (2 col) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="f-kota-asal" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Kota / Provinsi Asal *</label>
+              <input id="f-kota-asal" name="kota_asal" type="text" required placeholder="cth: Semarang, Jawa Tengah" class={inputClass} />
+            </div>
+            <div>
+              <label for="f-kota-berangkat" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Kota Keberangkatan *</label>
+              <select id="f-kota-berangkat" name="kota_berangkat" required class={inputClass}>
+                <option value="">— Pilih Bandara —</option>
+                {kotaBerangkat.map(k => <option value={k}>{k}</option>)}
+              </select>
+            </div>
+          </div>
+
+          <!-- Program -->
+          <div>
+            <label for="f-program" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Program Tujuan *</label>
+            <select id="f-program" name="program" required class={inputClass}>
+              <option value="">— Pilih Program —</option>
               {trips.map(trip => (
-                <option value={trip.data.destination}>{trip.data.destination} — {trip.data.month} {trip.data.year}</option>
+                <option value={`${trip.data.destination} — ${trip.data.month} ${trip.data.year}`}>
+                  {trip.data.flag} {trip.data.destination} — {trip.data.month} {trip.data.year}
+                </option>
               ))}
-              <option value="Belum Pasti">Belum Pasti / Konsultasi Dulu</option>
-            </select>
-          </div>
-          <div>
-            <label for="f-peserta" class="sr-only">Estimasi Jumlah Peserta</label>
-            <select
-              id="f-peserta" name="peserta" required
-              class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-jaga-orange focus:outline-none text-gray-900 text-sm font-medium bg-white transition-colors"
-            >
-              <option value="">Estimasi Jumlah Peserta*</option>
-              <option value="1-9 orang">1–9 orang (Individu / Kecil)</option>
-              <option value="10-20 orang">10–20 orang</option>
-              <option value="21-50 orang">21–50 orang</option>
-              <option value="51-100 orang">51–100 orang</option>
-              <option value="100+ orang">100+ orang</option>
             </select>
           </div>
 
+          <!-- Peserta & Catatan (2 col) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="f-peserta" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Jumlah Peserta</label>
+              <select id="f-peserta" name="peserta" class={inputClass}>
+                <option value="">— Opsional —</option>
+                <option value="1 orang">1 orang (Individu)</option>
+                <option value="2-5 orang">2–5 orang</option>
+                <option value="6-10 orang">6–10 orang</option>
+                <option value="11-20 orang">11–20 orang</option>
+                <option value="21-50 orang">21–50 orang</option>
+                <option value="50+ orang">50+ orang</option>
+              </select>
+            </div>
+            <div>
+              <label for="f-catatan" class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Catatan</label>
+              <input id="f-catatan" name="catatan" type="text" placeholder="Pesan tambahan (opsional)" class={inputClass} />
+            </div>
+          </div>
+
+          <!-- Submit -->
           <button
             type="submit"
-            class="w-full bg-jaga-orange hover:bg-jaga-orange-600 text-white font-black text-base md:text-lg py-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 mt-2"
+            class="w-full bg-jaga-orange hover:bg-jaga-orange-600 text-white font-black text-base md:text-lg py-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 mt-4"
           >
-            Kirim & Chat WhatsApp →
+            Kirim & Lanjut ke WhatsApp →
           </button>
 
+          <!-- Status message -->
+          <div id="form-status" class="hidden"></div>
+
           <p class="text-xs text-gray-400 text-center mt-3 leading-relaxed">
-            🔒 Data Anda aman. Form ini akan membuka WhatsApp dengan pesan pre-filled.
+            🔒 Data kamu aman & tersimpan otomatis. Setelah submit, kamu akan diarahkan ke WhatsApp admin untuk konfirmasi.
           </p>
         </form>
       </div>
@@ -127,6 +194,6 @@ const trips = (await getCollection('trips')).sort((a, b) => a.data.monthNum - b.
 </style>
 
 <script>
-  import { initKonsultasiForm } from '../../../lib/form-handler';
-  initKonsultasiForm();
+  import { initRegistrationForm } from '../../../lib/form-handler';
+  initRegistrationForm();
 </script>
