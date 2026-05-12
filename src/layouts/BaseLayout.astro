@@ -1,6 +1,7 @@
 ---
-import BaseSEO from '../components/seo/BaseSEO.astro';
-import JsonLd  from '../components/seo/JsonLd.astro';
+import BaseSEO  from '../components/seo/BaseSEO.astro';
+import JsonLd   from '../components/seo/JsonLd.astro';
+import Tracking from '../components/seo/Tracking.astro';
 import { SITE } from '../data/site';
 import { organizationSchema } from '../data/schemas/organization';
 import { websiteSchema }      from '../data/schemas/website';
@@ -54,6 +55,9 @@ const schemas = [
 
     <!-- JSON-LD -->
     <JsonLd schemas={schemas} />
+
+    <!-- Tracking (Meta Pixel, dll) -->
+    <Tracking />
   </head>
   <body>
     <a href="#main" class="skip-link">Langsung ke konten</a>
