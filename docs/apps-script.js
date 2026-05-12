@@ -157,26 +157,37 @@ function createSummarySheet(ss) {
   summary.getRange('A2').setValue('Auto-update dari sheet Pendaftaran')
     .setFontSize(9).setFontColor('#9CA3AF');
 
-  // Stats
-  var stats = [
-    ['Metrik', 'Jumlah'],
-    ['Total Pendaftar', '=COUNTA(Pendaftaran!C2:C)'],
-    ['Status: Baru', '=COUNTIF(Pendaftaran!M2:M,"Baru")'],
-    ['Status: Dihubungi', '=COUNTIF(Pendaftaran!M2:M,"Dihubungi")'],
-    ['Status: Konfirmasi', '=COUNTIF(Pendaftaran!M2:M,"Konfirmasi")'],
-    ['Status: DP', '=COUNTIF(Pendaftaran!M2:M,"DP")'],
-    ['Status: Lunas', '=COUNTIF(Pendaftaran!M2:M,"Lunas")'],
-    ['Status: Batal', '=COUNTIF(Pendaftaran!M2:M,"Batal")'],
+  // Stats labels (kolom A)
+  var labels = [
+    'Metrik',
+    'Total Pendaftar',
+    'Status: Baru',
+    'Status: Dihubungi',
+    'Status: Konfirmasi',
+    'Status: DP',
+    'Status: Lunas',
+    'Status: Batal',
   ];
+  labels.forEach(function(label, i) {
+    summary.getRange(4 + i, 1).setValue(label);
+  });
 
-  summary.getRange(4, 1, stats.length, 2).setValues(stats);
+  // Stats formulas (kolom B) — setFormula() agar locale-safe
+  summary.getRange(4, 2).setValue('Jumlah');
+  summary.getRange(5, 2).setFormula('=COUNTA(Pendaftaran!C2:C)');
+  summary.getRange(6, 2).setFormula('=COUNTIF(Pendaftaran!M2:M,"Baru")');
+  summary.getRange(7, 2).setFormula('=COUNTIF(Pendaftaran!M2:M,"Dihubungi")');
+  summary.getRange(8, 2).setFormula('=COUNTIF(Pendaftaran!M2:M,"Konfirmasi")');
+  summary.getRange(9, 2).setFormula('=COUNTIF(Pendaftaran!M2:M,"DP")');
+  summary.getRange(10, 2).setFormula('=COUNTIF(Pendaftaran!M2:M,"Lunas")');
+  summary.getRange(11, 2).setFormula('=COUNTIF(Pendaftaran!M2:M,"Batal")');
 
   // Style stats header
   summary.getRange(4, 1, 1, 2)
     .setBackground('#1F2937').setFontColor('#FFFFFF').setFontWeight('bold');
 
-  // Style stats
-  summary.getRange(5, 2, stats.length - 1, 1)
+  // Style stats values
+  summary.getRange(5, 2, 7, 1)
     .setHorizontalAlignment('center').setFontWeight('bold').setFontSize(12);
 
   summary.setColumnWidth(1, 200);
@@ -186,18 +197,22 @@ function createSummarySheet(ss) {
   summary.getRange('A14').setValue('Pendaftar per Program')
     .setFontSize(11).setFontWeight('bold').setFontColor('#1F2937');
 
-  var progStats = [
-    ['Program', 'Jumlah'],
-    ['Malaysia & Thailand', '=COUNTIF(Pendaftaran!J2:J,"*Malaysia*")'],
-    ['Jepang', '=COUNTIF(Pendaftaran!J2:J,"*Jepang*")'],
-    ['China', '=COUNTIF(Pendaftaran!J2:J,"*China*")'],
-    ['Lainnya', '=COUNTA(Pendaftaran!J2:J)-COUNTIF(Pendaftaran!J2:J,"*Malaysia*")-COUNTIF(Pendaftaran!J2:J,"*Jepang*")-COUNTIF(Pendaftaran!J2:J,"*China*")'],
-  ];
+  summary.getRange(15, 1).setValue('Program');
+  summary.getRange(15, 2).setValue('Jumlah');
+  summary.getRange(16, 1).setValue('Malaysia & Thailand');
+  summary.getRange(17, 1).setValue('Jepang');
+  summary.getRange(18, 1).setValue('China');
+  summary.getRange(19, 1).setValue('Lainnya');
 
-  summary.getRange(15, 1, progStats.length, 2).setValues(progStats);
+  // Program formulas — setFormula() agar locale-safe
+  summary.getRange(16, 2).setFormula('=COUNTIF(Pendaftaran!J2:J,"*Malaysia*")');
+  summary.getRange(17, 2).setFormula('=COUNTIF(Pendaftaran!J2:J,"*Jepang*")');
+  summary.getRange(18, 2).setFormula('=COUNTIF(Pendaftaran!J2:J,"*China*")');
+  summary.getRange(19, 2).setFormula('=COUNTIF(Pendaftaran!J2:J,"*Malaysia*")*0+COUNTA(Pendaftaran!J2:J)-COUNTIF(Pendaftaran!J2:J,"*Malaysia*")-COUNTIF(Pendaftaran!J2:J,"*Jepang*")-COUNTIF(Pendaftaran!J2:J,"*China*")');
+
   summary.getRange(15, 1, 1, 2)
     .setBackground('#E8611F').setFontColor('#FFFFFF').setFontWeight('bold');
-  summary.getRange(16, 2, progStats.length - 1, 1)
+  summary.getRange(16, 2, 4, 1)
     .setHorizontalAlignment('center').setFontWeight('bold');
 }
 
