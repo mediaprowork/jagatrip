@@ -19,7 +19,7 @@ segmenPasar:
   - "Pengawas Pendidikan"
 gradient: "--color-grad-msia"
 pricing:
-  earlyBird: 6600000
+  earlyBird: 7000000
   normal: 7900000
   dpPercentage: 50
 hero:
