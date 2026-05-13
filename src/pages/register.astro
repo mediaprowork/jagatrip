@@ -152,6 +152,15 @@ const fc = 'w-full px-4 py-3 rounded-xl border-2 border-dashed border-gray-300 b
                   <option value="Proses">Sedang dalam proses pembelian</option>
                 </select>
               </div>
+              <!-- Conditional: muncul jika pilih "Belum" -->
+              <div id="tiket-option" class="hidden">
+                <label for="r-tiket-plan" class={lc}>Rencana Tiket *</label>
+                <select id="r-tiket-plan" name="rencana_tiket" class={ic}>
+                  <option value="">— Pilih Rencana —</option>
+                  <option value="Beli sendiri">Saya akan membeli tiket sendiri nanti</option>
+                  <option value="Minta admin">Saya akan minta admin membelikan tiketnya</option>
+                </select>
+              </div>
             </div>
           </fieldset>
 
@@ -177,7 +186,7 @@ const fc = 'w-full px-4 py-3 rounded-xl border-2 border-dashed border-gray-300 b
                 </div>
                 <div>
                   <label for="r-sekamar" class={lc}>Teman Sekamar * <span class="normal-case font-normal text-gray-400">(tulis 0 jika belum ada)</span></label>
-                  <input id="r-sekamar" name="teman_sekamar" type="text" required placeholder="cth: Budi Santoso / 0" class={ic} />
+                  <input id="r-sekamar" name="teman_sekamar" type="text" required placeholder="0 / sudah ada teman sekamar atas nama Budi" class={ic} />
                 </div>
               </div>
               <div>
@@ -203,7 +212,7 @@ const fc = 'w-full px-4 py-3 rounded-xl border-2 border-dashed border-gray-300 b
                 <label for="r-bayar" class={lc}>Status Pembayaran *</label>
                 <select id="r-bayar" name="status_bayar" required class={ic}>
                   <option value="">— Pilih Status —</option>
-                  <option value="Booking (DP)">Booking (DP)</option>
+                  <option value="DP">DP</option>
                   <option value="Lunas">Lunas</option>
                 </select>
               </div>
@@ -296,4 +305,18 @@ const fc = 'w-full px-4 py-3 rounded-xl border-2 border-dashed border-gray-300 b
 <script>
   import { initRegisterForm } from '../lib/register-handler';
   initRegisterForm();
+
+  // Conditional: tampilkan "Rencana Tiket" jika pilih "Belum"
+  const tiketSelect = document.getElementById('r-tiket') as HTMLSelectElement | null;
+  const tiketOption = document.getElementById('tiket-option');
+  const tiketPlan = document.getElementById('r-tiket-plan') as HTMLSelectElement | null;
+
+  tiketSelect?.addEventListener('change', () => {
+    const show = tiketSelect.value === 'Belum';
+    tiketOption?.classList.toggle('hidden', !show);
+    if (tiketPlan) {
+      if (show) { tiketPlan.required = true; }
+      else { tiketPlan.required = false; tiketPlan.value = ''; }
+    }
+  });
 </script>

@@ -81,6 +81,12 @@ export function initRegisterForm(): void {
         return;
       }
     }
+    // Conditional: rencana_tiket wajib jika punya_tiket === 'Belum'
+    if (payload['punya_tiket'] === 'Belum' && !payload['rencana_tiket']) {
+      highlightField('rencana_tiket', 'Rencana Tiket');
+      return;
+    }
+
     for (const [field, label] of requiredFiles) {
       const input = form.querySelector<HTMLInputElement>(`input[name="${field}"]`);
       if (!input?.files?.length) {

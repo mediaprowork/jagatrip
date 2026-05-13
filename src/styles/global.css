@@ -50,6 +50,11 @@ a { transition: color 0.2s ease; }
   border-radius: 4px;
 }
 
+/* Scroll offset — compensate for fixed navbar height */
+[id] {
+  scroll-margin-top: 5rem;
+}
+
 /* Content visibility — skip rendering off-screen sections */
 @layer base {
   section:not(:first-of-type) {
