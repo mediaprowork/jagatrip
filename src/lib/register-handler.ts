@@ -17,6 +17,21 @@ function fileToBase64(file: File): Promise<string> {
   });
 }
 
+const FILE_LABELS: Record<string, string> = {
+  file_paspor: 'Paspor',
+  file_ktp: 'KTP',
+  file_bukti_transfer: 'Bukti Transfer',
+};
+
+const STEPS = [
+  { key: 'validate', label: 'Memvalidasi data' },
+  { key: 'file_paspor', label: 'Mengkonversi file Paspor' },
+  { key: 'file_ktp', label: 'Mengkonversi file KTP' },
+  { key: 'file_bukti_transfer', label: 'Mengkonversi file Bukti Transfer' },
+  { key: 'upload', label: 'Mengupload ke server' },
+  { key: 'done', label: 'Selesai! Mengalihkan ke WhatsApp' },
+];
+
 export function initRegisterForm(): void {
   const form = document.getElementById('register-form') as HTMLFormElement | null;
   if (!form) return;
@@ -48,30 +63,39 @@ export function initRegisterForm(): void {
       }
     }
 
-    if (btn) { btn.disabled = true; btn.textContent = '⏳ Mengupload data & dokumen...'; }
-    showStatus('info', 'Sedang mengirim data dan mengupload dokumen. Mohon tunggu...');
+    // Show progress overlay
+    if (btn) btn.classList.add('hidden');
+    showProgress(0);
 
     try {
-      // Proses file uploads → base64
+      // Step 1: validate done
+      showProgress(0);
+      await sleep(200);
+
+      // Step 2-4: file uploads → base64
       const fileFields = ['file_paspor', 'file_ktp', 'file_bukti_transfer'];
-      for (const field of fileFields) {
+      for (let i = 0; i < fileFields.length; i++) {
+        const field = fileFields[i];
+        showProgress(i + 1);
         const input = form.querySelector<HTMLInputElement>(`input[name="${field}"]`);
         const file = input?.files?.[0];
         if (file) {
           if (file.size > 5 * 1024 * 1024) {
-            showStatus('error', `File ${field.replace(/_/g, ' ')} terlalu besar (maks 5MB).`);
-            if (btn) { btn.disabled = false; btn.textContent = 'Kirim Registrasi & Lanjut ke WhatsApp →'; }
+            hideProgress();
+            if (btn) btn.classList.remove('hidden');
+            showStatus('error', `File ${FILE_LABELS[field]} terlalu besar (maks 5MB).`);
             return;
           }
           payload[field] = await fileToBase64(file);
           payload[field + '_name'] = file.name;
           payload[field + '_type'] = file.type;
         }
+        await sleep(100);
       }
 
-      showStatus('info', 'Mengupload ke server... Jangan tutup halaman ini.');
+      // Step 5: upload
+      showProgress(4);
 
-      // POST ke Apps Script — AWAIT sampai selesai (file besar butuh waktu)
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
@@ -83,10 +107,9 @@ export function initRegisterForm(): void {
         }),
       });
 
-      // Meta Pixel
+      // Step 6: done
+      showProgress(5);
       if (window.fbq) window.fbq('track', 'CompleteRegistration');
-
-      showStatus('success', '✅ Data berhasil dikirim! Mengalihkan ke WhatsApp...');
 
       // Build WA message & redirect
       const msg = [
@@ -106,25 +129,59 @@ export function initRegisterForm(): void {
         'Mohon konfirmasi registrasi saya. Terima kasih! 🙏',
       ].join('\n');
 
-      setTimeout(() => {
-        window.location.href = `https://wa.me/${SITE.waNumber}?text=${encodeURIComponent(msg)}`;
-      }, 1000);
+      await sleep(1000);
+      window.location.href = `https://wa.me/${SITE.waNumber}?text=${encodeURIComponent(msg)}`;
 
     } catch {
+      hideProgress();
+      if (btn) { btn.classList.remove('hidden'); btn.disabled = false; btn.textContent = 'Kirim Registrasi & Lanjut ke WhatsApp →'; }
       showStatus('error', 'Gagal mengirim. Coba lagi atau hubungi admin via WhatsApp.');
-      if (btn) { btn.disabled = false; btn.textContent = 'Kirim Registrasi & Lanjut ke WhatsApp →'; }
     }
   });
 
-  function showStatus(type: 'success' | 'error' | 'info', msg: string): void {
+  function sleep(ms: number): Promise<void> {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  function showProgress(stepIndex: number): void {
     if (!statusEl) return;
-    statusEl.textContent = msg;
-    const colors = {
-      success: 'text-green-600',
-      error: 'text-red-600',
-      info: 'text-blue-600',
-    };
-    statusEl.className = `text-sm text-center mt-3 font-medium ${colors[type]}`;
+    const total = STEPS.length;
+    const pct = Math.round(((stepIndex + 1) / total) * 100);
+    const current = STEPS[stepIndex];
+    const isDone = stepIndex === total - 1;
+
+    statusEl.innerHTML = `
+      <div class="mt-4 space-y-3">
+        <!-- Progress bar -->
+        <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+          <div class="h-full rounded-full transition-all duration-500 ease-out ${isDone ? 'bg-green-500' : 'bg-jaga-orange'}"
+               style="width: ${pct}%"></div>
+        </div>
+        <!-- Steps -->
+        <div class="space-y-1.5">
+          ${STEPS.map((s, i) => {
+            const done = i < stepIndex;
+            const active = i === stepIndex;
+            const icon = done ? '✅' : active ? (isDone ? '✅' : '<span class="reg-spin">⏳</span>') : '⬜';
+            const color = done ? 'text-green-600' : active ? (isDone ? 'text-green-600 font-bold' : 'text-blue-600 font-bold') : 'text-gray-400';
+            return `<div class="flex items-center gap-2 text-xs ${color}">
+              <span>${icon}</span> ${s.label}${active && !isDone ? '...' : ''}
+            </div>`;
+          }).join('')}
+        </div>
+        <p class="text-xs ${isDone ? 'text-green-600 font-bold' : 'text-gray-400'}">${pct}% — ${isDone ? 'Redirect ke WhatsApp...' : 'Jangan tutup halaman ini'}</p>
+      </div>
+    `;
+    statusEl.classList.remove('hidden');
+  }
+
+  function hideProgress(): void {
+    if (statusEl) { statusEl.innerHTML = ''; statusEl.classList.add('hidden'); }
+  }
+
+  function showStatus(type: 'success' | 'error', msg: string): void {
+    if (!statusEl) return;
+    statusEl.innerHTML = `<p class="text-sm text-center mt-3 font-medium ${type === 'success' ? 'text-green-600' : 'text-red-600'}">${msg}</p>`;
     statusEl.classList.remove('hidden');
   }
 }
