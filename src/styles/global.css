@@ -55,14 +55,6 @@ a { transition: color 0.2s ease; }
   scroll-margin-top: 5rem;
 }
 
-/* Content visibility — skip rendering off-screen sections */
-@layer base {
-  section:not(:first-of-type) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 600px;
-  }
-}
-
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
