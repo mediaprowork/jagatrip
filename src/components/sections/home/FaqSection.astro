@@ -5,7 +5,7 @@ const faqs = (await getCollection('faqs'))
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section class="py-24 bg-white">
+<section id="faq" class="py-24 bg-white">
   <div class="max-w-3xl mx-auto px-6">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">

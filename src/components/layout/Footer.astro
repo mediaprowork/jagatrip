@@ -72,10 +72,12 @@ const trips = (await getCollection('trips'))
         <p class="text-white font-bold text-base mb-5" role="heading" aria-level="2">Menu</h4>
         <ul class="space-y-3">
           {[
-            { label: 'Beranda', href: '/' },
-            { label: 'Agenda',  href: '/#agenda' },
-            { label: 'Why Us',  href: '/#why' },
-            { label: 'Pricing', href: '/#pricing' },
+            { label: 'Beranda',   href: '/' },
+            { label: 'Tentang',   href: '/tentang' },
+            { label: 'Itinerary', href: '/#itinerary' },
+            { label: 'Harga',     href: '/#pricing' },
+            { label: 'FAQ',       href: '/#faq' },
+            { label: 'Daftar',    href: '/#daftar' },
           ].map((item) => (
             <li>
               <a href={item.href} class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm">

@@ -5,9 +5,9 @@ const wa = waLink();
 const links = [
   { label: 'Beranda', href: '/' },
   { label: 'Tentang', href: '/tentang' },
-  { label: 'Agenda', href: '/#agenda' },
-  { label: 'Why Us', href: '/#why' },
-  { label: 'Pricing', href: '/#pricing' },
+  { label: 'Itinerary', href: '/#itinerary' },
+  { label: 'Harga', href: '/#pricing' },
+  { label: 'FAQ', href: '/#faq' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -126,13 +126,6 @@ function isActiveSSR(href: string): boolean {
         {link.label}
       </a>
     ))}
-
-    <a
-      href="/faq"
-      class="block px-4 py-3 rounded-xl font-semibold text-gray-900 hover:bg-jaga-bg hover:text-jaga-orange transition-colors"
-    >
-      FAQ
-    </a>
 
     <a
       href="/kontak"
