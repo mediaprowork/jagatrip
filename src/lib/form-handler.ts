@@ -1,6 +1,8 @@
 import { SITE } from '../data/site';
 import { getUtm } from './utm';
 import { initFormGuard, lockForm } from './form-guard';
+import { parseIndonesianPhone } from './phone-formatter';
+import { validatePhoneInput } from './form-enhancer';
 
 declare global {
   interface Window {
@@ -27,10 +29,14 @@ export function initRegistrationForm(): void {
     const payload: Record<string, string> = {};
     data.forEach((val, key) => { payload[key] = val.toString().trim(); });
 
-    if (!payload.nama || !payload.wa) {
-      showStatus('error', 'Mohon lengkapi Nama Lengkap dan No. WhatsApp');
+    const waInput = form.querySelector<HTMLInputElement>('input[name="wa"], input[id="wa"]');
+    if (waInput && !validatePhoneInput(waInput)) {
+      showStatus('error', 'Format Nomor WhatsApp tidak valid.');
       return;
     }
+
+    const parsedPhone = parseIndonesianPhone(payload.wa || '');
+    payload.wa = parsedPhone.e164 || payload.wa;
 
     if (btn) {
       btn.disabled = true;

@@ -273,6 +273,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <script>
   import { getUtm } from '../lib/utm';
   import { initFormGuard, lockForm } from '../lib/form-guard';
+  import { parseIndonesianPhone } from '../lib/phone-formatter';
 
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwrwCUYnuIUCflczefMlYAHdCnOD-5PMqVEL94QTPWy6Hkds6SiOQLfyo7PZpVoqtjiZg/exec';
   const NOMOR_WA_ADMIN = '628139190363'; // Admin JAGATRIP (0813-9190-363)
@@ -303,8 +304,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       const nama = (form.querySelector('#nama') as HTMLInputElement | null)?.value.trim() ?? '';
       const domisili = (form.querySelector('#domisili') as HTMLInputElement | null)?.value.trim() ?? '';
-      const wa = (form.querySelector('#wa') as HTMLInputElement | null)?.value.trim() ?? '';
-      if (!nama || !domisili || !wa) { showStatus('err', 'Semua field wajib diisi.'); return; }
+      const rawWa = (form.querySelector('#wa') as HTMLInputElement | null)?.value.trim() ?? '';
+      if (!nama || !domisili || !rawWa) { showStatus('err', 'Semua field wajib diisi.'); return; }
+
+      const parsedPhone = parseIndonesianPhone(rawWa);
+      const wa = parsedPhone.e164 || rawWa;
 
       if (btn) { btn.disabled = true; btn.textContent = 'Memproses...'; }
 

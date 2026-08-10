@@ -250,6 +250,7 @@ const faqs = [
 <script>
   import { getUtm } from '../lib/utm';
   import { initFormGuard, lockForm } from '../lib/form-guard';
+  import { parseIndonesianPhone } from '../lib/phone-formatter';
 
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reg-form-jagatalk-premium') as HTMLFormElement | null;
@@ -276,12 +277,15 @@ const faqs = [
       const nama = (form.querySelector('#nama') as HTMLInputElement | null)?.value.trim();
       const instansi = (form.querySelector('#instansi') as HTMLInputElement | null)?.value.trim();
       const domisili = (form.querySelector('#domisili') as HTMLInputElement | null)?.value.trim();
-      const wa = (form.querySelector('#wa') as HTMLInputElement | null)?.value.trim();
+      const rawWa = (form.querySelector('#wa') as HTMLInputElement | null)?.value.trim();
 
-      if (!nama || !instansi || !domisili || !wa) {
+      if (!nama || !instansi || !domisili || !rawWa) {
         showStatus('err', 'Semua field wajib diisi.');
         return;
       }
+
+      const parsedPhone = parseIndonesianPhone(rawWa);
+      const wa = parsedPhone.e164 || rawWa;
 
       if (btn) { btn.disabled = true; btn.textContent = 'Memproses...'; }
 

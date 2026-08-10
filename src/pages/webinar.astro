@@ -535,6 +535,7 @@ import Footer from '../components/layout/Footer.astro';
 <script>
   import { getUtm } from '../lib/utm';
   import { initFormGuard, lockForm } from '../lib/form-guard';
+  import { parseIndonesianPhone } from '../lib/phone-formatter';
 
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reg-form-jagatalk') as HTMLFormElement | null;
@@ -558,12 +559,15 @@ import Footer from '../components/layout/Footer.astro';
 
       const nama = (form.querySelector('#nama') as HTMLInputElement | null)?.value.trim();
       const instansi = (form.querySelector('#instansi') as HTMLInputElement | null)?.value.trim();
-      const wa = (form.querySelector('#wa') as HTMLInputElement | null)?.value.trim();
+      const rawWa = (form.querySelector('#wa') as HTMLInputElement | null)?.value.trim();
 
-      if (!nama || !instansi || !wa) {
+      if (!nama || !instansi || !rawWa) {
         showStatus('err', 'Semua field wajib diisi.');
         return;
       }
+
+      const parsedPhone = parseIndonesianPhone(rawWa);
+      const wa = parsedPhone.e164 || rawWa;
 
       if (btn) {
         btn.disabled = true;

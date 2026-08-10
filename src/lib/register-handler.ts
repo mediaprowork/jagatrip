@@ -1,6 +1,8 @@
 import { SITE } from '../data/site';
 import { getUtm } from './utm';
 import { initFormGuard, lockForm } from './form-guard';
+import { parseIndonesianPhone } from './phone-formatter';
+import { validatePhoneInput } from './form-enhancer';
 
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwrwCUYnuIUCflczefMlYAHdCnOD-5PMqVEL94QTPWy6Hkds6SiOQLfyo7PZpVoqtjiZg/exec';
 
@@ -86,6 +88,15 @@ export function initRegisterForm(): void {
         return;
       }
     }
+
+    const waInput = form.querySelector<HTMLInputElement>('input[name="wa"], input[id="r-wa"]');
+    if (waInput && !validatePhoneInput(waInput)) {
+      highlightField('wa', 'Nomor WhatsApp Valid (diawali 08/628)');
+      return;
+    }
+
+    const parsedPhone = parseIndonesianPhone(payload['wa'] || '');
+    payload['wa'] = parsedPhone.e164 || payload['wa'];
     // Conditional: rencana_tiket wajib jika punya_tiket === 'Belum'
     if (payload['punya_tiket'] === 'Belum' && !payload['rencana_tiket']) {
       highlightField('rencana_tiket', 'Rencana Tiket');
