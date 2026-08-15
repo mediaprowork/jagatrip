@@ -1,0 +1,786 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// ── Data itinerary Benchmarking Sekolah ASEAN (19–23 Okt 2026) ──
+const days = [
+  { n: '01', d: 'Sen, 19 Okt', h: 'Jakarta → Kuala Lumpur', p: 'Tiba, orientasi kota, lalu Sesi Pembukaan malam hari: kerangka enam dimensi, kartu observasi, target pribadi tiap peserta.', tags: ['Pembekalan 90 Menit', 'Batu Caves'] },
+  { n: '02', d: 'Sel, 20 Okt', h: 'Dua sekolah Malaysia + workshop', p: 'Pagi: sekolah dengan keunggulan tata kelola. Sore: sekolah dengan keunggulan kurikulum dan PPDB. Malam: lokakarya bersama praktisi pendidikan Malaysia.', tags: ['Institusi 01', 'Institusi 02', 'Workshop Praktisi'], k: true },
+  { n: '03', d: 'Rab, 21 Okt', h: 'Sekolah ketiga → perjalanan ke Hat Yai', p: 'Pagi di sekolah dengan keunggulan kultur dan pembinaan karakter. Selepas itu rombongan bergerak lintas negara menuju Hat Yai.', tags: ['Institusi 03', 'Lintas Perbatasan'], k: true },
+  { n: '04', d: 'Kam, 22 Okt', h: 'Sekolah Hatyai & Malam Refleksi', p: 'Kunjungan institusi keempat di Hat Yai, dilanjutkan eksplorasi kawasan. Malam Refleksi sekaligus penutupan resmi: sertifikat dan foto delegasi.', tags: ['Institusi 04', 'Penutupan & Sertifikat'], k: true },
+  { n: '05', d: 'Jum, 23 Okt', h: 'Rencana Aksi → Jakarta', p: 'Lokakarya terpandu: setiap peserta menuntaskan Rencana Aksi 90 Hari untuk sekolahnya, lalu saling mengkritisi. Pulang membawa dokumen jadi, bukan catatan mentah.', tags: ['Lokakarya Rencana Aksi', 'Kepulangan Jakarta'] },
+];
+
+const dims = [
+  { n: '01', h: 'Tata Kelola', p: 'Siapa memutuskan apa. Penjaminan mutu yang berjalan mingguan, bukan tahunan.' },
+  { n: '02', h: 'Kurikulum', p: 'Dari kerangka ke ruang kelas. Asesmen, dan cara menangani siswa yang tidak seragam.' },
+  { n: '03', h: 'Guru', p: 'Rekrutmen, induksi, supervisi, jenjang karier. Dan alasan mereka bertahan.' },
+  { n: '04', h: 'Kultur', p: 'Disiplin yang ditegakkan tanpa drama. Peran siswa. Kemitraan orang tua.' },
+  { n: '05', h: 'Sarana', p: 'Bukan seberapa mewah. Seberapa sering dipakai — dan untuk apa.' },
+  { n: '06', h: 'PPDB', p: 'Cara mereka menjaga keterisian tanpa perang harga. Jarang dibahas, paling dibutuhkan.' },
+];
+
+const problems = [
+  { b: '01', p: 'Kurikulum berubah lagi.', s: 'Tenaga habis mengejar format. Sistem internal tak pernah sempat dibangun.' },
+  { b: '02', p: 'Mutu jadi berkas, bukan kebiasaan.', s: 'Disiapkan menjelang visitasi, lalu kembali ke laci.' },
+  { b: '03', p: 'Guru dilatih, lalu pindah.', s: 'Sekolah lain menahan gurunya. Caranya bisa ditiru.' },
+  { b: '04', p: 'PPDB dimenangkan diskon.', s: 'Karena pembeda mutu tak pernah dibuktikan ke orang tua.' },
+  { b: '05', p: 'Standar “baik” berhenti di sekolah sebelah.', s: 'Tanpa pembanding lintas negara, jaraknya tak pernah terukur.' },
+  { b: '06', p: 'Studi banding pulang bawa foto.', s: 'Tanpa instrumen, kunjungan berhenti jadi kekaguman.' },
+];
+
+const outs = [
+  { b: 'I', h: 'Laporan Studi Lapangan', p: 'Berkop resmi, temuan terstruktur per dimensi. Siap dilampirkan ke pertanggungjawaban yayasan atau dinas.' },
+  { b: 'II', h: 'Rencana Aksi 90 Hari', p: 'Sasaran, indikator, penanggung jawab, tenggat. Disusun sebelum pulang, bukan dijanjikan.' },
+  { b: 'III', h: 'Sertifikat Dwibahasa', p: 'Ditandatangani Jagatrip bersama institusi tuan rumah.' },
+  { b: 'IV', h: 'Dokumentasi Profesional', p: 'Foto dan video resmi, satu folder per peserta. Siap jadi materi komunikasi sekolah.' },
+  { b: 'V', h: 'Paket Diseminasi', p: 'Templat presentasi 20 halaman + panduan sesi berbagi 90 menit untuk guru di sekolah Anda.' },
+  { b: 'VI', h: 'Pendampingan 90 Hari', p: 'Dua sesi daring di hari ke-30 dan ke-90. Meninjau apa yang sudah jalan dan apa yang mentok.' },
+  { b: 'VII', h: 'LoI & Jalur Kerja Sama', p: 'Penandatanganan di lokasi, plus fasilitasi tindak lanjut sekolah Anda dengan institusi tuan rumah.' },
+  { b: 'VIII', h: 'Jejaring Alumni', p: 'Grup lintas provinsi berisi pemimpin sekolah yang mengerjakan masalah yang sama.' },
+];
+
+const who = [
+  'Guru & pendidik yang diutus sekolah',
+  'Kepala & wakil kepala sekolah',
+  'Ketua & pengurus yayasan',
+  'Kabid kurikulum & kesiswaan',
+  'Tim penjaminan mutu sekolah',
+  'Pengawas & pembina satuan pendidikan',
+];
+
+const proto = [
+  ['MENIT 0–40', 'Penyambutan, foto delegasi, presentasi profil tuan rumah'],
+  ['MENIT 40–55', 'Presentasi profil delegasi Indonesia oleh juru bicara'],
+  ['MENIT 55–85', 'Observasi kelas dalam kelompok kecil'],
+  ['MENIT 85–115', 'Tur fasilitas — dengan pertanyaan soal tingkat pemanfaatannya'],
+  ['MENIT 115–150', 'Dialog terarah, cinderamata, penandatanganan LoI'],
+];
+
+const pkgCommon = [
+  'Bus pariwisata VIP selama seluruh program',
+  'Hotel 4 malam, setara bintang 3',
+  'Makan sesuai program, seluruhnya halal',
+  'Perizinan & koordinasi 4 institusi',
+  'Tour leader & pemandu lokal',
+  'Workshop praktisi pendidikan',
+  'Instrumen observasi & pembekalan daring',
+  'Sertifikat & laporan studi lapangan resmi',
+  'Dokumentasi foto & video',
+  'Asuransi perjalanan',
+  'Pendampingan implementasi 90 hari',
+];
+
+const faqs = [
+  ['Sekolah mana saja yang dikunjungi?', 'Tiga sekolah di Malaysia dan satu di Hatyai. Nama dan profil lengkapnya diumumkan ke seluruh pendaftar pada 8 September 2026, setelah semua konfirmasi tertulis masuk. Kalau daftarnya dinilai tidak sesuai, uang muka kembali penuh.'],
+  ['Bagaimana cara mengamankan kursi?', 'Uang muka Rp 2.500.000 per peserta. Dapat dikembalikan penuh hingga 18 September 2026. Pelunasan paling lambat 5 Oktober 2026.'],
+  ['Perlu bisa bahasa Melayu atau Thai?', 'Tidak. Di Malaysia bahasa pengantarnya bisa dipahami langsung. Di Hat Yai komunikasi berlangsung dalam bahasa Inggris, materi kedua pihak disiapkan dua bahasa, dan tim Jagatrip mendampingi sepanjang sesi.'],
+  ['Saya guru, bukan pemegang keputusan. Apakah tetap sesuai?', 'Sesuai — dan justru banyak sekolah memilih jalur ini. Peserta pulang membawa laporan dan Rencana Aksi 90 Hari yang siap dipresentasikan kepada kepala sekolah atau yayasan, lengkap dengan paket diseminasi untuk sesi berbagi ke rekan guru lainnya.'],
+  ['Apakah laporannya bisa dipakai untuk pertanggungjawaban?', 'Ya — itu justru rancangannya. Peserta pulang membawa Laporan Studi Lapangan berkop resmi, Rencana Aksi 90 Hari, sertifikat, dan dokumentasi. Kami juga meminta surat tugas dari sekolah asal agar status perjalanannya jelas sejak awal.'],
+  ['Bagaimana ketersediaan makanan halal?', 'Seluruh rumah makan dipastikan halal, termasuk di leg Hatyai. Alergi dan pantangan didata sebelum keberangkatan dan diteruskan ke penyedia konsumsi.'],
+  ['Bisakah sekolah mengirim lebih dari satu orang?', 'Sangat disarankan. Perubahan lebih mudah dijalankan bila yang melihat langsung lebih dari satu kepala. Skema keberangkatan kolektif dibahas bersama tim program.'],
+  ['Bagaimana jika kuota penuh?', 'Pendaftar berikutnya masuk daftar tunggu dan mendapat prioritas untuk angkatan berikutnya. Formulir minat tidak mengikat kewajiban pembayaran.'],
+];
+---
+
+<BaseLayout
+  title="Benchmarking Sekolah ASEAN — Malaysia & Thailand | JAGATRIP"
+  description="JAGATRIP #2 Oktober: benchmarking sekolah ASEAN, dari ruang kelas Malaysia ke Hatyai. 19–23 Oktober 2026. 4 institusi, 2 negara, 5 hari."
+  canonical="https://jagatrip.com/batch2"
+  ogType="website"
+>
+  <div class="b2" id="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="wrap tb">
+        <a href="#top" class="brand" aria-label="JAGATRIP">
+          <img src="/images/batch2/logo-logogram.png" alt="" width="702" height="764" class="bm-img" aria-hidden="true" />
+          <img src="/images/batch2/logo-logotype.png" alt="JAGATRIP" width="2094" height="570" class="bn-img" />
+        </a>
+        <nav class="tb-nav" aria-label="Navigasi utama">
+          <a href="#metode">Metode</a>
+          <a href="#hari">Itinerary</a>
+          <a href="#pemandu">Pemandu</a>
+          <a href="#harga">Harga</a>
+          <a href="#daftar" class="tb-cta">Daftar Minat</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero grid-bg" id="top">
+      <div class="wrap hero-in">
+        <div>
+          <div class="kick"><i></i> Education Mission · Oktober 2026</div>
+          <h1>Masalah yang sekolah Anda<br />kejar bertahun-tahun,<br /><span class="hl">sudah ada yang menyelesaikan.</span><span class="kick2">Tiga jam terbang dari sini.</span></h1>
+          <div class="theme-strip">
+            <span class="a">Benchmarking Sekolah ASEAN</span>
+            <span class="b">Dari ruang kelas Malaysia ke Hatyai</span>
+          </div>
+          <div class="route">
+            <div class="r">Kuala Lumpur <i>→</i> Hat Yai</div>
+            <div class="dt">19–23 Oktober 2026</div>
+          </div>
+          <p class="hero-p">Bukan seminar. Bukan studi banding yang pulang bawa album foto. <b>Lima hari di dalam sekolah orang lain</b> — dengan instrumen, laporan resmi, dan rencana yang bisa dijalankan Senin depan.</p>
+          <div class="proof">
+            <div><b>04</b><span>Institusi</span></div>
+            <div><b>02</b><span>Negara</span></div>
+            <div><b>05</b><span>Hari</span></div>
+            <div><b>06</b><span>Dimensi Observasi</span></div>
+          </div>
+          <div class="hero-btns">
+            <a href="#daftar" class="btn b-o">Amankan Kursi</a>
+            <a href="#metode" class="btn b-n">Lihat Metode ↘</a>
+          </div>
+        </div>
+        <div>
+          <!-- Flyer on process — placeholder rasio 3:4 -->
+          <div class="flyer">
+            <div class="i">▣</div>
+            <div class="t">Area Flyer</div>
+            <div class="d">Rasio 3 : 4 · 1080 × 1440 px</div>
+          </div>
+          <div class="f-cap">Flyer program · Angkatan Oktober 2026</div>
+        </div>
+      </div>
+
+      <div class="mbar">
+        <div class="wrap"><div class="mbar-in">
+          <div class="mb"><div class="k">Perjalanan</div><div class="v">19–23 Okt 2026</div></div>
+          <div class="mb"><div class="k">Format</div><div class="v">2 negara · <span>4 institusi</span></div></div>
+          <div class="mb"><div class="k">Rute</div><div class="v">KL · Hatyai</div></div>
+          <div class="mb"><div class="k">Kuota</div><div class="v">Terbatas</div></div>
+        </div></div>
+      </div>
+    </header>
+
+    <!-- 00 OPENING NOTE -->
+    <section class="dark grid-bg-d">
+      <div class="wrap">
+        <div class="idx dk rv">00 / Opening Note</div>
+        <p class="quote rv">“Sekolah Anda tidak kekurangan pelatihan.<br />Yang kurang <em>pembanding</em>.”</p>
+        <div class="plist rv">
+          {problems.map((x) => <div class="pl"><b>{x.b}</b><p>{x.p}</p><small>{x.s}</small></div>)}
+        </div>
+        <div class="verdict rv">
+          <p>Enam-enamnya tidak selesai di ruang seminar.<br />Selesainya di ruang kelas orang lain.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 METODE -->
+    <section class="grid-bg" id="metode">
+      <div class="wrap">
+        <div class="m-head">
+          <div class="rv">
+            <div class="idx">01 / Method</div>
+            <h2 class="sec-t">Enam dimensi.<br />Empat institusi.<br />Satu kerangka.</h2>
+          </div>
+          <p class="m-note rv">Semua peserta mengamati dimensi yang sama di setiap sekolah. Karena itu hasilnya bisa dibandingkan — bukan sekadar dikumpulkan.</p>
+        </div>
+        <div class="dims rv">
+          {dims.map((x) => <div class="dim"><div class="n">{x.n}</div><h4>{x.h}</h4><p>{x.p}</p></div>)}
+        </div>
+        <div class="card4 rv">
+          <div class="c4-l"><b>Kartu Observasi</b><span>Diisi di lokasi</span></div>
+          <div class="c4"><i>Kolom 1</i>Apa yang saya lihat</div>
+          <div class="c4"><i>Kolom 2</i>Bagaimana mereka melakukannya</div>
+          <div class="c4"><i>Kolom 3</i>Kondisi di sekolah saya</div>
+          <div class="c4"><i>Kolom 4</i>Bisa diadopsi? Ya / Ubah / Tidak — sebutkan alasannya</div>
+        </div>
+        <p class="rv c4-note">Kolom keempat adalah inti programnya. Tanpa itu, kunjungan berhenti jadi kekaguman.</p>
+      </div>
+    </section>
+
+    <!-- 02 SCHOOL ACCESS -->
+    <section class="dark grid-bg-d">
+      <div class="wrap">
+        <div class="idx dk rv">02 / School Access</div>
+        <div class="sa">
+          <div class="rv">
+            <h2 class="sec-t">Masuk ke<br />sekolahnya.</h2>
+            <p class="sa-p rv">Tiga sekolah di Malaysia, satu di Hatyai. Duduk bersama pengelolanya, masuk kelasnya, lalu bertanya soal keputusan di balik praktik mereka.</p>
+            <div class="sa-stats">
+              <div class="sst"><b>04</b><span>institusi</span></div>
+              <div class="sst"><b>02</b><span>negara</span></div>
+              <div class="sst"><b>01</b><span>workshop praktisi</span></div>
+            </div>
+            <p class="pull">Anda datang sebagai <em>delegasi</em> — bukan rombongan yang kebetulan lewat.</p>
+          </div>
+          <div class="proto rv">
+            <div class="ph">Protokol kunjungan · berlaku di setiap institusi</div>
+            {proto.map(([t, x]) => <div class="pr"><div class="t">{t}</div><div class="x">{x}</div></div>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 LIMA HARI -->
+    <section class="cream" id="hari">
+      <div class="wrap">
+        <div class="idx rv">03 / Five Days</div>
+        <h2 class="sec-t rv">Catatan perjalanan.</h2>
+        <p class="rv sec-p">Empat malam hotel. Satu bus pariwisata untuk seluruh rombongan, dari hari pertama sampai terakhir.</p>
+        <div class="rv">
+          {days.map((day) => (
+            <div class="day">
+              <div class="n">{day.n}</div>
+              <div class="d">{day.d}</div>
+              <div class="db">
+                <h4>{day.h}</h4>
+                <p>{day.p}</p>
+                <div class="tags">{day.tags.map((t) => <span class:list={['tg', { k: day.k }]}>{t}</span>)}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="rv it-note">Susunan agenda dapat menyesuaikan konfirmasi akhir institusi tujuan.</p>
+      </div>
+    </section>
+
+    <!-- 04 TRIP LEADER -->
+    <section class="dark grid-bg-d" id="pemandu">
+      <div class="wrap">
+        <div class="idx dk rv">04 / Trip Leader</div>
+        <h2 class="sec-t rv">Dipandu orang yang<br />sudah melakukannya.</h2>
+        <p class="rv lead-p">Bukan sekadar perjalanan bersama — belajar langsung dari yang sudah menempuh jalannya.</p>
+        <div class="lead-in rv">
+          <div>
+            <!-- Foto pemandu on process — placeholder rasio 4:5 -->
+            <div class="ph-img">
+              <div class="i">◍</div>
+              <div class="t">Foto Pemandu</div>
+              <div class="d">Rasio 4 : 5 · 1000 × 1250 px</div>
+            </div>
+            <div class="lead-id">
+              <b>Mr. Dedi Gunawan</b>
+              <span>CEO &amp; Founder JAGATRIP · Pemandu Perjalanan</span>
+            </div>
+          </div>
+          <!-- Rekam jejak on process — placeholder -->
+          <div class="lead-pts">
+            <div class="lp"><b>01</b><p>[ Isi poin rekam jejak — misalnya jumlah negara yang pernah dijelajahi beserta konteks pembelajarannya. ]</p></div>
+            <div class="lp"><b>02</b><p>[ Isi poin rekam jejak — misalnya pengalaman mendampingi kepala sekolah dan praktisi pendidikan dalam study visit. ]</p></div>
+            <div class="lp"><b>03</b><p>[ Isi poin rekam jejak — misalnya benchmarking langsung ke sekolah dan kampus internasional. ]</p></div>
+            <div class="lp"><b>04</b><p>[ Isi poin rekam jejak — misalnya jumlah peserta yang pernah dikoordinasikan lintas program. ]</p></div>
+            <div class="lp"><b>05</b><p>[ Isi poin rekam jejak — misalnya dasar pemilihan destinasi: riset lapangan, bukan tren. ]</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 TAKE HOME -->
+    <section class="grid-bg">
+      <div class="wrap">
+        <div class="idx rv">05 / Take Home</div>
+        <h2 class="sec-t rv">Pulang bawa dokumen,<br />bukan oleh-oleh.</h2>
+        <p class="rv sec-p wide">Hambatan terbesar biasanya bukan “mau atau tidak”, tapi “bagaimana melaporkannya”. Semua di bawah ini menjawab itu.</p>
+        <div class="outs rv">
+          {outs.map((x) => <div class="ou"><b>{x.b}</b><h4>{x.h}</h4><p>{x.p}</p></div>)}
+        </div>
+        <div class="gar rv">
+          <div class="seal"><b>04</b><span>Institusi</span></div>
+          <div>
+            <h4>Garansi Institusi</h4>
+            <p>Program ini menjanjikan empat institusi. Kurang satu, Jagatrip kembalikan <b>Rp 1.500.000 per institusi</b> — cair maksimal 14 hari kerja setelah pulang. Tercantum di perjanjian, bukan cuma di iklan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 WHO -->
+    <section class="cream who-sec">
+      <div class="wrap">
+        <div class="idx rv">06 / Who Should Join</div>
+        <h2 class="sec-t rv">Pendidik dan<br />pemegang keputusan.</h2>
+        <p class="rv sec-p wide">Tidak semua pemegang keputusan punya waktu berangkat. Karena itu program ini juga dirancang untuk guru yang dikirim mewakili sekolahnya — dengan laporan dan rencana aksi yang siap dipresentasikan setibanya kembali.</p>
+        <div class="who rv">
+          {who.map((x, i) => <div class="wh"><b>0{i + 1}</b><span>{x}</span></div>)}
+        </div>
+        <p class="wnote rv"><b>Catatan penting.</b> Agenda dimulai pagi dan sebagian besar waktu ada di dalam sekolah. Program ini dirancang untuk bekerja dan membangun jaringan — bukan berbelanja.</p>
+      </div>
+    </section>
+
+    <!-- 07 HARGA -->
+    <section class="dark grid-bg-d" id="harga">
+      <div class="wrap">
+        <div class="idx dk rv">07 / Departure Options</div>
+        <h2 class="sec-t rv">Dua cara berangkat.<br />Satu program yang sama.</h2>
+        <div class="opts rv">
+          <div class="opt">
+            <div class="lbl">Option 01</div>
+            <h3>Paket Land Tour</h3>
+            <div class="pr2">Rp 7.500.000</div>
+            <div class="sub">Belum termasuk tiket pesawat Jakarta pulang-pergi. Seluruh fasilitas program lengkap.</div>
+            <ul>
+              {pkgCommon.map((x) => <li>{x}</li>)}
+              <li class="no">Tiket pesawat Jakarta PP</li>
+              <li class="no">Single supplement</li>
+              <li class="no">Kartu kedatangan digital &amp; pengeluaran pribadi</li>
+            </ul>
+            <div class="foot">Cocok bila Anda berangkat dari luar Jakarta atau mengatur penerbangan sendiri.</div>
+          </div>
+          <div class="opt hi">
+            <div class="lbl">Option 02 · Paling banyak dipilih</div>
+            <h3>Paket All In</h3>
+            <div class="pr2">Rp 10.800.000</div>
+            <div class="sub">Termasuk tiket pesawat Jakarta – Kuala Lumpur pulang-pergi &amp; seluruh fasilitas program.</div>
+            <ul>
+              <li class="bold-li">Tiket pesawat Jakarta – Kuala Lumpur</li>
+              <li class="bold-li">Tiket pesawat Kuala Lumpur – Jakarta</li>
+              {pkgCommon.map((x) => <li>{x}</li>)}
+              <li class="no">Single supplement</li>
+              <li class="no">Kartu kedatangan digital &amp; pengeluaran pribadi</li>
+            </ul>
+            <div class="foot">Berangkat bersama rombongan dari Jakarta. Tidak perlu mengurus penerbangan sendiri.</div>
+          </div>
+        </div>
+        <div class="warn rv">
+          ⚠ <b>Kamar.</b> Harga berlaku untuk kamar berdua. Permintaan kamar sendiri dikenakan single supplement — rinciannya disampaikan tim program.
+          <br /><br />
+          <b>Kartu kedatangan digital.</b> Pengisian kartu kedatangan Malaysia dan Thailand menjadi tanggung jawab masing-masing peserta. Tim Jagatrip dapat membantu pengisiannya secara kondisional — konfirmasikan lebih dulu ke admin.
+          <br /><br />
+          <b>Paspor</b> wajib berlaku minimal 6 bulan. Malaysia &amp; Thailand bebas visa untuk paspor Indonesia.
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM PENDAFTARAN (dipindah ke atas FAQ sesuai revisi) -->
+    <section class="reg" id="daftar">
+      <div class="wrap reg-in">
+        <div class="rv">
+          <div class="idx dk">Final Note / Your Move</div>
+          <h2>Berangkat sebagai delegasi.<br />Pulang dengan <em>rencana</em>.</h2>
+          <p class="rp">Isi data minat. Tim program mengirimkan susunan acara lengkap, profil institusi, dan tata cara pengamanan kursi.</p>
+        </div>
+        <div class="fcard rv">
+          <div id="formArea">
+            <form id="regForm" novalidate>
+              <div class="fld" id="f1">
+                <label for="nama"><i>01</i> Nama Lengkap</label>
+                <input type="text" id="nama" placeholder="Sesuai dokumen resmi" autocomplete="name" />
+                <div class="err">Mohon lengkapi nama.</div>
+              </div>
+              <div class="fld" id="f2">
+                <label for="institusi"><i>02</i> Institusi</label>
+                <input type="text" id="institusi" placeholder="Nama sekolah atau yayasan" autocomplete="organization" />
+                <div class="err">Mohon lengkapi nama institusi.</div>
+              </div>
+              <div class="fld" id="f3">
+                <label for="whatsapp"><i>03</i> Nomor WhatsApp</label>
+                <input type="tel" id="whatsapp" placeholder="0812-3456-7890" autocomplete="tel" inputmode="tel" />
+                <div class="err">Mohon isi nomor yang benar (diawali 08 / 628).</div>
+              </div>
+              <button type="submit" class="btn b-o">Kirim Minat</button>
+            </form>
+            <div class="fnote">↗ Tidak mengikat kewajiban pembayaran. Data hanya digunakan untuk penyelenggaraan program ini.</div>
+          </div>
+          <div class="ok" id="okArea">
+            <div class="ic">✓</div>
+            <h4>Minat Terkirim</h4>
+            <p>Mengalihkan ke WhatsApp Admin…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (dipindah ke bawah form sesuai revisi) -->
+    <section id="faq" class="faq-sec">
+      <div class="wrap faq-wrap">
+        <div class="idx rv">08 / Questions</div>
+        <h2 class="sec-t rv">Sebelum<br />berangkat.</h2>
+        <div class="rv">
+          {faqs.map(([q, a]) => <details><summary>{q}</summary><div class="a">{a}</div></details>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="wrap ft">
+        <div>
+          <img src="/images/batch2/logo-logotype.png" alt="JAGATRIP" width="2094" height="570" class="ft-logo" />
+          <div class="ft-sub">Education Field Study</div>
+        </div>
+        <p>Benchmarking Sekolah ASEAN — Dari Ruang Kelas Malaysia ke Hatyai. Angkatan Oktober 2026. Susunan agenda dapat menyesuaikan konfirmasi akhir institusi tujuan.</p>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>
+
+<script>
+  import { getUtm } from '../lib/utm';
+  import { initFormGuard, lockForm } from '../lib/form-guard';
+  import { parseIndonesianPhone, formatPhoneInputRealtime } from '../lib/phone-formatter';
+
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwrwCUYnuIUCflczefMlYAHdCnOD-5PMqVEL94QTPWy6Hkds6SiOQLfyo7PZpVoqtjiZg/exec';
+  const WA_ADMIN = '628139190363'; // Admin Kamariya
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Reveal on scroll
+    const els = document.querySelectorAll('.rv');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach((e) => e.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver(
+        (en) => en.forEach((x) => {
+          if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); }
+        }),
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+      els.forEach((e) => io.observe(e));
+    }
+
+    const form = document.getElementById('regForm') as HTMLFormElement | null;
+    if (!form) return;
+    initFormGuard(form, 'batch2-form', '✓ Minat Anda sudah terkirim. Tim program akan menghubungi Anda.');
+
+    // Auto-format nomor WA saat diketik
+    const waInput = form.querySelector<HTMLInputElement>('#whatsapp');
+    waInput?.addEventListener('input', () => {
+      waInput.value = formatPhoneInputRealtime(waInput.value);
+    });
+
+    const bad = (id: string, v: boolean) =>
+      document.getElementById(id)?.classList.toggle('bad', v);
+
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+
+      const nama = (form.querySelector('#nama') as HTMLInputElement)?.value.trim() ?? '';
+      const institusi = (form.querySelector('#institusi') as HTMLInputElement)?.value.trim() ?? '';
+      const rawWa = (form.querySelector('#whatsapp') as HTMLInputElement)?.value.trim() ?? '';
+
+      const parsed = parseIndonesianPhone(rawWa);
+      const e1 = nama.length < 3, e2 = institusi.length < 3, e3 = !parsed.isValid;
+      bad('f1', e1); bad('f2', e2); bad('f3', e3);
+      if (e1 || e2 || e3) {
+        form.querySelector<HTMLInputElement>('.fld.bad input')?.focus();
+        return;
+      }
+
+      const wa = parsed.e164;
+      const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Mengirim...'; }
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            _sheet: 'Batch2', nama, institusi, wa,
+            ...getUtm(), source: 'LP /batch2', timestamp: new Date().toISOString(),
+          }),
+        });
+      } catch (err) { console.error('Log lead error:', err); }
+
+      const win = window as any;
+      if (win.fbq) { try { win.fbq('track', 'Lead', { content_name: 'Batch2 Oktober' }); } catch (e) { console.error(e); } }
+
+      lockForm(form, 'batch2-form');
+
+      const greeting = `Halo Admin, saya ${nama} tertarik ikut Jagatrip Oktober Malay - Thailand, dan sudah mengisi form. Bagaimana selanjutnya?`;
+      const waUrl = `https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(greeting)}`;
+
+      const formArea = document.getElementById('formArea');
+      const okArea = document.getElementById('okArea');
+      if (formArea) formArea.style.display = 'none';
+      if (okArea) okArea.style.display = 'block';
+
+      setTimeout(() => { window.location.href = waUrl; }, 600);
+    });
+
+    ['nama', 'institusi', 'whatsapp'].forEach((id) => {
+      form.querySelector<HTMLInputElement>('#' + id)?.addEventListener('input', function (this: HTMLInputElement) {
+        this.closest('.fld')?.classList.remove('bad');
+      });
+    });
+  });
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :global(body) { margin: 0; }
+  .b2 {
+    --navy:#0E2340; --navy-2:#16304F; --navy-3:#1E3E63;
+    --cream:#F6F0E4; --cream-2:#EFE6D4; --linen:#FCF9F3;
+    --orange:#E1651B; --orange-2:#F0894A; --orange-soft:#FBE4D2;
+    --gold:#C69B4A; --ink:#14140F; --muted:#6E6C64;
+    --line:rgba(14,35,64,.15); --line-l:rgba(246,240,228,.16);
+    --serif:'Playfair Display',Georgia,serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    font-family:var(--sans);background:var(--linen);color:var(--ink);line-height:1.55;
+    -webkit-font-smoothing:antialiased;display:block;overflow-x:hidden;
+  }
+  .b2 * { box-sizing: border-box; }
+  .b2 h1, .b2 h2, .b2 h3, .b2 h4 { font-family:var(--serif); font-weight:600; line-height:1.08; letter-spacing:-.02em; margin:0; }
+  .b2 p { margin:0; }
+  .b2 a { text-decoration:none; color:inherit; }
+  .b2 ul { margin:0; padding:0; list-style:none; }
+  .wrap { width:100%; max-width:1160px; margin:0 auto; padding:0 30px; }
+  .idx { font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--orange); display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .idx::after { content:""; height:1px; flex:1; background:var(--line); max-width:120px; }
+  .idx.dk { color:var(--gold); }
+  .idx.dk::after { background:var(--line-l); }
+  .sec-t { font-size:clamp(26px,3.8vw,42px); margin-bottom:10px; }
+  .grid-bg { background-image:linear-gradient(rgba(14,35,64,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(14,35,64,.05) 1px,transparent 1px); background-size:46px 46px; }
+  .grid-bg-d { background-image:linear-gradient(rgba(246,240,228,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(246,240,228,.05) 1px,transparent 1px); background-size:46px 46px; }
+  .b2 section { padding:48px 0; }
+  .dark { background:var(--navy); color:var(--cream); }
+  .dark h2, .dark h3, .dark h4 { color:var(--cream); }
+  .cream { background:var(--cream); }
+  .sec-p { font-size:14.5px; color:var(--muted); margin-bottom:22px; }
+  .sec-p.wide { max-width:640px; }
+  .it-note { font-size:12.5px; color:var(--muted); margin-top:14px; font-style:italic; }
+
+  /* TOPBAR */
+  .topbar { position:fixed; inset:0 0 auto 0; z-index:100; background:rgba(252,249,243,.93); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .tb { display:flex; align-items:center; justify-content:space-between; height:58px; }
+  .brand { display:flex; align-items:center; gap:9px; }
+  .bm-img { width:27px; height:auto; display:block; }
+  .bn-img { width:118px; height:auto; display:block; }
+  .tb-nav { display:flex; gap:24px; align-items:center; }
+  .tb-nav a { font-size:11.5px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .tb-nav a:hover { color:var(--orange); }
+  .tb-cta { background:var(--navy); color:var(--cream) !important; padding:9px 18px; font-size:11px !important; }
+  .tb-cta:hover { background:var(--orange); color:#fff !important; }
+
+  /* HERO */
+  .hero { background:var(--cream); padding:82px 0 0; position:relative; overflow:hidden; }
+  .hero::before { content:""; position:absolute; top:-140px; left:-120px; width:460px; height:460px; border-radius:50%; background:radial-gradient(circle,rgba(225,101,27,.14),transparent 68%); }
+  .hero-in { position:relative; z-index:2; display:grid; grid-template-columns:1.4fr .8fr; gap:40px; align-items:end; padding-bottom:32px; }
+  .kick { display:inline-flex; align-items:center; gap:9px; font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--navy); border:1px solid var(--line); padding:6px 13px; margin-bottom:20px; }
+  .kick i { width:5px; height:5px; background:var(--orange); border-radius:50%; display:block; }
+  .hero h1 { font-size:clamp(31px,4.8vw,56px); color:var(--navy); letter-spacing:-.03em; line-height:1.05; }
+  .hero h1 .hl { position:relative; display:inline; background:linear-gradient(transparent 62%,rgba(225,101,27,.26) 62%); }
+  .hero h1 .kick2 { display:block; font-style:italic; font-weight:500; color:var(--orange); font-size:.66em; margin-top:8px; letter-spacing:-.02em; }
+  .theme-strip { display:inline-flex; align-items:center; gap:11px; flex-wrap:wrap; border-left:3px solid var(--orange); padding:7px 0 7px 14px; margin-top:20px; }
+  .theme-strip .a { font-size:11px; font-weight:700; letter-spacing:.19em; text-transform:uppercase; color:var(--navy); }
+  .theme-strip .b { font-size:13.5px; color:var(--muted); font-style:italic; }
+  .route { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-top:14px; padding-top:12px; border-top:1px solid var(--line); }
+  .route .r { font-family:var(--serif); font-size:clamp(21px,2.8vw,30px); color:var(--navy); letter-spacing:-.02em; line-height:1.1; }
+  .route .r i { font-style:normal; color:var(--orange); margin:0 6px; }
+  .route .dt { font-size:12px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); padding:5px 11px; }
+  .hero-p { font-size:15.5px; color:var(--muted); max-width:470px; margin-top:14px; line-height:1.6; }
+  .hero-p b { color:var(--navy); font-weight:600; }
+  .proof { display:flex; flex-wrap:wrap; gap:0; margin-top:16px; }
+  .proof div { padding-right:18px; margin-right:18px; border-right:1px solid var(--line); }
+  .proof div:last-child { border-right:none; margin-right:0; padding-right:0; }
+  .proof b { font-family:var(--serif); font-size:20px; color:var(--orange); display:block; line-height:1; }
+  .proof span { font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); }
+  .hero-btns { display:flex; gap:11px; flex-wrap:wrap; margin-top:20px; }
+  .btn { display:inline-block; padding:13px 26px; font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; border:1px solid transparent; cursor:pointer; font-family:var(--sans); transition:.2s; }
+  .b-o { background:var(--orange); color:#fff; }
+  .b-o:hover { background:#c5540e; }
+  .b-n { border-color:var(--navy); color:var(--navy); }
+  .b-n:hover { background:var(--navy); color:var(--cream); }
+
+  /* FLYER PLACEHOLDER (on process) */
+  .flyer { background:var(--navy); border:1px solid var(--navy); aspect-ratio:3/4; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:26px; position:relative; }
+  .flyer::before { content:""; position:absolute; inset:9px; border:1px dashed rgba(246,240,228,.22); }
+  .flyer .i { width:38px; height:38px; border:2px solid var(--gold); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:17px; margin-bottom:13px; }
+  .flyer .t { font-family:var(--serif); font-size:17px; color:var(--cream); margin-bottom:6px; }
+  .flyer .d { font-size:11px; color:rgba(246,240,228,.5); line-height:1.6; }
+  .f-cap { font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:10px; text-align:center; }
+
+  /* META BAR */
+  .mbar { background:var(--navy); color:var(--cream); }
+  .mbar-in { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-l); }
+  .mb { background:var(--navy); padding:13px 20px; }
+  .mb .k { font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(246,240,228,.45); margin-bottom:3px; }
+  .mb .v { font-family:var(--serif); font-size:18px; color:var(--cream); line-height:1.2; }
+  .mb .v span { color:var(--orange-2); }
+
+  /* OPENING NOTE */
+  .quote { font-family:var(--serif); font-size:clamp(22px,3.2vw,36px); line-height:1.28; color:var(--cream); max-width:880px; }
+  .quote em { font-style:italic; color:var(--orange-2); }
+  .plist { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-l); border:1px solid var(--line-l); margin-top:26px; }
+  .pl { background:var(--navy); padding:17px 18px; }
+  .pl b { font-family:var(--serif); font-size:12px; color:var(--gold); letter-spacing:.12em; display:block; margin-bottom:8px; }
+  .pl p { font-size:15px; color:var(--cream); line-height:1.45; font-weight:500; }
+  .pl small { display:block; font-size:12.5px; color:rgba(246,240,228,.5); margin-top:6px; line-height:1.55; }
+  .verdict { margin-top:24px; border-left:3px solid var(--orange); padding-left:22px; }
+  .verdict p { font-family:var(--serif); font-size:clamp(18px,2.3vw,25px); line-height:1.35; color:var(--cream); }
+
+  /* METODE */
+  .m-head { display:grid; grid-template-columns:1fr .9fr; gap:36px; align-items:end; margin-bottom:22px; }
+  .m-note { font-size:15px; color:var(--muted); line-height:1.6; }
+  .dims { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .dim { background:var(--linen); padding:17px 16px; }
+  .dim .n { font-family:var(--serif); font-size:23px; color:var(--orange); line-height:1; margin-bottom:8px; }
+  .dim h4 { font-size:16.5px; margin-bottom:5px; }
+  .dim p { font-size:13px; color:var(--muted); line-height:1.5; }
+  .card4 { margin-top:18px; border:1px solid var(--navy); background:var(--navy); color:var(--cream); display:grid; grid-template-columns:auto repeat(4,1fr); align-items:stretch; }
+  .c4-l { padding:15px 18px; border-right:1px solid var(--line-l); display:flex; flex-direction:column; justify-content:center; min-width:180px; }
+  .c4-l b { font-family:var(--serif); font-size:16px; display:block; }
+  .c4-l span { font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-top:3px; }
+  .c4 { padding:15px 14px; border-right:1px solid var(--line-l); font-size:13px; color:rgba(246,240,228,.72); line-height:1.5; }
+  .c4:last-child { border-right:none; background:rgba(225,101,27,.16); color:var(--cream); font-weight:500; }
+  .c4 i { display:block; font-style:normal; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--orange-2); margin-bottom:6px; }
+  .c4-note { font-size:13.5px; color:var(--muted); margin-top:12px; font-style:italic; }
+
+  /* SCHOOL ACCESS */
+  .sa { display:grid; grid-template-columns:1.05fr 1fr; gap:34px; align-items:start; }
+  .sa-p { font-size:15.5px; color:rgba(246,240,228,.7); margin-top:14px; line-height:1.6; max-width:460px; }
+  .sa-stats { display:flex; gap:1px; background:var(--line-l); border:1px solid var(--line-l); margin-top:20px; }
+  .sst { background:var(--navy); padding:13px 18px; flex:1; }
+  .sst b { font-family:var(--serif); font-size:29px; color:var(--orange-2); display:block; line-height:1; }
+  .sst span { font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:rgba(246,240,228,.55); }
+  .proto { border:1px solid var(--line-l); }
+  .proto .ph { padding:12px 18px; border-bottom:1px solid var(--line-l); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+  .pr { display:grid; grid-template-columns:88px 1fr; gap:16px; padding:12px 18px; border-bottom:1px solid var(--line-l); }
+  .pr:last-child { border-bottom:none; }
+  .pr .t { font-size:11px; color:var(--orange-2); letter-spacing:.08em; font-weight:600; padding-top:2px; }
+  .pr .x { font-size:14px; color:rgba(246,240,228,.82); line-height:1.5; }
+  .pull { font-family:var(--serif); font-size:clamp(19px,2.5vw,26px); line-height:1.3; color:var(--cream); margin-top:22px; border-top:1px solid var(--line-l); padding-top:18px; }
+  .pull em { font-style:italic; color:var(--orange-2); }
+
+  /* DAYS */
+  .day { display:grid; grid-template-columns:52px 128px 1fr; gap:20px; padding:14px 0; border-bottom:1px solid var(--line); align-items:baseline; }
+  .day:first-of-type { border-top:1px solid var(--line); }
+  .day .n { font-family:var(--serif); font-size:25px; color:var(--orange); line-height:1; }
+  .day .d { font-size:11px; letter-spacing:.11em; text-transform:uppercase; color:var(--muted); padding-top:5px; }
+  .day h4 { font-size:19px; margin-bottom:4px; }
+  .day p { font-size:14.5px; color:var(--muted); line-height:1.55; }
+  .tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+  .tg { font-size:10px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; padding:4px 9px; border:1px solid var(--line); color:var(--navy); }
+  .tg.k { background:var(--navy); color:var(--cream); border-color:var(--navy); }
+
+  /* TRIP LEADER */
+  .lead-p { font-size:15px; color:rgba(246,240,228,.65); max-width:560px; margin-bottom:22px; }
+  .lead-in { display:grid; grid-template-columns:.62fr 1fr; gap:30px; align-items:start; }
+  .ph-img { background:var(--navy-2); border:1px solid rgba(198,155,74,.34); aspect-ratio:4/5; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:22px; position:relative; }
+  .ph-img::before { content:""; position:absolute; inset:9px; border:1px dashed rgba(246,240,228,.2); }
+  .ph-img .i { width:38px; height:38px; border:2px solid var(--gold); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:12px; }
+  .ph-img .t { font-family:var(--serif); font-size:16px; color:var(--cream); margin-bottom:5px; }
+  .ph-img .d { font-size:11px; color:rgba(246,240,228,.48); line-height:1.55; }
+  .lead-id { border-left:3px solid var(--orange); padding:9px 0 9px 16px; margin-top:14px; }
+  .lead-id b { font-family:var(--serif); font-size:20px; color:var(--cream); display:block; line-height:1.2; }
+  .lead-id span { font-size:11.5px; letter-spacing:.06em; color:var(--gold); display:block; margin-top:4px; line-height:1.4; }
+  .lead-pts { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line-l); border:1px solid var(--line-l); }
+  .lp { background:var(--navy); padding:14px 16px; display:flex; gap:12px; align-items:baseline; }
+  .lp b { font-family:var(--serif); font-size:12px; color:var(--orange-2); letter-spacing:.1em; flex-shrink:0; }
+  .lp p { font-size:13.5px; color:rgba(246,240,228,.72); line-height:1.5; }
+
+  /* TAKE HOME */
+  .outs { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .ou { background:#fff; padding:16px 16px; }
+  .ou b { font-family:var(--serif); font-size:12px; color:var(--orange); letter-spacing:.1em; display:block; margin-bottom:7px; }
+  .ou h4 { font-size:16.5px; margin-bottom:4px; }
+  .ou p { font-size:13px; color:var(--muted); line-height:1.5; }
+  .gar { margin-top:18px; border:2px solid var(--orange); background:#fff; padding:18px 22px; display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:center; }
+  .seal { width:74px; height:74px; border:2px solid var(--orange); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--orange); flex-shrink:0; }
+  .seal b { font-family:var(--serif); font-size:25px; line-height:1; }
+  .seal span { font-size:8px; letter-spacing:.14em; text-transform:uppercase; margin-top:2px; }
+  .gar h4 { font-size:20px; margin-bottom:5px; }
+  .gar p { font-size:14.5px; color:var(--muted); line-height:1.55; }
+
+  /* WHO */
+  .who-sec { padding:42px 0; }
+  .who { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .wh { background:var(--cream); padding:13px 16px; display:flex; gap:12px; align-items:baseline; }
+  .wh b { font-family:var(--serif); font-size:13px; color:var(--orange); }
+  .wh span { font-size:14.5px; color:var(--navy); line-height:1.4; font-weight:500; }
+  .wnote { margin-top:16px; border-left:3px solid var(--navy); padding-left:20px; font-size:14.5px; color:var(--muted); line-height:1.6; max-width:720px; }
+  .wnote b { color:var(--navy); }
+
+  /* HARGA */
+  .opts { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .opt { border:1px solid var(--line-l); padding:22px 22px; display:flex; flex-direction:column; }
+  .opt.hi { border:1px solid var(--orange); background:rgba(225,101,27,.09); }
+  .opt .lbl { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+  .opt.hi .lbl { color:var(--orange-2); }
+  .opt h3 { font-size:23px; margin-bottom:7px; }
+  .opt .pr2 { font-family:var(--serif); font-size:36px; color:var(--cream); line-height:1; margin-bottom:6px; }
+  .opt .sub { font-size:13.5px; color:rgba(246,240,228,.6); line-height:1.5; margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid var(--line-l); }
+  .opt li { font-size:13.5px; color:rgba(246,240,228,.82); padding:4px 0 4px 22px; position:relative; line-height:1.45; }
+  .opt li::before { content:"✓"; position:absolute; left:0; color:var(--orange-2); font-size:12px; }
+  .opt li.bold-li { font-weight:600; color:var(--cream); }
+  .opt li.no { color:rgba(246,240,228,.42); }
+  .opt li.no::before { content:"✕"; color:rgba(246,240,228,.35); }
+  .opt .foot { margin-top:auto; font-size:12.5px; color:rgba(246,240,228,.55); line-height:1.55; border-top:1px solid var(--line-l); padding-top:12px; }
+  .warn { margin-top:18px; border:1px solid rgba(198,155,74,.4); padding:14px 18px; font-size:13.5px; color:rgba(246,240,228,.72); line-height:1.6; }
+  .warn b { color:var(--cream); }
+
+  /* FORM */
+  .reg { background:var(--navy); position:relative; overflow:hidden; }
+  .reg::before { content:""; position:absolute; bottom:-200px; right:-140px; width:560px; height:560px; border-radius:50%; background:radial-gradient(circle,rgba(225,101,27,.2),transparent 68%); }
+  .reg-in { position:relative; z-index:2; display:grid; grid-template-columns:1fr .95fr; gap:40px; align-items:center; }
+  .reg h2 { font-size:clamp(30px,4.6vw,52px); color:var(--cream); letter-spacing:-.03em; }
+  .reg h2 em { font-style:italic; color:var(--orange-2); }
+  .reg .rp { font-size:15.5px; color:rgba(246,240,228,.65); margin-top:12px; max-width:420px; line-height:1.6; }
+  .fcard { background:var(--cream); padding:26px 24px; }
+  .fld { margin-bottom:15px; }
+  .fld label { display:block; font-size:10.5px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--navy); margin-bottom:6px; }
+  .fld label i { font-style:normal; color:var(--orange); margin-right:6px; }
+  .fld input { width:100%; padding:12px 14px; border:1px solid rgba(14,35,64,.24); background:#fff; font-family:var(--sans); font-size:15px; color:var(--ink); border-radius:0; }
+  .fld input:focus { outline:none; border-color:var(--orange); box-shadow:0 0 0 3px rgba(225,101,27,.12); }
+  .fld input:disabled { background:#EFE6D4; color:var(--muted); }
+  .err { color:#B23A15; font-size:12px; margin-top:5px; display:none; }
+  .fld.bad input { border-color:#B23A15; }
+  .fld.bad .err { display:block; }
+  .fcard .btn { width:100%; text-align:center; border:none; }
+  .fcard .btn:disabled { opacity:.7; cursor:not-allowed; }
+  .fnote { font-size:12px; color:var(--muted); margin-top:12px; text-align:center; line-height:1.55; }
+  .ok { display:none; text-align:center; padding:22px 6px; }
+  .ok .ic { width:52px; height:52px; border:2px solid var(--orange); border-radius:50%; color:var(--orange); display:flex; align-items:center; justify-content:center; font-size:23px; margin:0 auto 16px; }
+  .ok h4 { font-size:21px; margin-bottom:8px; }
+  .ok p { font-size:14px; color:var(--muted); line-height:1.6; }
+
+  /* FAQ */
+  .faq-sec { padding:46px 0; }
+  .faq-wrap { max-width:840px; }
+  .b2 details { border-bottom:1px solid var(--line); }
+  .b2 details summary { list-style:none; cursor:pointer; padding:14px 34px 14px 0; font-family:var(--serif); font-size:18px; color:var(--navy); position:relative; }
+  .b2 details summary::-webkit-details-marker { display:none; }
+  .b2 details summary::after { content:"+"; position:absolute; right:4px; top:12px; font-size:21px; color:var(--orange); font-family:var(--sans); font-weight:300; }
+  .b2 details[open] summary::after { content:"–"; }
+  .b2 details .a { padding:0 40px 16px 0; font-size:14.5px; color:var(--muted); line-height:1.65; }
+
+  /* FOOTER */
+  .b2 footer { background:#081729; color:rgba(246,240,228,.5); padding:24px 0; font-size:12.5px; }
+  .ft { display:flex; justify-content:space-between; gap:22px; flex-wrap:wrap; align-items:center; }
+  .ft-logo { width:132px; height:auto; display:block; filter:brightness(0) invert(1); opacity:.92; }
+  .ft-sub { font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(246,240,228,.35); margin-top:6px; }
+  .ft p { max-width:520px; line-height:1.6; font-size:12px; }
+
+  /* REVEAL */
+  .rv { opacity:0; transform:translateY(16px); transition:.6s ease; }
+  .rv.in { opacity:1; transform:none; }
+
+  @media (max-width:960px) {
+    .hero-in, .m-head, .sa, .reg-in, .lead-in { grid-template-columns:1fr; gap:26px; }
+    .ph-img { max-width:300px; }
+    .hero-in { align-items:start; }
+    .mbar-in, .dims, .outs, .who { grid-template-columns:repeat(2,1fr); }
+    .plist { grid-template-columns:1fr; }
+    .card4 { grid-template-columns:1fr 1fr; }
+    .c4-l { grid-column:1/-1; border-right:none; border-bottom:1px solid var(--line-l); }
+    .opts { grid-template-columns:1fr; }
+    .flyer { max-width:340px; }
+  }
+  @media (max-width:620px) {
+    .wrap { padding:0 18px; }
+    .b2 section { padding:38px 0; }
+    .hero { padding-top:70px; }
+    .proof div { padding-right:13px; margin-right:13px; }
+    .proof b { font-size:17px; }
+    .theme-strip { gap:4px; }
+    .theme-strip .a, .theme-strip .b { display:block; }
+    .tb-nav a:not(.tb-cta) { display:none; }
+    .mbar-in, .dims, .outs, .who, .card4, .lead-pts { grid-template-columns:1fr; }
+    .sa-stats { flex-direction:column; }
+    .day { grid-template-columns:40px 1fr; gap:12px; }
+    .day .d { grid-column:2; padding-top:0; margin-bottom:4px; }
+    .day .db { grid-column:2; }
+    .gar { grid-template-columns:1fr; text-align:center; padding:20px 18px; }
+    .seal { margin:0 auto; }
+    .pr { grid-template-columns:1fr; gap:5px; }
+    .bm-img { width:24px; }
+    .bn-img { width:104px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .b2 * { transition:none !important; }
+    .rv { opacity:1; transform:none; }
+  }
+</style>
