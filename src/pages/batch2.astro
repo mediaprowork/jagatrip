@@ -939,7 +939,8 @@ const faqs = [
 
   @media (max-width:960px) {
     .hero-in, .m-head, .sa, .reg-in, .lead-in { grid-template-columns:1fr; gap:32px; }
-    .ph-img { max-width:300px; }
+    .ph-img { max-width:320px; margin:0 auto; }
+    .lead-card { position:relative; top:auto; width:100%; max-width:440px; margin:0 auto; }
     .hero-in { align-items:start; }
     .mbar-in, .dims, .outs, .who { grid-template-columns:repeat(2,1fr); }
     .plist { grid-template-columns:1fr; }
@@ -983,6 +984,11 @@ const faqs = [
     .bm-img { width:24px; }
     .bn-img { width:104px; }
     .flyer { max-width:100%; }
+    .lead-card { padding:18px 16px; }
+    .lead-id b { font-size:19px; }
+    .lead-id span { font-size:11.5px; line-height:1.45; }
+    .lead-badges { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; margin-top:14px; padding-top:12px; }
+    .lead-badges span { width:100%; text-align:center; padding:5px 2px; font-size:9.5px; letter-spacing:0; }
   }
   @media (prefers-reduced-motion:reduce) {
     .b2 * { transition:none !important; }
