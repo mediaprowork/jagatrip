@@ -87,7 +87,7 @@ const trips = (await getCollection('trips'))
         ) : (
           <ul class="space-y-3">
             {trips.map((trip) => {
-              const slug = trip.data.slug ?? trip.slug;
+              const slug = trip.data.slug ?? trip.id;
               const isRedirected = slug === 'malaysia-thailand';
               const href = isRedirected ? '/' : `/${slug}`;
               return (

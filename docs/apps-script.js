@@ -2,13 +2,12 @@
  * Google Apps Script — Pendaftaran JAGATRIP
  *
  * SETUP:
- * 1. Buka Google Sheets baru
+ * 1. Buka Google Sheets baru / yang sudah ada
  * 2. Extensions → Apps Script → paste seluruh code ini
- * 3. Jalankan fungsi setupSheet() SEKALI (Run → setupSheet)
- * 4. Deploy → New deployment → Web app
+ * 3. Deploy → Manage deployments → Edit → New version → Deploy
  *    - Execute as: Me
  *    - Who has access: Anyone
- * 5. Copy URL deployment → paste di src/lib/form-handler.ts
+ * 4. Copy URL deployment → paste di src/lib/form-handler.ts & file LP
  */
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -56,7 +55,7 @@ function ensureUtmHeaders(sheet, baseCols) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// SETUP — Jalankan SEKALI
+// SETUP — Jalankan SEKALI (Hanya jika membuat sheet baru dari nol)
 // ═══════════════════════════════════════════════════════════════════════
 
 function setupSheet() {
@@ -190,7 +189,6 @@ function updateSummary() {
 
   var lastRow = sheet.getLastRow();
   if (lastRow < 2) {
-    // No data yet
     summary.getRange(5, 2, 7, 1).setValue(0);
     return;
   }
@@ -258,7 +256,7 @@ function getDriveFolder() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// SETUP REGISTRASI SHEET — jalankan setupRegistrasiSheet() sekali
+// SETUP REGISTRASI SHEET
 // ═══════════════════════════════════════════════════════════════════════
 
 var REG_SHEET_NAME = 'Registrasi';
@@ -277,7 +275,6 @@ function setupRegistrasiSheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(REG_SHEET_NAME);
   if (!sheet) sheet = ss.insertSheet(REG_SHEET_NAME);
-
   sheet.clear();
   sheet.getRange(1, 1, 1, REG_HEADERS.length).setValues([REG_HEADERS]);
   sheet.getRange(1, 1, 1, REG_HEADERS.length)
@@ -291,19 +288,16 @@ function setupRegistrasiSheet() {
   sheet.setRowHeight(1, 40);
   sheet.setFrozenRows(1);
 
-  // Column widths
   var widths = {1:40, 2:140, 3:180, 4:120, 5:200, 6:140, 7:180, 8:120, 9:120,
                 10:100, 11:100, 12:120, 13:140, 14:100, 15:80, 16:150, 17:180,
                 18:100, 19:100, 20:180, 21:120, 22:120, 23:250, 24:100, 25:200};
   for (var c in widths) sheet.setColumnWidth(parseInt(c), widths[c]);
 
-  // Status dropdown
   var statusRule = SpreadsheetApp.newDataValidation()
     .requireValueInList(['Baru', 'Terverifikasi', 'Confirmed', 'Batal'], true)
     .setAllowInvalid(false).build();
   sheet.getRange(2, 24, 998, 1).setDataValidation(statusRule).setHorizontalAlignment('center');
 
-  // Zebra
   var dataRange = sheet.getRange(2, 1, 998, REG_HEADERS.length);
   dataRange.setFontSize(10).setVerticalAlignment('middle').setWrap(true);
   var rule = SpreadsheetApp.newConditionalFormatRule()
@@ -311,15 +305,13 @@ function setupRegistrasiSheet() {
     .setBackground('#F0F9FF')
     .setRanges([dataRange]).build();
   sheet.setConditionalFormatRules([rule]);
-
   if (sheet.getFilter()) sheet.getFilter().remove();
   sheet.getRange(1, 1, 1, REG_HEADERS.length).createFilter();
-
   Logger.log('✅ Sheet Registrasi siap!');
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// API ENDPOINTS
+// API ENDPOINTS (doPost)
 // ═══════════════════════════════════════════════════════════════════════
 
 function doPost(e) {
@@ -333,6 +325,11 @@ function doPost(e) {
       return handleRegistrasi(ss, data);
     }
 
+    // ── Route: Landing Page Jagatalk 8 (LP_Jagatalk8) ──
+    if (targetSheet === 'LP_Jagatalk8' || targetSheet === 'Jagatalk8') {
+      return handleJagatalk8(ss, targetSheet, data);
+    }
+
     // ── Route: Landing Page Batch 2 (Batch2) ──
     if (targetSheet === 'Batch2') {
       return handleBatch2(ss, targetSheet, data);
@@ -343,21 +340,18 @@ function doPost(e) {
       return handleBatch3(ss, targetSheet, data);
     }
 
-    // ── Route: Landing Page China (China, China2, China_Utama) ──
-    if (targetSheet === 'China' || targetSheet === 'China2' || targetSheet === 'China_Utama') {
+    // ── Route: Landing Page China (China, China2, China_Utama, China_SK) ──
+    if (targetSheet === 'China' || targetSheet === 'China2' || targetSheet === 'China_Utama' || targetSheet === 'China_SK') {
       return handleChina(ss, targetSheet, data);
     }
 
-    // ── Route: Landing Page leads (LP*, CompanyProfile, China_SK, atau _sheet eksplisit lainnya) ──
-    // Setiap _sheet yang ditentukan eksplisit (bukan default Pendaftaran) → generic handler (auto-create sheet).
-    // Ini future-proof: sheet baru tinggal kirim _sheet, tab akan otomatis dibuat.
+    // ── Route: Landing Page leads generic (LP*, CompanyProfile, dll) ──
     if (data._sheet && targetSheet !== SHEET_NAME) {
       return handleGenericLead(ss, targetSheet, data);
     }
 
-    // ── Route: Pendaftaran (default — tidak ada _sheet) ──
+    // ── Route: Pendaftaran (default) ──
     return handlePendaftaran(ss, data);
-
   } catch (err) {
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
@@ -368,13 +362,9 @@ function doPost(e) {
 function handlePendaftaran(ss, data) {
   var sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) sheet = ss.getActiveSheet();
-
-  // Auto-heal: tambah header UTM di akhir (setelah kolom dasar HEADERS).
   ensureUtmHeaders(sheet, HEADERS.length);
-
   var lastRow = sheet.getLastRow();
   var no = lastRow <= 1 ? 1 : lastRow;
-
   sheet.appendRow([
     no,
     data.timestamp ? new Date(data.timestamp) : new Date(),
@@ -383,9 +373,7 @@ function handlePendaftaran(ss, data) {
     data.kota_berangkat || '', data.program || '', data.peserta || '',
     data.catatan || '', 'Baru', data.source || '',
   ].concat(utmValues(data)));
-
   updateSummary();
-
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', sheet: SHEET_NAME, row: no }))
     .setMimeType(ContentService.MimeType.JSON);
@@ -397,18 +385,12 @@ function handleRegistrasi(ss, data) {
     setupRegistrasiSheet();
     sheet = ss.getSheetByName(REG_SHEET_NAME);
   }
-
-  // Auto-heal: tambah header UTM di akhir (setelah kolom dasar REG_HEADERS).
   ensureUtmHeaders(sheet, REG_HEADERS.length);
-
   var lastRow = sheet.getLastRow();
   var no = lastRow <= 1 ? 1 : lastRow;
-
-  // Upload files ke Drive
   var linkPaspor = saveFile(data.file_paspor, 'paspor_' + (data.nama_lengkap || no) + '_' + (data.file_paspor_name || 'file'), data.file_paspor_type || 'image/jpeg');
   var linkKtp = saveFile(data.file_ktp, 'ktp_' + (data.nama_lengkap || no) + '_' + (data.file_ktp_name || 'file'), data.file_ktp_type || 'image/jpeg');
   var linkBukti = saveFile(data.file_bukti_transfer, 'bukti_' + (data.nama_lengkap || no) + '_' + (data.file_bukti_transfer_name || 'file'), data.file_bukti_transfer_type || 'image/jpeg');
-
   sheet.appendRow([
     no,
     data.timestamp ? new Date(data.timestamp) : new Date(),
@@ -422,21 +404,107 @@ function handleRegistrasi(ss, data) {
     data.instansi || '', data.jabatan || '', data.instagram || '', data.motivasi || '',
     'Baru', data.source || '',
   ].concat(utmValues(data)));
-
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', sheet: REG_SHEET_NAME, row: no }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
 // ═══════════════════════════════════════════════════════════════════════
+// JAGATALK 8 LEAD HANDLER — /jagatalk8 → 'LP_Jagatalk8'
+// ═══════════════════════════════════════════════════════════════════════
+function handleJagatalk8(ss, sheetName, data) {
+  sheetName = sheetName || 'LP_Jagatalk8';
+  var BASE_HEADERS = ['No', 'Timestamp', 'Nama Lengkap', 'Asal Lembaga / Domisili', 'WhatsApp', 'Status', 'Source'];
+  var sheet = ss.getSheetByName(sheetName);
+  if (!sheet) {
+    sheet = ss.insertSheet(sheetName);
+  }
+
+  var headers = BASE_HEADERS.concat(UTM_HEADERS);
+
+  // Jika baris 1 masih kosong, set header otomatis
+  if (sheet.getLastRow() < 1 || sheet.getLastColumn() < 1) {
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    sheet.getRange(1, 1, 1, headers.length)
+      .setBackground('#0F2547').setFontColor('#FFFFFF').setFontWeight('bold')
+      .setFontSize(10).setHorizontalAlignment('center').setVerticalAlignment('middle').setWrap(true);
+    sheet.setFrozenRows(1);
+    sheet.setRowHeight(1, 38);
+
+    var widths = [50, 160, 180, 220, 140, 100, 160];
+    for (var i = 0; i < widths.length; i++) {
+      sheet.setColumnWidth(i + 1, widths[i]);
+    }
+  }
+
+  ensureUtmHeaders(sheet, BASE_HEADERS.length);
+  var lastRow = sheet.getLastRow();
+  var no = lastRow <= 1 ? 1 : lastRow;
+  sheet.appendRow([
+    no,
+    data.timestamp ? new Date(data.timestamp) : new Date(),
+    data.nama || data.nama_lengkap || '',
+    data.institusi || data.instansi || data.asal_lembaga || data.domisili || data.asal || '',
+    data.wa || data.whatsapp || data.nomor_wa || '',
+    'Baru',
+    data.source || 'JAGATALK #8 Landing Page (/jagatalk8)',
+  ].concat(utmValues(data)));
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok', sheet: sheetName, row: no }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// BATCH 2 LEAD HANDLER — /batch2 → 'Batch2'
+// ═══════════════════════════════════════════════════════════════════════
+function handleBatch2(ss, sheetName, data) {
+  sheetName = sheetName || 'Batch2';
+  var BASE_HEADERS = ['No', 'Timestamp', 'Nama Lengkap', 'Institusi', 'WhatsApp', 'Status', 'Source'];
+  var sheet = ss.getSheetByName(sheetName);
+  if (!sheet) {
+    sheet = ss.insertSheet(sheetName);
+  }
+
+  var headers = BASE_HEADERS.concat(UTM_HEADERS);
+  if (sheet.getLastRow() < 1 || sheet.getLastColumn() < 1) {
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    sheet.getRange(1, 1, 1, headers.length)
+      .setBackground('#0E2340').setFontColor('#FFFFFF').setFontWeight('bold')
+      .setFontSize(10).setHorizontalAlignment('center').setVerticalAlignment('middle').setWrap(true);
+    sheet.setFrozenRows(1);
+    sheet.setRowHeight(1, 38);
+
+    var widths = [50, 160, 180, 200, 140, 100, 140];
+    for (var i = 0; i < widths.length; i++) {
+      sheet.setColumnWidth(i + 1, widths[i]);
+    }
+  }
+
+  ensureUtmHeaders(sheet, BASE_HEADERS.length);
+  var lastRow = sheet.getLastRow();
+  var no = lastRow <= 1 ? 1 : lastRow;
+  sheet.appendRow([
+    no,
+    data.timestamp ? new Date(data.timestamp) : new Date(),
+    data.nama || '',
+    data.institusi || data.instansi || data.sekolah || data.domisili || data.asal || '',
+    data.wa || data.whatsapp || '',
+    'Baru',
+    data.source || '',
+  ].concat(utmValues(data)));
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok', sheet: sheetName, row: no }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ═══════════════════════════════════════════════════════════════════════
 // BATCH 3 LEAD HANDLER — Malaysia · Thailand · Singapura
 // ═══════════════════════════════════════════════════════════════════════
-
 function handleBatch3(ss, sheetName, data) {
   sheetName = sheetName || 'Batch3';
   var BASE_HEADERS = ['No', 'Timestamp', 'Nama Lengkap', 'WhatsApp', 'Instansi', 'Domisili', 'Paket', 'Status', 'Source'];
   var sheet = ss.getSheetByName(sheetName);
-
   if (!sheet) {
     sheet = ss.insertSheet(sheetName);
     var headers = BASE_HEADERS.concat(UTM_HEADERS);
@@ -447,12 +515,9 @@ function handleBatch3(ss, sheetName, data) {
     sheet.setFrozenRows(1);
     sheet.setRowHeight(1, 36);
   }
-
   ensureUtmHeaders(sheet, BASE_HEADERS.length);
-
   var lastRow = sheet.getLastRow();
   var no = lastRow <= 1 ? 1 : lastRow;
-
   sheet.appendRow([
     no,
     data.timestamp ? new Date(data.timestamp) : new Date(),
@@ -464,7 +529,6 @@ function handleBatch3(ss, sheetName, data) {
     'Baru',
     data.source || '',
   ].concat(utmValues(data)));
-
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', sheet: sheetName, row: no }))
     .setMimeType(ContentService.MimeType.JSON);
@@ -473,11 +537,9 @@ function handleBatch3(ss, sheetName, data) {
 // ═══════════════════════════════════════════════════════════════════════
 // CHINA LEAD HANDLER — /china → 'China', /china2 → 'China2'
 // ═══════════════════════════════════════════════════════════════════════
-
 function handleChina(ss, sheetName, data) {
   var BASE_HEADERS = ['No', 'Timestamp', 'Nama Lengkap', 'Asal / Domisili', 'WhatsApp', 'Status', 'Source'];
   var sheet = ss.getSheetByName(sheetName);
-
   if (!sheet) {
     sheet = ss.insertSheet(sheetName);
     var headers = BASE_HEADERS.concat(UTM_HEADERS);
@@ -488,12 +550,9 @@ function handleChina(ss, sheetName, data) {
     sheet.setFrozenRows(1);
     sheet.setRowHeight(1, 36);
   }
-
   ensureUtmHeaders(sheet, BASE_HEADERS.length);
-
   var lastRow = sheet.getLastRow();
   var no = lastRow <= 1 ? 1 : lastRow;
-
   sheet.appendRow([
     no,
     data.timestamp ? new Date(data.timestamp) : new Date(),
@@ -503,7 +562,6 @@ function handleChina(ss, sheetName, data) {
     'Baru',
     data.source || '',
   ].concat(utmValues(data)));
-
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', sheet: sheetName, row: no }))
     .setMimeType(ContentService.MimeType.JSON);
@@ -512,7 +570,6 @@ function handleChina(ss, sheetName, data) {
 // ═══════════════════════════════════════════════════════════════════════
 // GENERIC LEAD HANDLER — untuk LP forms (otomatis buat sheet jika belum ada)
 // ═══════════════════════════════════════════════════════════════════════
-
 function handleGenericLead(ss, sheetName, data) {
   var BASE_HEADERS = ['No', 'Timestamp', 'Nama', 'WhatsApp', 'Email', 'Jabatan', 'Sekolah', 'Kota Asal', 'Catatan', 'Status', 'Source'];
   var sheet = ss.getSheetByName(sheetName);
@@ -526,13 +583,9 @@ function handleGenericLead(ss, sheetName, data) {
     sheet.setFrozenRows(1);
     sheet.setRowHeight(1, 36);
   }
-
-  // Auto-heal: sheet lama (dibuat sebelum UTM) → tambah header UTM.
   ensureUtmHeaders(sheet, BASE_HEADERS.length);
-
   var lastRow = sheet.getLastRow();
   var no = lastRow <= 1 ? 1 : lastRow;
-
   sheet.appendRow([
     no,
     data.timestamp ? new Date(data.timestamp) : new Date(),
@@ -546,53 +599,6 @@ function handleGenericLead(ss, sheetName, data) {
     'Baru',
     data.source || '',
   ].concat(utmValues(data)));
-
-  return ContentService
-    .createTextOutput(JSON.stringify({ status: 'ok', sheet: sheetName, row: no }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-// ═══════════════════════════════════════════════════════════════════════
-// BATCH 2 LEAD HANDLER — /batch2 → 'Batch2'
-// ═══════════════════════════════════════════════════════════════════════
-
-function handleBatch2(ss, sheetName, data) {
-  sheetName = sheetName || 'Batch2';
-  var BASE_HEADERS = ['No', 'Timestamp', 'Nama Lengkap', 'Institusi', 'WhatsApp', 'Status', 'Source'];
-  var sheet = ss.getSheetByName(sheetName);
-
-  if (!sheet) {
-    sheet = ss.insertSheet(sheetName);
-  }
-
-  var headers = BASE_HEADERS.concat(UTM_HEADERS);
-  // Set headers di Baris 1 mulai Kolom A (1)
-  sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-  sheet.getRange(1, 1, 1, headers.length)
-    .setBackground('#0E2340').setFontColor('#FFFFFF').setFontWeight('bold')
-    .setFontSize(10).setHorizontalAlignment('center').setVerticalAlignment('middle').setWrap(true);
-  sheet.setFrozenRows(1);
-  sheet.setRowHeight(1, 38);
-
-  // Set lebar kolom otomatis agar rapi dan tidak terpotong
-  var widths = [50, 160, 180, 200, 140, 100, 140];
-  for (var i = 0; i < widths.length; i++) {
-    sheet.setColumnWidth(i + 1, widths[i]);
-  }
-
-  var lastRow = sheet.getLastRow();
-  var no = lastRow <= 1 ? 1 : lastRow;
-
-  sheet.appendRow([
-    no,
-    data.timestamp ? new Date(data.timestamp) : new Date(),
-    data.nama || '',
-    data.institusi || data.instansi || data.sekolah || data.domisili || data.asal || '',
-    data.wa || data.whatsapp || '',
-    'Baru',
-    data.source || '',
-  ].concat(utmValues(data)));
-
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', sheet: sheetName, row: no }))
     .setMimeType(ContentService.MimeType.JSON);
@@ -603,7 +609,7 @@ function doGet() {
     .createTextOutput(JSON.stringify({
       status: 'ok',
       service: 'JAGATRIP Registration API',
-      sheets: [SHEET_NAME, REG_SHEET_NAME, 'Batch2', 'Batch3', 'Batch3MYTH', 'China', 'China2', 'China_Utama', 'LP1_Nonformal', 'LP2_Promo', 'LP_Jagatalk', 'LP_Jagatalk02', 'LP_Jagatalk_Premium', 'CompanyProfile'],
+      sheets: [SHEET_NAME, REG_SHEET_NAME, 'Batch2', 'Batch3', 'Batch3MYTH', 'China', 'China2', 'China_Utama', 'China_SK', 'LP1_Nonformal', 'LP2_Promo', 'LP_Jagatalk', 'LP_Jagatalk02', 'LP_Jagatalk8', 'LP_Jagatalk_Premium', 'CompanyProfile'],
     }))
     .setMimeType(ContentService.MimeType.JSON);
 }

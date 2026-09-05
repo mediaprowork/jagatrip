@@ -1,0 +1,2343 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "JAGATALK #8 — Roadmap Sekolah Anda ke Program Internasional";
+const pageDesc = "Sesi eksklusif untuk kepala sekolah, founder & yayasan. Roadmap praktis naik kelas ke program internasional bersama Dedi Gunawan — pemilik 6 sekolah IDN.";
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDesc}
+  canonical="https://jagatrip.com/jagatalk8"
+  ogImage="/images/jagatalk/flyer-jw8.avif"
+  ogType="website"
+>
+  <main id="main" class="jagatalk8-page">
+
+    <!-- ============ URGENCY BAR ============ -->
+    <div class="urgency-bar">
+      <div class="container">
+        <span class="dot"></span> Slot Premium tinggal <strong>terbatas</strong> — pendaftaran ditutup H-3 sebelum acara
+      </div>
+    </div>
+
+    <!-- ============ STICKY HEADER ============ -->
+    <header class="sticky-header">
+      <div class="container header-inner">
+        <a href="/" class="brand" aria-label="JAGATALK — kembali ke Beranda">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="brand-icon" aria-hidden="true">
+            <path d="M50 5 C30 5, 15 10, 12 25 L12 55 C12 78, 30 92, 50 95 C70 92, 88 78, 88 55 L88 25 C85 10, 70 5, 50 5 Z" fill="none" stroke="#0E7C86" stroke-width="6" stroke-linejoin="round"/>
+            <rect x="30" y="34" width="40" height="26" rx="7" fill="#FF6B1A"/>
+            <path d="M36 60 L32 70 L46 60 Z" fill="#FF6B1A"/>
+            <circle cx="42" cy="47" r="2.5" fill="white"/>
+            <circle cx="50" cy="47" r="2.5" fill="white"/>
+            <circle cx="58" cy="47" r="2.5" fill="white"/>
+          </svg>
+          <span class="brand-text">
+            <span class="c1">jaga</span><span class="c2">talk</span>
+            <span class="badge-series">#8</span>
+          </span>
+        </a>
+
+        <nav class="nav-links">
+          <a href="#flyer-section">Flyer</a>
+          <a href="#materi">Materi</a>
+          <a href="#fasilitas">Fasilitas</a>
+          <a href="#pemateri">Pemateri</a>
+          <a href="#pricing">Pilihan Tier</a>
+          <a href="#faq">FAQ</a>
+          <a href="#form" class="header-cta">Daftar Sekarang</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container hero-inner">
+        
+        <!-- Left Column: Copywriting & CTA -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="icon-dot"></span> JAGATALK #8 · Webinar Eksklusif Pemilik Sekolah
+          </div>
+          
+          <h1 class="hero-title">
+            Roadmap Sekolah Anda ke <span class="accent">Program Internasional.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Dari yang sudah membangunnya 6 kali.
+          </p>
+
+          <p class="hero-sub">
+            Malam khusus untuk kepala sekolah, founder &amp; yayasan yang siap berhenti bertanya <em>"mulai dari mana"</em> — dan mulai bergerak dengan roadmap yang jelas, praktis, dan teruji.
+          </p>
+
+          <div class="hero-meta">
+            <span>🗓️ Kamis, 18 September 2026</span>
+            <span>⏰ 19.30 WIB · via Zoom</span>
+            <span>👨‍🏫 Bersama Dedi Gunawan</span>
+          </div>
+
+          <div class="hero-cta-wrap">
+            <a href="#form" class="hero-cta">Amankan Kursi Anda <span class="arrow">→</span></a>
+            <div class="hero-microcopy">Investasi mulai Rp 99K · Kuota peserta terbatas</div>
+          </div>
+        </div>
+
+        <!-- Right Column: Flyer Visual Showcase -->
+        <div class="hero-visual" id="flyer-section">
+          <div class="flyer-card" id="open-flyer-btn" title="Klik untuk memperbesar flyer">
+            <div class="flyer-badge">📄 Official Flyer JAGATALK #8</div>
+            <img 
+              src="/images/jagatalk/flyer-jw8.avif" 
+              alt="Flyer Resmi JAGATALK #8 — Roadmap Sekolah Anda ke Program Internasional" 
+              width="600" 
+              height="800" 
+              class="flyer-img"
+              loading="eager"
+            />
+            <div class="flyer-hint">🔍 Klik gambar untuk memperbesar</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ FLYER LIGHTBOX MODAL ============ -->
+    <div class="flyer-modal" id="flyer-modal" aria-hidden="true">
+      <div class="flyer-modal-backdrop" id="close-modal-backdrop"></div>
+      <div class="flyer-modal-content">
+        <button class="flyer-modal-close" id="close-modal-btn" aria-label="Tutup Flyer">✕</button>
+        <img 
+          src="/images/jagatalk/flyer-jw8.avif" 
+          alt="Flyer Resmi JAGATALK #8 Full Screen" 
+          class="flyer-modal-img"
+        />
+      </div>
+    </div>
+
+    <!-- ============ PAIN SECTION ============ -->
+    <section class="pain-section">
+      <div class="container">
+        <div class="pain-quote-wrap">
+          <span class="eyebrow">Untuk Anda yang Merasakan Ini</span>
+          <p class="pain-quote">
+            "Anda sudah <em>mengelola</em> sekolah bertahun-tahun. Tapi tiap PPDB, hati tetap berdegup — takut angkanya tidak sesuai target lagi."
+          </p>
+        </div>
+
+        <div class="pain-checklist">
+          <h3>Kalau Anda mencentang minimal 3 dari 5 ini, sesi ini untuk Anda:</h3>
+          <ul>
+            <li>Yayasan atau owner mulai bertanya <strong>"kapan sekolah kita bisa naik kelas ke level internasional?"</strong> — dan Anda belum punya jawaban yang meyakinkan.</li>
+            <li>Kompetitor sekolah baru hadir dengan positioning <strong>"bilingual"</strong>, <strong>"international curriculum"</strong>, atau <strong>"partner dengan sekolah luar negeri"</strong> — sementara Anda masih bermain di ranah SPP.</li>
+            <li>Anda sudah membaca artikel, ikut seminar, bahkan mempertimbangkan konsultan pendidikan — tapi <strong>semua terasa terlalu teoritis</strong> atau terlalu mahal.</li>
+            <li>Anda tahu sekolah butuh perubahan — tapi bingung <strong>apa dulu yang harus dibenahi</strong>: SDM guru, kurikulum, branding, atau infrastruktur?</li>
+            <li>Anda ingin sekolah punya <strong>MoU aktif dengan kampus atau sekolah luar negeri</strong>, tapi tidak tahu bagaimana cara membuka pintu itu secara kredibel.</li>
+          </ul>
+        </div>
+
+        <p class="pain-closer">Kalau Anda pernah memikirkan salah satu dari hal di atas — <strong>Anda tidak sendirian.</strong></p>
+      </div>
+    </section>
+
+    <!-- ============ VALUE SECTION ============ -->
+    <section class="value-section" id="materi">
+      <div class="container">
+        <div class="value-header">
+          <span class="eyebrow">Yang Anda Bawa Pulang</span>
+          <h2 class="section-title">4 Hal yang <em>Langsung Bisa Diterapkan</em><br>Setelah Menutup Zoom.</h2>
+          <p class="section-lead">Bukan teori. Bukan janji. Ini kerangka nyata yang sudah teruji di 6 sekolah IDN — dan siap diadopsi ke sekolah Anda mulai minggu depan.</p>
+        </div>
+
+        <div class="value-grid">
+          <div class="value-card">
+            <div class="value-icon">◈</div>
+            <h3>1. Assessment Diri</h3>
+            <p>Cara mengukur posisi sekolah Anda di 4 dimensi krusial: SDM, Akademik, Finansial, &amp; Operasional. Jadi Anda tahu <em>di mana harus mulai</em>.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">◆</div>
+            <h3>2. Fondasi Naik Kelas</h3>
+            <p>Prasyarat konkret sebelum sekolah bisa dilirik mitra internasional: standar akreditasi, guru bilingual, kurikulum bridge, dan sistem manajemen.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">◉</div>
+            <h3>3. Cara Membuka Partnership</h3>
+            <p>Langkah nyata pendekatan ke sekolah/kampus luar negeri. Kriteria memilih partner, tahapan approach, sampai dokumen MoU yang perlu disiapkan.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">✦</div>
+            <h3>4. Launch ke Market</h3>
+            <p>Bagaimana memposisikan program "baru" Anda ke calon orang tua murid — agar narasi PPDB tahun depan bercerita berbeda dari tahun ini.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FASILITAS ============ -->
+    <section class="fasilitas-section" id="fasilitas">
+      <div class="container">
+        <div class="fasilitas-card">
+          <div class="fasilitas-header">
+            <span class="eyebrow">Fasilitas Peserta</span>
+            <h2>Lebih dari Sekadar Menonton Webinar</h2>
+            <p>Setiap peserta — Regular maupun Premium — mendapatkan paket fasilitas lengkap berikut:</p>
+          </div>
+
+          <ul class="fasilitas-list">
+            <li>
+              <span class="fasilitas-check">✓</span>
+              <div>
+                <strong>Live Session Bersama Dedi Gunawan</strong>
+                <span>Sesi interaktif langsung dengan pemilik 6 sekolah IDN.</span>
+              </div>
+            </li>
+            <li>
+              <span class="fasilitas-check">✓</span>
+              <div>
+                <strong>Rekaman Video Full Sesi</strong>
+                <span>Akses 3 bulan — bisa Anda tonton ulang atau share ke jajaran tim internal sekolah.</span>
+              </div>
+            </li>
+            <li>
+              <span class="fasilitas-check">✓</span>
+              <div>
+                <strong>Lembar Kerja Roadmap Sekolah</strong>
+                <span>Worksheet 5 halaman terstruktur untuk diisi selama sesi &amp; jadi action plan Anda.</span>
+              </div>
+            </li>
+            <li>
+              <span class="fasilitas-check">✓</span>
+              <div>
+                <strong>E-Sertifikat Resmi Jagatrip</strong>
+                <span>Sertifikat digital resmi yang bisa Anda gunakan sebagai bukti reimburse ke sekolah/yayasan.</span>
+              </div>
+            </li>
+            <li>
+              <span class="fasilitas-check">✓</span>
+              <div>
+                <strong>Grup Diskusi Alumni</strong>
+                <span>Networking strategis dengan kepala sekolah &amp; founder swasta dari seluruh Indonesia.</span>
+              </div>
+            </li>
+            <li>
+              <span class="fasilitas-check">✓</span>
+              <div>
+                <strong>Sesi Q&amp;A Prioritas</strong>
+                <span>Kesempatan konsultasi dan bertanya langsung ke Pak Dedi via Raise Hand.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPEAKER ============ -->
+    <section class="speaker-section" id="pemateri">
+      <div class="container speaker-inner">
+        <div class="speaker-photo-wrap">
+          <img 
+            src="/images/owner/owner.jpeg" 
+            alt="Muhammad Dedi Gunawan — Founder Jagatrip & 6 Sekolah IDN" 
+            width="320" 
+            height="320" 
+            class="speaker-avatar-img"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="speaker-content">
+          <div class="speaker-pill">PEMATERI</div>
+          <h2>Muhammad Dedi Gunawan</h2>
+          <div class="role">Founder Jagatrip &amp; 6 Sekolah IDN</div>
+          
+          <ul class="speaker-credentials">
+            <li>Founder IDN Boarding School</li>
+            <li>Owner Annaba Bilingual School</li>
+            <li>Owner Ma'had Tahfidz IDN &amp; Politeknik IDN</li>
+            <li>Owner IDN Mecca-Madina School (literal international presence)</li>
+            <li>Founder IDN Backpacker School</li>
+            <li>Backpacker 30+ negara — praktisi pendidikan, bukan konsultan</li>
+          </ul>
+
+          <div class="speaker-quote">
+            "Saya sudah menghadapi setiap pertanyaan yang Anda hadapi sekarang. Yang saya bagi bukan teori — ini yang bekerja."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FORMAT SESI ============ -->
+    <section class="format-section">
+      <div class="container">
+        <div class="format-header">
+          <span class="eyebrow">Alur Sesi</span>
+          <h2 class="section-title">Bukan Webinar <em>Pasif.</em></h2>
+          <p class="section-lead">Anda tidak sekadar menonton — Anda akan pulang membawa lembar kerja yang sudah terisi &amp; roadmap yang siap dipresentasikan ke yayasan.</p>
+        </div>
+
+        <div class="format-flow">
+          <div class="flow-step">
+            <div class="flow-num">1</div>
+            <h4>Opening</h4>
+            <p>Framing masalah industri &amp; penetapan objektif sesi.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">2</div>
+            <h4>Pemaparan</h4>
+            <p>4 fase roadmap program internasional dibahas tuntas oleh Pak Dedi.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">3</div>
+            <h4>Isi Lembar Kerja</h4>
+            <p>Sesi terpandu — Anda susun action plan sekolah Anda sendiri.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">4</div>
+            <h4>Q&amp;A</h4>
+            <p>Sesi tanya jawab prioritas langsung via Raise Hand.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="pricing-section" id="pricing">
+      <div class="container">
+        <div class="pricing-header">
+          <span class="eyebrow">Pilih Tier Anda</span>
+          <h2 class="section-title">Dua Opsi. Pilih Sesuai <em>Ambisi</em> Sekolah Anda.</h2>
+          <p class="section-lead">Regular untuk yang butuh dasar roadmap. Premium untuk yang siap satu langkah lebih jauh — bertemu langsung dengan PIC kampus mitra di Malaysia.</p>
+        </div>
+
+        <div class="pricing-grid">
+
+          <!-- REGULAR -->
+          <div class="tier-card">
+            <div class="tier-name">Regular</div>
+            <div class="tier-tagline">Untuk kepala sekolah yang butuh kerangka roadmap.</div>
+            <div class="tier-price-row">
+              <div class="tier-price"><span class="rp">Rp</span>99.000</div>
+            </div>
+            <div class="tier-slot">Kuota Terbatas</div>
+            <ul class="tier-features">
+              <li>Live webinar full session bersama Pak Dedi</li>
+              <li>Rekaman webinar (akses 3 bulan)</li>
+              <li>Lembar Kerja Roadmap Sekolah</li>
+              <li>E-sertifikat resmi Jagatrip</li>
+              <li>Akses grup diskusi alumni Jagatalk</li>
+            </ul>
+            <a href="#form" class="tier-cta regular">Pilih Regular</a>
+          </div>
+
+          <!-- PREMIUM -->
+          <div class="tier-card premium">
+            <div class="tier-name">Premium</div>
+            <div class="tier-tagline">Untuk kepala sekolah yang siap satu langkah lebih jauh.</div>
+            <div class="tier-price-row">
+              <div class="tier-price"><span class="rp">Rp</span>129.000</div>
+            </div>
+            <div class="tier-slot">Slot Sangat Terbatas · Maks. 30 Kursi</div>
+            <ul class="tier-features">
+              <li>Semua benefit yang ada pada tier Regular</li>
+              <li class="highlight">
+                <strong>Prioritas Undangan Exclusive Meet-Up</strong> dengan PIC 2 Kampus Mitra Jagatrip di Malaysia:
+                <br>• IIUM (Int'l Islamic University Malaysia)
+                <br>• TAR UMT (Univ. of Management &amp; Technology)
+              </li>
+              <li>Prioritas info Pilot Summer Camp 2027 di kampus mitra</li>
+            </ul>
+            <a href="#form" class="tier-cta premium-btn">Pilih Premium →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ URGENCY BANNER ============ -->
+    <section class="urgency-banner-section">
+      <div class="container">
+        <div class="urgency-content">
+          <div class="urgency-icon">⏱</div>
+          <div class="urgency-text">
+            <h3>Kuota Premium Cepat Habis — Slot Terbatas 30 Kursi</h3>
+            <p>Setiap batch tidak dibuka lebih dari sekali. Menunggu tahun depan berarti menunda satu tahun perubahan sekolah Anda.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FORM SECTION ============ -->
+    <section class="form-section" id="form">
+      <div class="container">
+        <h2>Amankan Kursi Anda <em>Sekarang.</em></h2>
+        <p class="lead">Isi form di bawah — setelah submit Anda akan langsung diarahkan ke WhatsApp Admin resmi kami untuk konfirmasi tier &amp; pembayaran.</p>
+        
+        <div class="form-card">
+          <h3>Form Pendaftaran</h3>
+          <p class="form-lead">Cukup 3 kolom. Waktu Anda berharga.</p>
+          
+          <form id="registration-form" novalidate>
+            <div class="form-group">
+              <label for="nama_lengkap">Nama Lengkap *</label>
+              <input 
+                type="text" 
+                id="nama_lengkap" 
+                name="nama_lengkap" 
+                required 
+                placeholder="Nama sesuai identitas" 
+                autocomplete="name"
+              />
+              <span class="field-error" id="error-nama"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="asal_lembaga">Asal Lembaga / Domisili *</label>
+              <input 
+                type="text" 
+                id="asal_lembaga" 
+                name="asal_lembaga" 
+                required 
+                placeholder="Contoh: SMP Al-Hikmah Jakarta" 
+                autocomplete="organization"
+              />
+              <span class="field-error" id="error-lembaga"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="nomor_wa">Nomor WhatsApp Aktif *</label>
+              <input 
+                type="tel" 
+                id="nomor_wa" 
+                name="nomor_wa" 
+                required 
+                placeholder="08xxxxxxxxxx" 
+                autocomplete="tel"
+              />
+              <span class="field-error" id="error-wa"></span>
+            </div>
+
+            <button type="submit" id="btn-submit" class="form-submit">
+              Daftar &amp; Amankan Kursi →
+            </button>
+
+            <p class="form-footer">
+              Setelah submit, admin kami (Admin Dwita) akan langsung menerima data Anda untuk konfirmasi tier &amp; pembayaran.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ SECTION ============ -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="faq-header">
+          <span class="eyebrow">Pertanyaan Umum</span>
+          <h2 class="section-title">Yang <em>Sering Ditanyakan.</em></h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Saya bukan kepala sekolah — apakah tetap boleh ikut?</summary>
+            <p>Boleh. Sesi ini terbuka untuk siapapun yang punya peran strategis di sekolah swasta: founder, direktur, ketua yayasan, wakil kepala sekolah, atau guru senior yang sedang dipersiapkan untuk peran leadership.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Sekolah saya belum akreditasi A. Apakah masih relevan mengikuti sesi ini?</summary>
+            <p>Sangat relevan. Sesi ini justru cocok untuk sekolah di berbagai tahap kesiapan. Kalau akreditasi masih B atau C, sesi ini akan membantu Anda melihat prioritas &amp; urutan yang tepat untuk naik ke akreditasi A sebagai prasyarat naik kelas.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Apa bedanya tier Regular dan Premium?</summary>
+            <p>Tier Regular memberikan akses penuh ke webinar, semua materi, rekaman, worksheet, dan sertifikat. Tier Premium menambahkan <strong>Prioritas Undangan ke Exclusive Meet-Up dengan PIC 2 Kampus Mitra Jagatrip di Malaysia</strong> (IIUM &amp; TAR UMT) — sesi terpisah yang dijadwalkan beberapa minggu setelah webinar utama.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Apakah Meet-Up dengan kampus Malaysia langsung menghasilkan MoU?</summary>
+            <p>Tidak — Meet-Up adalah sesi <em>awareness &amp; introduction</em>. Anda mendapatkan akses bertanya langsung ke PIC kampus tentang program &amp; kriteria kolaborasi. Kalau tertarik melanjutkan ke partnership formal, tahap berikutnya (due diligence &amp; MoU) dapat difasilitasi Jagatrip sesuai kebutuhan.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Kapan Exclusive Meet-Up dilaksanakan?</summary>
+            <p>Meet-Up dijadwalkan beberapa minggu setelah Jagatalk #8. Tanggal final akan diinformasikan maksimal 7 hari setelah webinar utama. Peserta Premium mendapat notifikasi via email &amp; WhatsApp.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Bagaimana kalau saya berhalangan hadir di hari-H?</summary>
+            <p>Tidak masalah. Rekaman lengkap akan dikirim ke email Anda maksimal 3 hari setelah acara. Anda tetap bisa menonton di waktu senggang.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Bisa reimburse ke sekolah atau yayasan?</summary>
+            <p>Ya. E-sertifikat resmi Jagatrip yang Anda terima bisa dijadikan bukti untuk reimburse biaya ke institusi Anda (sesuai policy masing-masing).</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Bagaimana metode pembayaran?</summary>
+            <p>Setelah Anda submit form, admin kami akan menghubungi Anda via WhatsApp untuk konfirmasi tier &amp; instruksi pembayaran. Kami menerima transfer bank, e-wallet, dan virtual account.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="tagline">Travel to Learn, Learn to Lead.</div>
+        <div class="divider"></div>
+        <div class="copyright">© 2026 Jagatrip · JAGATALK #8 · Semua hak dilindungi.</div>
+        <div class="socials">jagatrip.com &nbsp;·&nbsp; IG: @jagatrip.id &nbsp;·&nbsp; TikTok: @jagatrip</div>
+      </div>
+    </footer>
+
+  </main>
+</BaseLayout>
+
+<!-- Client Script for Form Validation, Google Sheets Webhook, WhatsApp Redirect, and Flyer Modal -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Helper function to extract UTM parameters
+    function getUtmParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        utm_source: params.get('utm_source') || '',
+        utm_medium: params.get('utm_medium') || '',
+        utm_campaign: params.get('utm_campaign') || '',
+        utm_term: params.get('utm_term') || '',
+        utm_content: params.get('utm_content') || '',
+        gclid: params.get('gclid') || '',
+        fbclid: params.get('fbclid') || ''
+      };
+    }
+
+    // Helper function to normalize & format Indonesian phone number
+    function formatPhone(raw) {
+      if (!raw) return { sheetWa: '', waNumber: '', digits: '' };
+      
+      // Strip everything except digits
+      let digits = raw.toString().replace(/[^0-9]/g, '');
+      
+      // Standardize to E.164 (628...)
+      let e164 = '';
+      if (digits.startsWith('0')) {
+        e164 = '62' + digits.slice(1);
+      } else if (digits.startsWith('6208')) {
+        e164 = '62' + digits.slice(3);
+      } else if (digits.startsWith('62')) {
+        e164 = digits;
+      } else if (digits.startsWith('8')) {
+        e164 = '62' + digits;
+      } else {
+        e164 = '62' + digits;
+      }
+
+      // Convert to clean standard 08... format for Sheet display
+      const localPhone = '0' + e164.slice(2);
+      
+      // Prefix with single quote so Google Sheets treats it as pure string: '083178772170
+      const sheetWa = "'" + localPhone;
+
+      return {
+        sheetWa: sheetWa,
+        waNumber: e164,
+        digits: localPhone
+      };
+    }
+
+    // 1. Form Validation & Webhook Submission & WhatsApp Redirect
+    const form = document.getElementById('registration-form');
+    if (form) {
+      const namaInput = document.getElementById('nama_lengkap');
+      const lembagaInput = document.getElementById('asal_lembaga');
+      const waInput = document.getElementById('nomor_wa');
+      const submitBtn = document.getElementById('btn-submit');
+
+      const errNama = document.getElementById('error-nama');
+      const errLembaga = document.getElementById('error-lembaga');
+      const errWa = document.getElementById('error-wa');
+
+      // Realtime sanitization on phone input
+      if (waInput) {
+        waInput.addEventListener('input', (e) => {
+          // Allow digits, +, -, and spaces while typing, but auto-clean on paste
+          const cleaned = e.target.value.replace(/[^0-9+\-\s]/g, '');
+          if (cleaned !== e.target.value) {
+            e.target.value = cleaned;
+          }
+        });
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        let isValid = true;
+        if (errNama) errNama.textContent = '';
+        if (errLembaga) errLembaga.textContent = '';
+        if (errWa) errWa.textContent = '';
+
+        const nama = namaInput ? namaInput.value.trim() : '';
+        const lembaga = lembagaInput ? lembagaInput.value.trim() : '';
+        const rawWa = waInput ? waInput.value.trim() : '';
+        const phone = formatPhone(rawWa);
+
+        if (!nama) {
+          if (errNama) errNama.textContent = 'Nama lengkap wajib diisi.';
+          isValid = false;
+        }
+
+        if (!lembaga) {
+          if (errLembaga) errLembaga.textContent = 'Asal lembaga/domisili wajib diisi.';
+          isValid = false;
+        }
+
+        if (!rawWa) {
+          if (errWa) errWa.textContent = 'Nomor WhatsApp wajib diisi.';
+          isValid = false;
+        } else if (phone.digits.length < 9 || phone.digits.length > 15) {
+          if (errWa) errWa.textContent = 'Format nomor WhatsApp tidak valid (contoh: 081234567890).';
+          isValid = false;
+        }
+
+        if (!isValid) return;
+
+        // Visual feedback
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Mengarahkan ke WhatsApp...';
+        }
+
+        // WhatsApp Admin Dwita & Greeting
+        const adminWa = '6281128506576';
+        const greetingMessage = `Halo Admin, saya ${nama} ingin mengikuti Webinar Jagatalk Roadmap Sekolah dan sudah mengisi form. Bagaimana selanjutnya?`;
+        const waUrl = `https://wa.me/${adminWa}?text=${encodeURIComponent(greetingMessage)}`;
+
+        // Send Lead to Google Apps Script Webhook (Fire-and-forget with keepalive)
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwrwCUYnuIUCflczefMlYAHdCnOD-5PMqVEL94QTPWy6Hkds6SiOQLfyo7PZpVoqtjiZg/exec';
+
+        try {
+          fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            keepalive: true,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              _sheet: 'LP_Jagatalk8',
+              nama: nama,
+              institusi: lembaga,
+              instansi: lembaga,
+              asal_lembaga: lembaga,
+              wa: phone.sheetWa, // Stored as pure string with ' prefix (e.g. '083178772170)
+              source: 'JAGATALK #8 Landing Page (/jagatalk8)',
+              timestamp: new Date().toISOString(),
+              ...getUtmParams()
+            })
+          }).catch((err) => console.error('Webhook error:', err));
+        } catch (err) {
+          console.error('Fetch error:', err);
+        }
+
+        // Trigger Meta/Facebook Pixel Lead event if present
+        if (window.fbq) {
+          try {
+            window.fbq('track', 'Lead');
+          } catch (e) {
+            console.error('FB Pixel error:', e);
+          }
+        }
+
+        // Trigger Google Tag Manager dataLayer event
+        if (window.dataLayer) {
+          try {
+            window.dataLayer.push({
+              event: 'lead_form_submit',
+              form_name: 'jagatalk8',
+              user_name: nama,
+              user_instansi: lembaga
+            });
+          } catch (e) {
+            console.error('GTM error:', e);
+          }
+        }
+
+        // Instant redirect to WhatsApp
+        setTimeout(() => {
+          window.location.href = waUrl;
+        }, 300);
+      });
+    }
+
+    // 2. Flyer Lightbox Modal Toggle
+    const openBtn = document.getElementById('open-flyer-btn');
+    const modal = document.getElementById('flyer-modal');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const backdrop = document.getElementById('close-modal-backdrop');
+
+    function openModal() {
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal() {
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  });
+</script>
+
+<style>
+  /* ============ COLOR TOKENS & TYPOGRAPHY ============ */
+  :root {
+    --orange: #E85D1F;
+    --orange-dark: #C64A11;
+    --orange-light: #FF8A45;
+    --orange-glow: rgba(232, 93, 31, 0.35);
+    --navy: #0F2547;
+    --navy-mid: #1B3A6B;
+    --navy-deep: #071630;
+    --cream: #FDF6EB;
+    --cream-warm: #F5EAD7;
+    --white: #FFFFFF;
+    --ink: #12141A;
+    --gray: #5A6478;
+    --gold: #D4B26A;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  .jagatalk8-page {
+    font-family: var(--sans);
+    color: var(--ink);
+    line-height: 1.55;
+    background: var(--cream);
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 16px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .container {
+      padding: 0 12px;
+    }
+  }
+
+  /* ============ URGENCY BAR ============ */
+  .urgency-bar {
+    background: linear-gradient(90deg, var(--orange-dark), var(--orange), var(--orange-dark));
+    background-size: 200% 100%;
+    animation: shimmer 4s linear infinite;
+    color: white;
+    padding: 9px 12px;
+    text-align: center;
+    font-size: clamp(11.5px, 2.5vw, 13px);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  .urgency-bar .dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: white;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 1.5s ease-in-out infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  /* ============ STICKY HEADER ============ */
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(7, 22, 48, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 0;
+    transition: all 0.2s ease;
+  }
+
+  @media (max-width: 640px) {
+    .sticky-header {
+      padding: 8px 0;
+    }
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .brand-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 480px) {
+    .brand-icon {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .brand-text {
+    font-size: clamp(16px, 4.5vw, 19px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .brand-text .c1 { color: #0E7C86; }
+  .brand-text .c2 { color: #FF6B1A; }
+
+  .badge-series {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--orange-light);
+    background: rgba(232, 93, 31, 0.15);
+    border: 1px solid rgba(232, 93, 31, 0.4);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .nav-links a {
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--orange-light);
+  }
+
+  .header-cta {
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    box-shadow: 0 4px 14px rgba(232, 93, 31, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  @media (max-width: 480px) {
+    .header-cta {
+      padding: 6px 12px;
+      font-size: 11.5px !important;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .header-cta {
+      padding: 5px 10px;
+      font-size: 11px !important;
+    }
+  }
+
+  .header-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(232, 93, 31, 0.55);
+  }
+
+  @media (max-width: 860px) {
+    .nav-links a:not(.header-cta) {
+      display: none;
+    }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    background:
+      radial-gradient(ellipse at top right, rgba(232, 93, 31, 0.22), transparent 55%),
+      radial-gradient(ellipse at bottom left, rgba(212, 178, 106, 0.12), transparent 55%),
+      linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-mid) 100%);
+    color: white;
+    padding: clamp(32px, 6vw, 56px) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(24px, 4vw, 44px);
+    align-items: center;
+  }
+
+  @media (max-width: 960px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 32px;
+    }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(232, 93, 31, 0.45);
+    color: var(--orange-light);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    max-width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    .hero-badge {
+      font-size: 10px;
+      padding: 5px 11px;
+      letter-spacing: 0.4px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .hero-badge .icon-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--orange-glow);
+    flex-shrink: 0;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 4.8vw, 44px);
+    line-height: 1.16;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+    word-break: break-word;
+  }
+
+  .hero-title .accent {
+    color: var(--orange-light);
+    font-style: italic;
+    background: linear-gradient(90deg, var(--orange-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-family: var(--serif);
+    font-size: clamp(16px, 2.6vw, 22px);
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .hero-sub {
+    font-size: clamp(13.5px, 2vw, 15px);
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 20px;
+    line-height: 1.55;
+    max-width: 560px;
+  }
+
+  @media (max-width: 960px) {
+    .hero-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    margin-bottom: 22px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  @media (max-width: 960px) {
+    .hero-meta {
+      justify-content: center;
+    }
+  }
+
+  .hero-meta span {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: clamp(11.5px, 2.5vw, 13px);
+  }
+
+  @media (max-width: 480px) {
+    .hero-meta {
+      gap: 6px;
+    }
+    .hero-meta span {
+      padding: 4px 9px;
+    }
+  }
+
+  .hero-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+
+  @media (max-width: 960px) {
+    .hero-cta-wrap {
+      align-items: center;
+    }
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: white;
+    padding: 14px 34px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 10px 30px rgba(232, 93, 31, 0.45);
+    min-height: 48px;
+  }
+
+  @media (max-width: 480px) {
+    .hero-cta {
+      width: 100%;
+      max-width: 320px;
+      padding: 13px 20px;
+      font-size: 14.5px;
+    }
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(232, 93, 31, 0.6);
+  }
+
+  .hero-cta:active {
+    transform: translateY(0);
+  }
+
+  .hero-cta .arrow {
+    transition: transform 0.25s;
+  }
+
+  .hero-cta:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .hero-microcopy {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* Flyer Visual Card */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .flyer-card {
+    position: relative;
+    max-width: 360px;
+    width: 100%;
+    border-radius: 18px;
+    padding: 6px;
+    background: linear-gradient(135deg, rgba(232, 93, 31, 0.5), rgba(212, 178, 106, 0.3));
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  @media (max-width: 480px) {
+    .flyer-card {
+      max-width: 290px;
+    }
+  }
+
+  @media (max-width: 340px) {
+    .flyer-card {
+      max-width: 260px;
+    }
+  }
+
+  .flyer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 70px rgba(232, 93, 31, 0.35);
+  }
+
+  .flyer-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(7, 22, 48, 0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: var(--gold);
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(212, 178, 106, 0.4);
+    z-index: 2;
+  }
+
+  .flyer-img {
+    width: 100%;
+    height: auto;
+    border-radius: 13px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .flyer-hint {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 6px;
+    padding: 2px 0;
+  }
+
+  /* Flyer Lightbox Modal */
+  .flyer-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .flyer-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .flyer-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 22, 48, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .flyer-modal-content {
+    position: relative;
+    z-index: 2;
+    max-width: 94vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flyer-modal-img {
+    max-width: 100%;
+    max-height: 82vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+    object-fit: contain;
+  }
+
+  .flyer-modal-close {
+    position: absolute;
+    top: -42px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  @media (max-width: 600px) {
+    .flyer-modal-close {
+      top: 10px;
+      right: 10px;
+      background: rgba(7, 22, 48, 0.8);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .flyer-modal-close:hover {
+    background: var(--orange);
+    transform: scale(1.08);
+  }
+
+  /* ============ SECTIONS COMMON ============ */
+  section {
+    padding: clamp(36px, 5vw, 56px) 0;
+    position: relative;
+    width: 100%;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 26px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 18px;
+    height: 2px;
+    background: var(--orange);
+    transform: translateY(-50%);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(21px, 3.5vw, 32px);
+    color: var(--navy);
+    font-weight: 800;
+    line-height: 1.22;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+
+  .section-title em {
+    color: var(--orange);
+    font-style: italic;
+  }
+
+  .section-lead {
+    font-size: clamp(13px, 1.8vw, 15px);
+    color: var(--gray);
+    max-width: 660px;
+    line-height: 1.55;
+  }
+
+  /* ============ PAIN SECTION ============ */
+  .pain-section {
+    background: var(--cream);
+  }
+
+  .pain-quote-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pain-quote {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.6vw, 26px);
+    color: var(--navy);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.35;
+    margin: 14px 0 20px;
+    padding: 0 8px;
+  }
+
+  .pain-checklist {
+    max-width: 720px;
+    margin: 18px auto 0;
+    background: white;
+    border-radius: 16px;
+    padding: clamp(18px, 3vw, 26px);
+    box-shadow: 0 12px 36px rgba(15, 37, 71, 0.06);
+    border: 1px solid var(--cream-warm);
+  }
+
+  .pain-checklist h3 {
+    font-family: var(--serif);
+    font-size: clamp(15px, 2.2vw, 17px);
+    color: var(--navy);
+    margin-bottom: 14px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .pain-checklist ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .pain-checklist li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    font-size: clamp(12.5px, 1.8vw, 13.5px);
+    color: #2a2a2a;
+    border-bottom: 1px dashed var(--cream-warm);
+    line-height: 1.48;
+  }
+
+  .pain-checklist li:last-child {
+    border-bottom: none;
+  }
+
+  .pain-checklist li::before {
+    content: '☐';
+    position: absolute;
+    left: 4px;
+    top: 7px;
+    color: var(--orange);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .pain-closer {
+    text-align: center;
+    margin-top: 18px;
+    font-size: clamp(12.5px, 2vw, 14px);
+    color: var(--navy);
+    font-weight: 600;
+    padding: 0 10px;
+  }
+
+  .pain-closer strong {
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  /* ============ VALUE SECTION ============ */
+  .value-section {
+    background: white;
+  }
+
+  .value-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 28px;
+  }
+
+  .value-header .eyebrow {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+
+  .value-header .eyebrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 18px;
+    height: 2px;
+    background: var(--orange);
+    transform: translateY(-50%);
+  }
+
+  .value-header .section-lead {
+    margin: 0 auto;
+  }
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 960px) {
+    .value-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .value-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  .value-card {
+    background: linear-gradient(180deg, white, var(--cream));
+    border: 1px solid var(--cream-warm);
+    border-radius: 14px;
+    padding: 20px 16px;
+    transition: all 0.25s;
+    position: relative;
+  }
+
+  .value-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(15, 37, 71, 0.08);
+    border-color: var(--orange);
+  }
+
+  .value-icon {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: white;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 14px rgba(232, 93, 31, 0.25);
+  }
+
+  .value-card h3 {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    color: var(--navy);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  .value-card p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.48;
+  }
+
+  /* ============ FASILITAS ============ */
+  .fasilitas-section {
+    background: var(--cream);
+  }
+
+  .fasilitas-card {
+    background: white;
+    border-radius: 18px;
+    padding: clamp(20px, 4vw, 32px);
+    box-shadow: 0 20px 50px rgba(15, 37, 71, 0.07);
+    border: 1px solid var(--cream-warm);
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .fasilitas-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .fasilitas-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(20px, 3vw, 24px);
+    color: var(--navy);
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .fasilitas-header p {
+    color: var(--gray);
+    font-size: 13.5px;
+  }
+
+  .fasilitas-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+    list-style: none;
+    padding: 0;
+  }
+
+  @media (max-width: 680px) {
+    .fasilitas-list {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+
+  .fasilitas-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--cream-warm);
+    font-size: 13px;
+    color: #333;
+    line-height: 1.45;
+  }
+
+  .fasilitas-list li strong {
+    color: var(--navy);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 13.5px;
+  }
+
+  .fasilitas-check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: rgba(232, 93, 31, 0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  /* ============ SPEAKER ============ */
+  .speaker-section {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: white;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .speaker-section::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--orange-glow), transparent 65%);
+    pointer-events: none;
+  }
+
+  .speaker-inner {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: clamp(20px, 4vw, 36px);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .speaker-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 22px;
+    }
+  }
+
+  .speaker-photo-wrap {
+    position: relative;
+    width: clamp(160px, 25vw, 200px);
+    height: clamp(160px, 25vw, 200px);
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .speaker-photo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: linear-gradient(135deg, var(--orange), var(--gold));
+    border-radius: 50%;
+    opacity: 0.7;
+    filter: blur(12px);
+  }
+
+  .speaker-avatar-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3.5px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    display: block;
+    background: #000;
+  }
+
+  .speaker-pill {
+    display: inline-block;
+    background: rgba(232, 93, 31, 0.18);
+    border: 1px solid rgba(232, 93, 31, 0.4);
+    color: var(--orange-light);
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 100px;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .speaker-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(21px, 3.2vw, 26px);
+    color: white;
+    margin: 3px 0 2px;
+    font-weight: 800;
+  }
+
+  .speaker-content .role {
+    color: var(--gold);
+    font-size: 13px;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+
+  .speaker-credentials {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 14px;
+    list-style: none;
+    padding: 0;
+  }
+
+  @media (max-width: 560px) {
+    .speaker-credentials {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+  }
+
+  .speaker-credentials li {
+    padding: 3px 0 3px 16px;
+    font-size: 12.5px;
+    position: relative;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+  }
+
+  .speaker-credentials li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--orange-light);
+    font-size: 8px;
+    top: 5px;
+  }
+
+  .speaker-quote {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-left: 3px solid var(--orange);
+    background: rgba(255, 255, 255, 0.06);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(12.5px, 2vw, 13.5px);
+    color: rgba(255, 255, 255, 0.92);
+    border-radius: 0 8px 8px 0;
+    text-align: left;
+  }
+
+  /* ============ FORMAT SESI ============ */
+  .format-section {
+    background: white;
+  }
+
+  .format-header {
+    text-align: center;
+    max-width: 660px;
+    margin: 0 auto 26px;
+  }
+
+  .format-header .eyebrow {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+
+  .format-header .eyebrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 18px;
+    height: 2px;
+    background: var(--orange);
+    transform: translateY(-50%);
+  }
+
+  .format-header p {
+    margin: 0 auto;
+  }
+
+  .format-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 780px) {
+    .format-flow {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 440px) {
+    .format-flow {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .flow-step {
+    background: linear-gradient(180deg, white, var(--cream));
+    border: 1px solid var(--cream-warm);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    transition: all 0.25s;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--orange);
+    box-shadow: 0 10px 20px rgba(232, 93, 31, 0.12);
+  }
+
+  .flow-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--navy);
+    color: white;
+    font-family: var(--serif);
+    font-weight: 700;
+    border-radius: 50%;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+
+  .flow-step h4 {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+
+  .flow-step p {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.45;
+  }
+
+  /* ============ PRICING ============ */
+  .pricing-section {
+    background: var(--cream);
+  }
+
+  .pricing-header {
+    text-align: center;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+
+  .pricing-header .eyebrow {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+
+  .pricing-header .eyebrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 18px;
+    height: 2px;
+    background: var(--orange);
+    transform: translateY(-50%);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 680px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  .tier-card {
+    background: white;
+    border: 2px solid var(--cream-warm);
+    border-radius: 18px;
+    padding: clamp(20px, 3.5vw, 26px);
+    transition: all 0.25s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tier-card.premium {
+    border-color: var(--orange);
+    background: linear-gradient(180deg, white, #FFF7F1);
+    box-shadow: 0 20px 50px rgba(232, 93, 31, 0.15);
+  }
+
+  .tier-card.premium::before {
+    content: '⭐ REKOMENDASI';
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: white;
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 16px rgba(232, 93, 31, 0.35);
+    white-space: nowrap;
+  }
+
+  .tier-name {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--navy);
+    font-weight: 800;
+    margin-bottom: 3px;
+  }
+
+  .tier-tagline {
+    color: var(--gray);
+    font-size: 12px;
+    margin-bottom: 12px;
+    font-style: italic;
+    min-height: 32px;
+  }
+
+  @media (max-width: 680px) {
+    .tier-tagline {
+      min-height: auto;
+    }
+  }
+
+  .tier-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    margin-bottom: 4px;
+  }
+
+  .tier-price {
+    font-family: var(--serif);
+    font-size: clamp(30px, 5vw, 36px);
+    color: var(--orange);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .tier-price .rp {
+    font-size: 17px;
+    margin-right: 3px;
+    color: var(--navy);
+  }
+
+  .tier-slot {
+    display: inline-block;
+    align-self: flex-start;
+    background: rgba(232, 93, 31, 0.1);
+    color: var(--orange-dark);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+
+  .tier-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 18px;
+    flex-grow: 1;
+  }
+
+  .tier-features li {
+    padding: 7px 0 7px 20px;
+    font-size: 12.5px;
+    color: #2a2a2a;
+    position: relative;
+    line-height: 1.45;
+    border-bottom: 1px dashed var(--cream-warm);
+  }
+
+  .tier-features li:last-child {
+    border-bottom: none;
+  }
+
+  .tier-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  .tier-features li.highlight {
+    background: linear-gradient(135deg, rgba(232, 93, 31, 0.08), rgba(212, 178, 106, 0.08));
+    padding: 8px 8px 8px 24px;
+    border-radius: 8px;
+    border-bottom: none;
+    margin: 5px 0;
+  }
+
+  .tier-features li.highlight::before {
+    left: 8px;
+    top: 8px;
+  }
+
+  .tier-features strong {
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .tier-cta {
+    display: block;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13.5px;
+    letter-spacing: 0.3px;
+    transition: all 0.2s;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tier-cta.regular {
+    background: var(--navy);
+    color: white;
+  }
+
+  .tier-cta.regular:hover {
+    background: var(--navy-deep);
+  }
+
+  .tier-cta.premium-btn {
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: white;
+    box-shadow: 0 8px 24px rgba(232, 93, 31, 0.35);
+  }
+
+  .tier-cta.premium-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(232, 93, 31, 0.5);
+  }
+
+  /* ============ URGENCY BANNER ============ */
+  .urgency-banner-section {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    padding: 24px 0;
+    color: white;
+  }
+
+  .urgency-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .urgency-content {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  .urgency-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 6px 18px rgba(232, 93, 31, 0.35);
+  }
+
+  .urgency-text h3 {
+    font-family: var(--serif);
+    font-size: clamp(15px, 2.5vw, 17px);
+    margin-bottom: 2px;
+    color: var(--orange-light);
+  }
+
+  .urgency-text p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: clamp(11.5px, 2vw, 12.5px);
+  }
+
+  /* ============ FORM SECTION ============ */
+  .form-section {
+    background:
+      radial-gradient(ellipse at top, rgba(232, 93, 31, 0.15), transparent 60%),
+      linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color: white;
+    padding: clamp(36px, 6vw, 54px) 0;
+    position: relative;
+  }
+
+  .form-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3.5vw, 32px);
+    color: white;
+    text-align: center;
+    margin-bottom: 6px;
+    font-weight: 800;
+  }
+
+  .form-section h2 em {
+    color: var(--orange-light);
+    font-style: italic;
+  }
+
+  .form-section .lead {
+    text-align: center;
+    opacity: 0.85;
+    max-width: 540px;
+    margin: 0 auto 22px;
+    font-size: clamp(13px, 1.8vw, 14px);
+    line-height: 1.55;
+    padding: 0 8px;
+  }
+
+  .form-card {
+    max-width: 460px;
+    width: 100%;
+    margin: 0 auto;
+    background: white;
+    color: var(--ink);
+    padding: clamp(20px, 4vw, 28px);
+    border-radius: 18px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+    position: relative;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--orange), var(--gold));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(10px);
+  }
+
+  .form-card h3 {
+    font-family: var(--serif);
+    color: var(--navy);
+    font-size: clamp(17px, 2.5vw, 19px);
+    margin-bottom: 2px;
+    font-weight: 800;
+  }
+
+  .form-lead {
+    color: var(--gray);
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 11.5px;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-group input {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--cream-warm);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px; /* 16px prevents iOS tap auto-zoom */
+    transition: all 0.2s;
+    background: var(--cream);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--orange);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(232, 93, 31, 0.14);
+  }
+
+  .field-error {
+    display: block;
+    font-size: 11.5px;
+    color: #DC2626;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .form-submit {
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 20px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 24px rgba(232, 93, 31, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(232, 93, 31, 0.55);
+  }
+
+  .form-submit:active {
+    transform: translateY(0);
+  }
+
+  .form-footer {
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--gray);
+    margin-top: 12px;
+    line-height: 1.45;
+  }
+
+  /* ============ FAQ SECTION ============ */
+  .faq-section {
+    background: var(--cream);
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .faq-list {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid var(--cream-warm);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    padding: 14px 16px;
+    transition: all 0.2s;
+  }
+
+  .faq-item:hover {
+    border-color: var(--orange);
+    box-shadow: 0 6px 16px rgba(15, 37, 71, 0.04);
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: clamp(13px, 2vw, 14px);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    min-height: 28px;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 18px;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .faq-item[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-item p {
+    margin-top: 8px;
+    color: var(--gray);
+    font-size: clamp(12px, 1.8vw, 13px);
+    line-height: 1.55;
+  }
+
+  /* ============ FOOTER ============ */
+  footer.site-footer {
+    background: var(--navy-deep);
+    color: rgba(255, 255, 255, 0.75);
+    padding: 28px 0 calc(28px + env(safe-area-inset-bottom, 0px));
+    text-align: center;
+    font-size: 12px;
+  }
+
+  footer.site-footer .tagline {
+    font-family: var(--serif);
+    color: var(--orange-light);
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+
+  footer.site-footer .divider {
+    width: 32px;
+    height: 2px;
+    background: var(--orange);
+    margin: 8px auto;
+  }
+
+  footer.site-footer .socials {
+    margin-top: 6px;
+    opacity: 0.7;
+    font-size: 11px;
+  }
+</style>
