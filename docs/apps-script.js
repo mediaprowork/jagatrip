@@ -414,16 +414,15 @@ function handleRegistrasi(ss, data) {
 // ═══════════════════════════════════════════════════════════════════════
 function handleJagatalk8(ss, sheetName, data) {
   sheetName = sheetName || 'LP_Jagatalk8';
-  var BASE_HEADERS = ['No', 'Timestamp', 'Nama Lengkap', 'Asal Lembaga / Domisili', 'WhatsApp', 'Status', 'Source'];
+  var BASE_HEADERS = ['No', 'Timestamp', 'Nama Lengkap', 'Asal Lembaga / Domisili', 'WhatsApp', 'Paket', 'Status', 'Source'];
   var sheet = ss.getSheetByName(sheetName);
   if (!sheet) {
     sheet = ss.insertSheet(sheetName);
   }
 
-  var headers = BASE_HEADERS.concat(UTM_HEADERS);
-
-  // Jika baris 1 masih kosong, set header otomatis
+  // Jika baris 1 masih kosong, set header baru lengkap dengan 'Paket'
   if (sheet.getLastRow() < 1 || sheet.getLastColumn() < 1) {
+    var headers = BASE_HEADERS.concat(UTM_HEADERS);
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     sheet.getRange(1, 1, 1, headers.length)
       .setBackground('#0F2547').setFontColor('#FFFFFF').setFontWeight('bold')
@@ -431,9 +430,21 @@ function handleJagatalk8(ss, sheetName, data) {
     sheet.setFrozenRows(1);
     sheet.setRowHeight(1, 38);
 
-    var widths = [50, 160, 180, 220, 140, 100, 160];
+    var widths = [50, 160, 180, 220, 140, 110, 100, 180];
     for (var i = 0; i < widths.length; i++) {
       sheet.setColumnWidth(i + 1, widths[i]);
+    }
+  } else {
+    // Auto-migrate sheet lama: jika belum ada kolom 'Paket' di baris 1, sisipkan setelah WhatsApp
+    var existingHeaders = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    if (existingHeaders.indexOf('Paket') === -1) {
+      var waIdx = existingHeaders.indexOf('WhatsApp');
+      var insertCol = (waIdx !== -1 ? waIdx + 2 : 6);
+      sheet.insertColumnAfter(insertCol - 1);
+      sheet.getRange(1, insertCol).setValue('Paket')
+        .setBackground('#0F2547').setFontColor('#FFFFFF').setFontWeight('bold')
+        .setFontSize(10).setHorizontalAlignment('center').setVerticalAlignment('middle');
+      sheet.setColumnWidth(insertCol, 110);
     }
   }
 
@@ -446,6 +457,7 @@ function handleJagatalk8(ss, sheetName, data) {
     data.nama || data.nama_lengkap || '',
     data.institusi || data.instansi || data.asal_lembaga || data.domisili || data.asal || '',
     data.wa || data.whatsapp || data.nomor_wa || '',
+    data.paket || 'Regular',
     'Baru',
     data.source || 'JAGATALK #8 Landing Page (/jagatalk8)',
   ].concat(utmValues(data)));
